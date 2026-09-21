@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>De Burst a Crept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600;700&family=Lexend:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F3F6FB;
+  --grid:rgba(44,92,196,.075);
+  --surface:#FFFFFF;
+  --surface-2:#EDF1F9;
+  --surface-3:#E1E7F3;
+  --ink:#16204A;
+  --ink-2:#414C72;
+  --ink-3:#5C688D;
+  --line:#D6DDEB;
+  --line-strong:#AEB9D2;
+  --hl:#FFE14A;
+  --hl-ink:#141B3D;
+  --g-same:#9DD7FF;
+  --g-ght:#FFB0D8;
+  --g-vowel:#FFC680;
+  --g-ept:#B4EC95;
+  --ok:#137A45;
+  --ok-bg:#E3F5EA;
+  --ok-line:#93D3AC;
+  --bad:#C42C24;
+  --bad-bg:#FCE9E7;
+  --bad-line:#EFAAA4;
+  --pen:#CF2F27;
+  --bluepen:#2446C4;
+  --btn:#16204A;
+  --btn-ink:#FFFFFF;
+  --btn-hover:#26336E;
+  --focus:#2E66F5;
+  --shadow:0 1px 2px rgba(22,32,74,.06),0 6px 20px rgba(22,32,74,.07);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-body:"Lexend","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1330;--grid:rgba(150,176,255,.06);--surface:#151C3F;--surface-2:#1C2551;--surface-3:#26305F;
+    --ink:#E9EDFB;--ink-2:#BAC3E1;--ink-3:#9AA5CA;--line:#29335F;--line-strong:#3D4981;
+    --ok:#4CD68F;--ok-bg:#133329;--ok-line:#2C7454;--bad:#FF8076;--bad-bg:#3A1A28;--bad-line:#8C3A43;
+    --pen:#FF7268;--bluepen:#9DB4FF;--btn:#FFE14A;--btn-ink:#141B3D;--btn-hover:#FFEA80;--focus:#8FAEFF;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1330;--grid:rgba(150,176,255,.06);--surface:#151C3F;--surface-2:#1C2551;--surface-3:#26305F;
+  --ink:#E9EDFB;--ink-2:#BAC3E1;--ink-3:#9AA5CA;--line:#29335F;--line-strong:#3D4981;
+  --ok:#4CD68F;--ok-bg:#133329;--ok-line:#2C7454;--bad:#FF8076;--bad-bg:#3A1A28;--bad-line:#8C3A43;
+  --pen:#FF7268;--bluepen:#9DB4FF;--btn:#FFE14A;--btn-ink:#141B3D;--btn-hover:#FFEA80;--focus:#8FAEFF;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;padding-inline:16px;
+  background-color:var(--ground);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button[disabled]{cursor:default}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+::selection{background:var(--hl);color:var(--hl-ink)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.ic{width:22px;height:22px;flex:none}
+
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.12;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:clamp(28px,7.4vw,36px);font-weight:800}
+h2{font-size:22px;font-weight:800}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+b,strong{font-weight:600}
+.lead{color:var(--ink-2);max-width:62ch}
+.muted{color:var(--ink-3)}
+.small{font-size:14px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+
+/* resaltador */
+.mk{background:var(--mk,var(--hl));color:var(--hl-ink);padding:.02em .24em .06em;border-radius:.22em .5em .28em .46em/.46em .3em .5em .3em;-webkit-box-decoration-break:clone;box-decoration-break:clone;font-weight:inherit}
+.hand{font-family:var(--f-hand);font-weight:700;font-size:23px;line-height:1;color:var(--ink-2);white-space:nowrap}
+
+/* estructura */
+.app{max-width:560px;margin-inline:auto;padding-block:20px calc(100px + env(safe-area-inset-bottom,0px))}
+.app.no-tabs{padding-bottom:40px}
+.view,.page{display:flex;flex-direction:column;gap:22px}
+.hero{display:flex;flex-direction:column;gap:10px}
+.section{display:flex;flex-direction:column;gap:12px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sec-head .muted{font-size:13.5px}
+.stack{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:18px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px;color:var(--ink)}
+.wordmark .mk{padding:0 .22em}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--ink-2);white-space:nowrap}
+.pill .ic{width:16px;height:16px;color:var(--ok)}
+.pill b{color:var(--ink)}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 20px;border-radius:14px;border:0;background:var(--btn);color:var(--btn-ink);font-weight:600;font-size:16px;text-align:center;transition:background-color .15s,transform .1s}
+.btn:hover{background:var(--btn-hover)}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.45}
+.btn .ic{width:20px;height:20px}
+.btn-block{width:100%}
+.btn-2{background:var(--surface);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-2:hover{background:var(--surface-2)}
+.btn-ok{background:var(--ok);color:var(--surface)}
+.btn-ok:hover{background:var(--ok);filter:brightness(1.07)}
+.btn-sm{min-height:44px;padding:8px 14px;font-size:14.5px;border-radius:12px}
+.btn-sm .ic{width:18px;height:18px}
+.btn-link{background:none;border:0;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;padding:10px 4px;min-height:44px;font-size:14.5px}
+.icon-btn{width:44px;height:44px;display:inline-grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);flex:none;padding:0}
+.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+.icon-btn .ic{width:20px;height:20px}
+
+/* barra inferior */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));background:var(--surface);background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.tabbar-inner{max-width:560px;margin-inline:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tab{min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:12px;border:0;background:none;color:var(--ink-3);font-size:12.5px;font-weight:500}
+.tab:hover{color:var(--ink)}
+.tab[aria-current="page"]{color:var(--ink);background:var(--surface-2);font-weight:600}
+
+/* inicio: fichas de dominio */
+.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:70px;padding:8px 2px 7px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:center;color:var(--ink)}
+.tile:hover{border-color:var(--line-strong)}
+.tile-base{font-size:11.5px;color:var(--ink-3);line-height:1.2}
+.tile-past{font-family:var(--f-display);font-weight:800;font-size:15.5px;line-height:1.25}
+.tile.l2{border-color:var(--ok-line);background:var(--ok-bg)}
+.tile .tick{position:absolute;top:4px;right:4px;width:15px;height:15px;color:var(--ok)}
+.dots{display:flex;gap:3px;margin-top:4px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--surface-3);border:1px solid var(--line-strong)}
+.dots i.on{background:var(--ink);border-color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-3)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .ic{width:15px;height:15px;color:var(--ok)}
+.stats{font-size:14px;color:var(--ink-2)}
+
+/* ruta */
+.route{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.step{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:66px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);text-align:left;color:var(--ink)}
+.step:hover{border-color:var(--line-strong)}
+.step-n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:16px;background:var(--surface-2);color:var(--ink-2)}
+.step-n .ic{width:18px;height:18px}
+.step.done .step-n{background:var(--ok);color:var(--surface)}
+.step.current{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.step.current .step-n{background:var(--hl);color:var(--hl-ink)}
+.step-t{display:block;font-weight:600;line-height:1.3}
+.step-s{display:block;font-size:13.5px;color:var(--ink-3);line-height:1.35;margin-top:2px}
+.step-m{font-size:12.5px;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* plan */
+.plan{list-style:none;margin:0;padding:0}
+.plan li{position:relative;display:grid;grid-template-columns:14px minmax(0,1fr);gap:14px;padding-bottom:16px}
+.plan li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--hl);border:2px solid var(--ink);margin-top:6px}
+.plan li::after{content:"";position:absolute;left:5px;top:22px;bottom:2px;width:2px;background:var(--line-strong)}
+.plan li:last-child{padding-bottom:0}
+.plan li:last-child::after{display:none}
+.plan-when{font-weight:600;display:block}
+.plan-what{color:var(--ink-2);font-size:15px;display:block}
+
+/* segmentado */
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.seg button{min-height:44px;border:0;border-radius:10px;background:none;color:var(--ink-2);font-weight:500;font-size:14.5px;padding:6px 8px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:600}
+.seg-body{display:flex;flex-direction:column;gap:14px}
+
+/* grupos */
+.grp{padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.grp-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:13px;font-weight:600;background:var(--mk,var(--hl));color:var(--hl-ink);white-space:nowrap}
+.grp-count{font-size:13px;color:var(--ink-3)}
+.grp-rule{color:var(--ink-2)}
+.vlist{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.vrow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+.vrow:last-child{border-bottom:0}
+.vrow-main{display:flex;flex-direction:column;gap:2px;padding:12px 0;background:none;border:0;text-align:left;width:100%;color:var(--ink)}
+.vrow-pair{font-family:var(--f-display);font-weight:800;font-size:21px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.vrow-pair .ic{color:var(--ink-3);width:18px;height:18px}
+.vrow-base{color:var(--ink-2)}
+.vrow-es{font-size:14px;color:var(--ink-3);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* notas al margen */
+.note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:baseline;padding:12px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.note p{color:var(--ink)}
+.note-ojo{background:var(--bad-bg);border-color:var(--bad-line)}
+.note-ojo .hand{color:var(--bad)}
+@media (max-width:380px){.note{grid-template-columns:1fr}}
+
+/* tabla del profe */
+.tbl-wrap{overflow-x:auto;border-radius:12px;background:var(--surface);border:1px solid var(--line-strong)}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid var(--line-strong);padding:9px 12px;text-align:left;vertical-align:middle}
+.tbl tr>:first-child{border-left:0}
+.tbl tr>:last-child{border-right:0}
+.tbl thead th{border-top:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;background:var(--surface-2)}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl .c-base{font-weight:500;color:var(--ink-2)}
+.tbl .c-past{font-family:var(--f-display);font-weight:800;font-size:17px;white-space:nowrap}
+.tbl .c-es{color:var(--ink-2);font-size:14px;line-height:1.35}
+.tbl .c-say{width:56px;padding:4px 6px}
+.tbl tr.playing td{background:color-mix(in srgb,var(--hl) 30%,var(--surface))}
+.reveal{min-height:44px;min-width:76px;border:1.5px dashed var(--line-strong);border-radius:10px;background:var(--surface-2);color:var(--ink-3);font-size:14px;font-weight:500}
+.reveal:hover{color:var(--ink);border-color:var(--ink-3)}
+
+/* historia */
+.story{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.story-line{display:flex;flex-direction:column;gap:2px;padding:4px 8px;margin:-4px -8px;border-radius:10px;transition:background-color .2s}
+.story-line.playing{background:color-mix(in srgb,var(--hl) 26%,var(--surface))}
+.story-en{font-size:18px;line-height:1.6}
+.story-es{font-size:14px;color:var(--ink-3)}
+.gap{display:inline-flex;align-items:center;min-height:36px;padding:2px 10px;margin-block:2px;border-radius:8px;border:1.5px dashed var(--line-strong);background:var(--surface-2);color:var(--ink-3);font-size:16px;font-weight:500;vertical-align:baseline}
+.gap:hover{color:var(--ink)}
+
+/* ficha de verbo */
+.page-top{display:flex;align-items:center;gap:12px}
+.page-top .eyebrow{flex:1}
+.vd{display:flex;flex-direction:column;gap:10px;padding:20px 18px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.vd-pair{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.vd-col{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.vd-w{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,11vw,52px);line-height:1;letter-spacing:-.02em}
+.vd-wrow{display:flex;align-items:center;gap:10px}
+.vd-arrow{color:var(--ink-3);padding-top:18px}
+.vd-arrow .ic{width:28px;height:28px}
+.vd-es{font-size:17px;color:var(--ink-2)}
+.vd-say{font-size:14.5px;color:var(--ink-3)}
+.wrongs{display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.wchip{padding:5px 12px;border-radius:999px;border:1px solid var(--bad-line);background:var(--bad-bg);color:var(--bad);font-size:14.5px;text-decoration-thickness:2px}
+.sents{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sent{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 12px 12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.sent-en{font-size:16.5px}
+.sent-es{font-size:14px;color:var(--ink-3);margin-top:2px}
+
+/* lecciones */
+.pdots{display:flex;gap:6px;flex:1}
+.pdots i{flex:1;height:6px;border-radius:99px;background:var(--surface-3)}
+.pdots i.on{background:var(--ink)}
+.lesson-body{display:flex;flex-direction:column;gap:16px}
+.lesson-nav{display:flex;gap:10px}
+.lesson-nav .btn{flex:1}
+.ex{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.ex-en{font-size:19px;font-weight:500}
+.ex-es{font-size:14.5px;color:var(--ink-3);grid-column:1}
+.ex .icon-btn{grid-row:1/span 2;grid-column:2}
+.tchip{padding:8px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14.5px}
+.tchip span{color:var(--ink-3)}
+.pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pair{padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pair .ic{width:16px;height:16px;color:var(--ink-3)}
+.pair s{color:var(--bad);font-size:13.5px;flex-basis:100%}
+.conj{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.conj div{padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.conj b{display:block;font-weight:500}
+.conj span{font-size:13.5px;color:var(--ink-3)}
+.checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.checks li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.checks .ic{color:var(--ok);margin-top:2px;width:20px;height:20px}
+.gsum{display:flex;flex-direction:column;gap:8px}
+.gsum-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.gsum-row .ex-w{font-family:var(--f-display);font-weight:800;font-size:17px}
+.gsum-row .muted{grid-column:2;font-size:13.5px}
+.gverbs{display:flex;flex-direction:column;gap:8px}
+.gv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.gv-pair{font-family:var(--f-display);font-weight:800;font-size:26px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gv-pair .ic{color:var(--ink-3)}
+.gv-es{grid-column:1;color:var(--ink-3);font-size:14.5px}
+.gv .icon-btn{grid-row:1/span 2;grid-column:2}
+.chant-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chant-item{padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-family:var(--f-display);font-weight:800;font-size:18px;transition:background-color .2s}
+.chant-item span{color:var(--ink-3);font-weight:600}
+.chant-item.playing{background:color-mix(in srgb,var(--hl) 35%,var(--surface));border-color:var(--hl)}
+
+/* hoja del quiz */
+.sheet{position:relative;background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--shadow);padding:16px 16px 8px}
+.sheet::before{content:"";position:absolute;top:0;bottom:0;left:50px;width:2px;background:var(--pen);opacity:.3}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sheet-title{font-family:var(--f-display);font-weight:800;font-size:19px}
+.sheet-date{font-family:var(--f-hand);font-size:22px;color:var(--bluepen)}
+.ex-list{list-style:none;margin:0;padding:0}
+.ex-row{display:grid;grid-template-columns:26px minmax(0,1fr) minmax(0,1.35fr);align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);min-height:62px}
+.ex-row:last-child{border-bottom:0}
+.ex-n{font-variant-numeric:tabular-nums;color:var(--ink-3);font-weight:600;font-size:14px}
+.ex-prompt{font-family:var(--f-display);font-weight:800;font-size:19px;padding-left:6px;overflow-wrap:anywhere}
+.ex-prompt.ex-es{font-family:var(--f-body);font-weight:500;font-size:15.5px}
+.ex-prompt-audio{display:flex;align-items:center;gap:8px;padding-left:4px;flex-wrap:wrap}
+.ex-prompt-audio b{font-family:var(--f-display);font-weight:800}
+.ex-ans{display:flex;align-items:center;gap:6px;min-width:0}
+.ex-input{flex:1;min-width:0;width:100%;min-height:46px;border:0;border-bottom:2px solid var(--line-strong);border-radius:0;background:transparent;font-family:var(--f-hand);font-weight:600;font-size:29px;line-height:1;color:var(--bluepen);padding:2px 4px}
+.ex-input:focus{outline:none;border-bottom-color:var(--focus)}
+.ex-input.strike{text-decoration:line-through;text-decoration-color:var(--pen);text-decoration-thickness:2px}
+.ex-hand{font-family:var(--f-hand);font-weight:600;font-size:29px;line-height:1.1;color:var(--bluepen);border-bottom:2px solid var(--line-strong);padding:0 4px}
+.ex-fix{font-family:var(--f-hand);font-weight:700;font-size:27px;line-height:1;color:var(--pen);white-space:nowrap}
+.ex-ok{color:var(--ok);display:inline-grid}
+.btn-say{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface-2);color:var(--ink);font-weight:500;font-size:14.5px}
+.btn-say .ic{width:18px;height:18px}
+.form-msg{font-size:14.5px;color:var(--bad)}
+.form-msg:empty{display:none}
+
+/* nota del profe */
+.res-top{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.res-txt{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.grade{flex:none;width:140px;height:118px;display:grid;place-items:center;color:var(--pen);font-family:var(--f-hand);font-weight:700;font-size:62px;line-height:1;border:3px solid var(--pen);border-radius:52% 48% 55% 45%/48% 55% 45% 52%;transform:rotate(-5deg)}
+.grade small{font-size:32px}
+.miss-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.miss{display:grid;grid-template-columns:auto auto auto minmax(0,1fr);align-items:center;gap:10px;width:100%;min-height:52px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:left;font-family:var(--f-display);font-weight:800;font-size:18px;color:var(--ink)}
+.miss .ic{width:16px;height:16px;color:var(--ink-3)}
+.miss .muted{font-family:var(--f-body);font-weight:400;font-size:14px;justify-self:end}
+
+/* practicar */
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mode{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:132px;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--surface);text-align:left;color:var(--ink)}
+.mode:hover:not([disabled]){border-color:var(--line-strong)}
+.mode[disabled]{opacity:.6}
+.ic-wrap{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--mk,var(--surface-2));color:var(--hl-ink);flex:none}
+.mode-t{font-weight:600;font-size:16px;line-height:1.3}
+.mode-s{font-size:13.5px;color:var(--ink-3);line-height:1.4}
+.done-badge{position:absolute;top:12px;right:12px;color:var(--ok);display:inline-grid}
+.mode.wide{flex-direction:row;align-items:center;gap:14px;min-height:88px;border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.mode.wide .mode-txt{display:flex;flex-direction:column;gap:2px;flex:1}
+.mode.wide>.ic{color:var(--ink-3)}
+.reset{display:flex;justify-content:center}
+
+/* sesión */
+.ses{display:flex;flex-direction:column;gap:16px}
+.ses-top{display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:10px;border-radius:999px;background:var(--surface-3);overflow:hidden}
+.bar>span{display:block;height:100%;background:var(--ok);border-radius:inherit;transition:width .3s ease}
+.ses-count{font-size:13.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+.retry{color:var(--bad)}
+.q-card{padding:22px 18px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.q-label{font-size:14.5px;color:var(--ink-2);font-weight:500}
+.q-word-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.q-word{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,12vw,56px);line-height:1.05;letter-spacing:-.02em}
+.q-word-es{font-size:clamp(32px,9vw,44px)}
+.q-sub{color:var(--ink-3);font-size:15px}
+.q-sentence{font-size:21px;line-height:1.55;font-weight:500}
+.blank{display:inline-block;width:4.4em;border-bottom:3px solid var(--ink);margin-inline:.12em;height:1.05em;vertical-align:-.12em}
+.hint{color:var(--ink-3);font-weight:500}
+.q-es{font-size:14.5px;color:var(--ink-3)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{position:relative;min-height:60px;padding:10px 12px;border-radius:14px;border:2px solid var(--line);border-bottom-width:4px;background:var(--surface);font-family:var(--f-display);font-weight:800;font-size:20px;color:var(--ink);transition:transform .08s,border-color .15s,background-color .15s}
+.opt:hover:not([disabled]){border-color:var(--line-strong)}
+.opt:active:not([disabled]){transform:translateY(2px)}
+.opt.is-right{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.opt-k{position:absolute;top:5px;left:9px;font-family:var(--f-body);font-size:11px;font-weight:500;color:var(--ink-3)}
+@media (hover:none){.opt-k{display:none}}
+.type-area{display:flex;flex-direction:column;gap:6px}
+.field-label{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:.03em}
+.answer{width:100%;min-height:58px;padding:10px 16px;border-radius:14px;border:2px solid var(--line-strong);background:var(--surface);font-family:var(--f-display);font-weight:600;font-size:23px}
+.answer::placeholder{color:var(--ink-3);opacity:.7;font-weight:500}
+.answer:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--focus) 25%,transparent)}
+.answer.is-right{border-color:var(--ok);background:var(--ok-bg)}
+.answer.is-wrong{border-color:var(--bad);background:var(--bad-bg)}
+.answer[disabled]{opacity:1;color:var(--ink)}
+.ses-actions{display:flex;flex-direction:column;gap:8px}
+.fb{padding:14px 16px;border-radius:14px;border:1px solid;display:flex;flex-direction:column;gap:7px;animation:fbIn .22s ease-out}
+.fb.ok{background:var(--ok-bg);border-color:var(--ok-line)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad-line)}
+.fb-title{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:20px}
+.fb.ok .fb-title{color:var(--ok)}
+.fb.bad .fb-title{color:var(--bad)}
+.fb-ans{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:16px}
+.fb-ans .mk{font-family:var(--f-display);font-weight:800;font-size:20px}
+.fb-note,.fb-sent{font-size:15px;color:var(--ink-2)}
+.fb-sent-es{display:block;font-size:14px;color:var(--ink-3)}
+.fb-diff{font-family:var(--f-display);font-weight:800;font-size:18px;color:var(--ink);letter-spacing:.04em}
+.dx{color:var(--bad);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px}
+@keyframes fbIn{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}
+.btn-listen{display:inline-flex;align-items:center;gap:10px;min-height:64px;padding:12px 24px;border-radius:999px;border:0;background:var(--btn);color:var(--btn-ink);font-weight:600;font-size:18px}
+.btn-listen .ic{width:28px;height:28px}
+
+/* tarjetas */
+.flash{perspective:1400px}
+.flash-inner{display:grid;transition:transform .45s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flash.flipped .flash-inner{transform:rotateY(180deg)}
+.face{grid-area:1/1;-webkit-backface-visibility:hidden;backface-visibility:hidden;padding:24px 20px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;align-items:flex-start;min-height:280px}
+.face.front{justify-content:center;cursor:pointer}
+.face.back{transform:rotateY(180deg)}
+.flash:not(.flipped) .back,.flash.flipped .front{pointer-events:none}
+.flash-ask{margin-top:6px;font-size:15px;color:var(--ink-2);font-weight:500}
+.flash-sent{font-size:17px}
+.flash-tip{font-size:14.5px;color:var(--ink-2);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+
+/* parejas */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.m-item{min-height:56px;padding:8px 10px;border-radius:12px;border:2px solid var(--line);border-bottom-width:4px;background:var(--surface);font-weight:600;font-size:15.5px;line-height:1.25;color:var(--ink);transition:border-color .15s,background-color .15s,opacity .2s}
+.m-item.en{font-family:var(--f-display);font-weight:800;font-size:19px}
+.m-item.sel{border-color:var(--focus);background:color-mix(in srgb,var(--focus) 13%,var(--surface))}
+.m-item.done{border-color:var(--ok-line);background:var(--ok-bg);color:var(--ok);opacity:.75}
+.m-item.miss{border-color:var(--bad);background:var(--bad-bg)}
+.shake{animation:shake .35s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:360px){
+  .tiles{gap:5px}
+  .tile-past{font-size:14px}
+  .opt{font-size:18px}
+}
+</style>
+
+<div id="app" class="app"></div>
+<nav id="tabbar" class="tabbar" aria-label="Secciones"></nav>
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* ============ DATOS ============ */
+const VERBS = [
+{ id:"burst", base:"burst", past:"burst", group:"same", es:"reventar, estallar", short:"reventar", esPast:"la bomba se reventó", sayB:"bérst", sayP:"bérst",
+  tip:"No cambia: burst → burst.", ojo:"Nunca «bursted». Frase útil: burst into tears = romper a llorar.",
+  wrong:["bursted","bursts","bursten"],
+  s:[
+  ["The balloon {burst} when my little brother sat on it.","La bomba se reventó cuando mi hermanito se sentó encima."],
+  ["Yesterday a water pipe {burst} in our kitchen.","Ayer se reventó un tubo de agua en nuestra cocina."],
+  ["She {burst} into tears when she heard the news.","Ella rompió a llorar cuando oyó la noticia."],
+  ["We {burst} out laughing at his joke last night.","Anoche nos echamos a reír con su chiste."],
+  ["The door opened and the kids {burst} into the room.","La puerta se abrió y los niños entraron de golpe al cuarto."],
+  ["My bike tire {burst} on the way to school this morning.","Esta mañana se me reventó la llanta de la bici camino al colegio."],
+  ["The river {burst} its banks after three days of rain.","El río se desbordó después de tres días de lluvia."],
+  ["I {burst} all the balloons after the party.","Reventé todas las bombas después de la fiesta."],
+  ["The soap bubble {burst} a second later.","La burbuja de jabón se reventó un segundo después."],
+  ["He {burst} into the classroom five minutes late.","Él entró de golpe al salón cinco minutos tarde."]
+  ]},
+{ id:"buy", base:"buy", past:"bought", group:"ght", es:"comprar", short:"comprar", esPast:"yo compré, ella compró", sayB:"bái", sayP:"bot",
+  tip:"La gh no suena: se dice «bot». Rima con caught.", ojo:"No lo confundas con brought (de bring, traer). Comprar es bought, sin r.",
+  wrong:["buyed","brought","bougth","boughted"],
+  s:[
+  ["I {bought} a new phone last week.","Compré un celular nuevo la semana pasada."],
+  ["My mom {bought} bread this morning.","Mi mamá compró pan esta mañana."],
+  ["We {bought} tickets for the concert yesterday.","Ayer compramos boletas para el concierto."],
+  ["He {bought} flowers for his girlfriend on Saturday.","Él le compró flores a su novia el sábado."],
+  ["They {bought} a house two years ago.","Ellos compraron una casa hace dos años."],
+  ["What did you buy? — I {bought} a pair of shoes.","¿Qué compraste? — Compré un par de zapatos."],
+  ["She {bought} a gift for her best friend yesterday.","Ayer ella compró un regalo para su mejor amiga."],
+  ["I {bought} a coffee before class this morning.","Esta mañana compré un café antes de clase."],
+  ["My dad {bought} a car in 2019.","Mi papá compró un carro en 2019."],
+  ["We {bought} pizza for the whole class last Friday.","El viernes pasado compramos pizza para todo el salón."]
+  ]},
+{ id:"cast", base:"cast", past:"cast", group:"same", es:"lanzar, arrojar", short:"lanzar", esPast:"él lanzó la red", sayB:"kast", sayP:"kast",
+  tip:"No cambia: cast → cast.", ojo:"Nunca «casted». También sirve para: cast a spell (lanzar un hechizo) y cast a vote (votar).",
+  wrong:["casted","casts","cost"],
+  s:[
+  ["The fisherman {cast} his net into the sea early this morning.","El pescador lanzó su red al mar esta mañana temprano."],
+  ["The witch {cast} a spell on the prince.","La bruja le lanzó un hechizo al príncipe."],
+  ["Millions of people {cast} their votes last Sunday.","Millones de personas votaron el domingo pasado."],
+  ["The old tree {cast} a long shadow over the house.","El árbol viejo proyectó una sombra larga sobre la casa."],
+  ["The director {cast} my cousin in the school play.","El director escogió a mi primo para la obra del colegio."],
+  ["He {cast} a quick look at the clock.","Él le echó un vistazo rápido al reloj."],
+  ["I {cast} my line into the river and waited for an hour.","Lancé el anzuelo al río y esperé una hora."],
+  ["The sailors {cast} the anchor near the island.","Los marineros echaron el ancla cerca de la isla."],
+  ["She {cast} her vote for the first time in 2022.","Ella votó por primera vez en 2022."],
+  ["Last night the moon {cast} a silver light on the lake.","Anoche la luna proyectó una luz plateada sobre el lago."]
+  ]},
+{ id:"catch", base:"catch", past:"caught", group:"ght", es:"atrapar, agarrar", short:"atrapar", esPast:"yo atrapé, él atrapó", sayB:"kach", sayP:"kot",
+  tip:"La A de cAtch se queda: cAUght. Suena «kot», igual que bought.", ojo:"Nunca «catched» ni «cought».",
+  wrong:["catched","cought","caugth","catches"],
+  s:[
+  ["The police {caught} the thief last night.","La policía atrapó al ladrón anoche."],
+  ["I {caught} the ball with one hand.","Atrapé la pelota con una mano."],
+  ["She {caught} a cold last week.","Ella se resfrió la semana pasada."],
+  ["We ran and {caught} the last bus home.","Corrimos y alcanzamos el último bus a casa."],
+  ["My grandpa {caught} a big fish yesterday.","Mi abuelo pescó un pez grande ayer."],
+  ["The cat {caught} a mouse in the garden.","El gato atrapó un ratón en el jardín."],
+  ["The teacher {caught} him copying in the exam.","El profe lo pilló copiando en el examen."],
+  ["The goalkeeper {caught} the ball and saved the game.","El arquero atrapó el balón y salvó el partido."],
+  ["The rain {caught} us without an umbrella.","La lluvia nos cogió sin paraguas."],
+  ["Something in the shop window {caught} my attention.","Algo en la vitrina me llamó la atención."]
+  ]},
+{ id:"come", base:"come", past:"came", group:"vowel", es:"venir, llegar", short:"venir", esPast:"yo vine, ella llegó", sayB:"kam", sayP:"kéim",
+  tip:"Solo cambia la o por a: come → came.", ojo:"«come» también existe, pero es presente: I come every day. En pasado: came.",
+  wrong:["comed","come","camed","comes"],
+  s:[
+  ["My cousins {came} to my house yesterday.","Mis primos vinieron a mi casa ayer."],
+  ["She {came} home late last night.","Ella llegó tarde a casa anoche."],
+  ["The teacher {came} into the classroom and everyone sat down.","El profe entró al salón y todos se sentaron."],
+  ["They {came} to Colombia in 2015.","Ellos vinieron a Colombia en 2015."],
+  ["He {came} first in the race.","Él llegó de primero en la carrera."],
+  ["Only ten people {came} to the party.","Solo vinieron diez personas a la fiesta."],
+  ["The bus {came} ten minutes late this morning.","Esta mañana el bus llegó diez minutos tarde."],
+  ["My dog {came} running when I called him.","Mi perro vino corriendo cuando lo llamé."],
+  ["A great idea {came} to me in the shower.","Se me ocurrió una gran idea en la ducha."],
+  ["We {came} back from the beach on Sunday.","Volvimos de la playa el domingo."]
+  ]},
+{ id:"cost", base:"cost", past:"cost", group:"same", es:"costar", short:"costar", esPast:"costó mucho", sayB:"kost", sayP:"kost",
+  tip:"No cambia: cost → cost.", ojo:"Presente: it costs (con -s). Pasado: it cost (sin -s). Nunca «costed».",
+  wrong:["costed","costs","cast"],
+  s:[
+  ["The shoes I bought yesterday {cost} 150,000 pesos.","Los zapatos que compré ayer costaron 150.000 pesos."],
+  ["The trip to Cartagena {cost} a lot of money.","El viaje a Cartagena costó mucha plata."],
+  ["How much did it cost? — It {cost} ten dollars.","¿Cuánto costó? — Costó diez dólares."],
+  ["His mistake {cost} us the game.","Su error nos costó el partido."],
+  ["My phone {cost} more than my laptop.","Mi celular costó más que mi portátil."],
+  ["Being late {cost} me a point on the exam.","Llegar tarde me costó un punto en el examen."],
+  ["The house {cost} 200 million pesos in 2010.","La casa costó 200 millones de pesos en 2010."],
+  ["That jacket {cost} me all my savings.","Esa chaqueta me costó todos mis ahorros."],
+  ["The repair {cost} more than we expected.","La reparación costó más de lo que esperábamos."],
+  ["Each notebook {cost} five thousand pesos.","Cada cuaderno costó cinco mil pesos."]
+  ]},
+{ id:"cut", base:"cut", past:"cut", group:"same", es:"cortar", short:"cortar", esPast:"yo corté, él cortó", sayB:"kat", sayP:"kat",
+  tip:"No cambia: cut → cut.", ojo:"Nunca «cutted». Se pronuncia «kat», no «kut».",
+  wrong:["cutted","cuts","cutt"],
+  s:[
+  ["I {cut} my finger with a knife yesterday.","Ayer me corté el dedo con un cuchillo."],
+  ["She {cut} her hair very short last month.","Ella se cortó el pelo muy corto el mes pasado."],
+  ["My dad {cut} the grass on Saturday.","Mi papá cortó el pasto el sábado."],
+  ["He {cut} the cake into eight pieces.","Él cortó la torta en ocho pedazos."],
+  ["They {cut} the electricity for three hours last night.","Anoche cortaron la luz tres horas."],
+  ["Mom {cut} the vegetables for the soup.","Mamá cortó las verduras para la sopa."],
+  ["The barber {cut} my hair too short!","¡El peluquero me cortó el pelo demasiado corto!"],
+  ["She {cut} the paper with scissors.","Ella cortó el papel con tijeras."],
+  ["The company {cut} fifty jobs last year.","La empresa recortó cincuenta empleos el año pasado."],
+  ["He {cut} himself while shaving this morning.","Esta mañana se cortó mientras se afeitaba."]
+  ]},
+{ id:"choose", base:"choose", past:"chose", group:"vowel", es:"elegir, escoger", short:"elegir", esPast:"yo elegí, ella escogió", sayB:"chuuz", sayP:"chóuz",
+  tip:"En pasado se le cae una O: choose → chose.", ojo:"chosen es otra forma (participio: I have chosen). En el quiz va chose.",
+  wrong:["choosed","chosen","choose","chosed"],
+  s:[
+  ["I {chose} the blue shirt for the party.","Escogí la camisa azul para la fiesta."],
+  ["She {chose} to study medicine.","Ella eligió estudiar medicina."],
+  ["We {chose} a movie and made popcorn.","Escogimos una película e hicimos crispetas."],
+  ["The team {chose} Laura as captain.","El equipo eligió a Laura como capitana."],
+  ["He {chose} the chocolate ice cream.","Él escogió el helado de chocolate."],
+  ["They {chose} a small hotel near the beach.","Eligieron un hotel pequeño cerca de la playa."],
+  ["The teacher {chose} me to read first.","El profe me escogió para leer de primero."],
+  ["I {chose} the wrong answer in question 5.","Escogí la respuesta equivocada en la pregunta 5."],
+  ["My parents {chose} my name before I was born.","Mis papás escogieron mi nombre antes de que yo naciera."],
+  ["You {chose} a great restaurant last night!","¡Escogiste un restaurante buenísimo anoche!"]
+  ]},
+{ id:"cling", base:"cling", past:"clung", group:"vowel", es:"aferrarse, agarrarse fuerte", short:"aferrarse", esPast:"se aferró a su mamá", sayB:"kling", sayP:"klang",
+  tip:"La i se vuelve u: cling → clung, como swing → swung.", ojo:"Nunca «clinged».",
+  wrong:["clinged","clang","clong","clunged"],
+  s:[
+  ["The baby {clung} to her mother.","La bebé se aferró a su mamá."],
+  ["The cat {clung} to the curtain with its claws.","El gato se agarró de la cortina con las uñas."],
+  ["He {clung} to the rope and didn’t let go.","Él se agarró fuerte de la cuerda y no la soltó."],
+  ["My wet shirt {clung} to my body.","La camisa mojada se me pegó al cuerpo."],
+  ["On the first day of school, the little boy {clung} to his dad’s leg.","El primer día de colegio, el niño se aferró a la pierna de su papá."],
+  ["She {clung} to the hope that her dog would come back.","Ella se aferró a la esperanza de que su perro volviera."],
+  ["We {clung} to each other during the storm.","Nos abrazamos fuerte durante la tormenta."],
+  ["The monkey {clung} to the branch.","El mico se agarró de la rama."],
+  ["Mud {clung} to my shoes after the football game.","El barro se me pegó a los zapatos después del partido."],
+  ["The survivors {clung} to a piece of wood for hours.","Los sobrevivientes se aferraron a un pedazo de madera durante horas."]
+  ]},
+{ id:"creep", base:"creep", past:"crept", group:"ept", es:"moverse sigilosamente, arrastrarse", short:"moverse sigiloso", esPast:"el gato se acercó sigiloso", sayB:"kriip", sayP:"krept",
+  tip:"EE → E + T: creep → crept, como sleep → slept y keep → kept.", ojo:"En el colegio el pasado es crept, no «creeped».",
+  wrong:["creeped","creept","crapt","crepped"],
+  s:[
+  ["The cat {crept} towards the bird.","El gato se acercó sigilosamente al pájaro."],
+  ["I {crept} into the house at 2 a.m.","Entré a la casa a escondidas a las 2 de la mañana."],
+  ["The thief {crept} up the stairs.","El ladrón subió las escaleras sin hacer ruido."],
+  ["The baby {crept} across the floor.","El bebé gateó por el piso."],
+  ["She {crept} out of the room so she wouldn’t wake him up.","Ella salió del cuarto en silencio para no despertarlo."],
+  ["A spider {crept} up my arm.","Una araña me subió por el brazo."],
+  ["We {crept} downstairs to see our Christmas presents.","Bajamos a escondidas para ver los regalos de Navidad."],
+  ["The soldiers {crept} through the jungle at night.","Los soldados avanzaron sigilosamente por la selva de noche."],
+  ["Fog {crept} over the hills in the morning.","La neblina fue cubriendo las montañas en la mañana."],
+  ["He {crept} up behind me and shouted “Boo!”","Se me acercó por detrás sin hacer ruido y gritó «¡Bu!»."]
+  ]}
+];
+
+const GROUPS = [
+{ id:"same", name:"No cambian", color:"var(--g-same)", verbs:["burst","cast","cost","cut"],
+  rule:"El pasado es igual al verbo normal. No hay nada que cambiar.",
+  trick:"Son 4, cortitos y todos terminan en T: burst, cast, cost, cut. La T los deja congelados.",
+  extra:"¿Cómo sabes que es pasado si no cambia? Por las pistas (yesterday, last week…) y porque en presente, con he/she/it, llevan -s: it costs (presente) → it cost (pasado)." },
+{ id:"ght", name:"Terminan en -ght", color:"var(--g-ght)", verbs:["buy","catch"],
+  rule:"Se vuelven -ought / -aught. La gh no suena.",
+  trick:"Riman: bought «bot» y caught «kot». Mira la vocal del verbo: bUy → boUght, cAtch → cAught.",
+  extra:"bought (de buy, comprar) no es brought (de bring, traer)." },
+{ id:"vowel", name:"Cambia la vocal", color:"var(--g-vowel)", verbs:["come","choose","cling"],
+  rule:"Solo cambia la vocal del medio; el resto queda igual.",
+  trick:"come → came (o → a) · choose → chose (se cae una o) · cling → clung (i → u).",
+  extra:"chose lleva una sola o. chosen es otra forma que verás después; en el quiz va chose." },
+{ id:"ept", name:"EE → EPT", color:"var(--g-ept)", verbs:["creep"],
+  rule:"La doble E se vuelve una E y se agrega T.",
+  trick:"creep → crept, igual que sleep → slept y keep → kept.",
+  extra:"En el colegio el pasado de creep es crept, no «creeped»." }
+];
+
+const STORY = [
+  { en:"Last Friday I {came} home very hungry.", es:"El viernes pasado llegué a casa con mucha hambre.", vid:"come" },
+  { en:"I {bought} a big pizza at the corner shop.", es:"Compré una pizza grande en la tienda de la esquina.", vid:"buy" },
+  { en:"It {cost} 40,000 pesos.", es:"Costó 40.000 pesos.", vid:"cost" },
+  { en:"I {cut} it into eight slices.", es:"La corté en ocho pedazos.", vid:"cut" },
+  { en:"Suddenly, my cat {crept} into the kitchen", es:"De repente, mi gato entró sigilosamente a la cocina", vid:"creep" },
+  { en:"and {caught} a slice with its paws!", es:"¡y atrapó un pedazo con sus patas!", vid:"catch" },
+  { en:"I {chose} to fight for my pizza,", es:"Decidí pelear por mi pizza,", vid:"choose" },
+  { en:"but the cat {clung} to it with all its claws.", es:"pero el gato se aferró a ella con todas sus garras.", vid:"cling" },
+  { en:"In the end, I {burst} out laughing", es:"Al final, me eché a reír", vid:"burst" },
+  { en:"and {cast} the last slice to my cat.", es:"y le lancé el último pedazo a mi gato.", vid:"cast" }
+];
+
+const STEPS = [
+  { id:"lesson1", title:"Qué es el pasado", sub:"Lo básico, en 2 minutos", min:2 },
+  { id:"lesson2", title:"Los 4 grupos", sub:"Los 10 verbos con trucos para recordarlos", min:4 },
+  { id:"story", title:"La historia de la pizza", sub:"Un cuento corto con los 10 verbos", min:3 },
+  { id:"flash", title:"Tarjetas", sub:"Mira el verbo, piensa el pasado, voltea", min:4 },
+  { id:"elige", title:"Elige la correcta", sub:"Opciones con las trampas típicas", min:4 },
+  { id:"frases", title:"Completa frases", sub:"El pasado dentro de frases reales", min:6 },
+  { id:"escribe", title:"Escríbelo sin ayuda", sub:"Ortografía exacta, como en el quiz", min:4 },
+  { id:"exam", title:"Simulacro del quiz", sub:"Los 10, sin pistas. Meta: 10/10", min:3 }
+];
+
+const MODES = [
+  { id:"flash", title:"Tarjetas", sub:"Ves el verbo, piensas el pasado y volteas.", icon:"cards", mk:"var(--hl)" },
+  { id:"elige", title:"Elige la correcta", sub:"Opciones con trampas: catched, buyed…", icon:"list", mk:"var(--g-same)" },
+  { id:"frases", title:"Completa frases", sub:"El pasado dentro de frases reales.", icon:"text", mk:"var(--g-ght)" },
+  { id:"escribe", title:"Escríbelo", sub:"Ortografía exacta, sin opciones.", icon:"pencil", mk:"var(--g-vowel)" },
+  { id:"dictado", title:"Dictado", sub:"Escuchas el verbo y escribes el pasado.", icon:"headphones", mk:"var(--g-ept)", tts:true },
+  { id:"parejas", title:"Parejas", sub:"Une cada significado con su pasado.", icon:"link", mk:"var(--hl)" },
+  { id:"historia", title:"Historia de la pizza", sub:"Completa el cuento con los 10 verbos.", icon:"bookopen", mk:"var(--g-same)", step:"story" },
+  { id:"errores", title:"Repasa tus errores", sub:"", icon:"rotate", mk:"var(--g-ght)" }
+];
+
+const MODE_TITLE = { flash:"Tarjetas", elige:"Elige la correcta", frases:"Completa frases", escribe:"Escríbelo", dictado:"Dictado", parejas:"Parejas", historia:"Historia de la pizza", errores:"Repasa tus errores", lista:"Repaso de fallados", verb:"Práctica de un verbo" };
+
+const PLAN = [
+  ["Esta noche · 30–40 min", "Haz la ruta completa, del paso 1 al 8. Cada paso prepara el siguiente."],
+  ["Antes de dormir · 5 min", "Un simulacro más. Dormir después de estudiar ayuda a fijar lo aprendido."],
+  ["Mañana al despertar · 5 min", "Otro simulacro y «Repasa tus errores» si fallaste alguno."],
+  ["Justo antes del quiz · 1 min", "Di los 10 en voz alta, verbo y pasado: burst–burst, buy–bought, cast–cast…"]
+];
+
+/* verbos que también encajarían en ciertas frases: no se ofrecen como distractores en «¿Qué verbo va aquí?» */
+const CONFUSE = { buy:["choose"], choose:["buy"], come:["creep","burst"], creep:["come","burst"], burst:["come","creep","cut"], cut:["buy","choose","burst"], cling:["come","creep"], cast:["catch"], catch:["cast"] };
+
+/* ============ BÁSICOS ============ */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const V = Object.fromEntries(VERBS.map(v => [v.id, v]));
+const G = Object.fromEntries(GROUPS.map(g => [g.id, g]));
+const gcol = v => G[v.group].color;
+const plain = en => en.replace(/[{}]/g, "");
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const pickOne = a => a[Math.floor(Math.random() * a.length)];
+const norm = s => String(s || "").toLowerCase().replace(/[’'`´]/g, "").replace(/[.,;:!?¡¿"“”«»()]/g, "").replace(/\s+/g, " ").trim();
+
+function lev(a, b) {
+  if (!a.length) return b.length; if (!b.length) return a.length;
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    for (let j = 1; j <= b.length; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    prev = cur;
+  }
+  return prev[b.length];
+}
+/* marca en la palabra correcta las letras que faltaron o se escribieron mal */
+function diffMarkup(user, correct) {
+  const n = user.length, m = correct.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    dp[i][j] = user[i] === correct[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  let i = 0, j = 0, out = "";
+  while (j < m) {
+    if (i < n && user[i] === correct[j]) { out += esc(correct[j]); i++; j++; }
+    else if (i < n && dp[i + 1][j] >= dp[i][j + 1]) { i++; }
+    else { out += '<span class="dx">' + esc(correct[j]) + "</span>"; j++; }
+  }
+  return out;
+}
+function diagnose(v, a) {
+  if (a === v.past) return null;
+  if (v.id === "buy" && a === "brought") return "«brought» es el pasado de bring (traer). Comprar es bought, sin r.";
+  if (a === "chosen") return "«chosen» es el participio (I have chosen). El pasado simple es chose, con una sola o.";
+  if (a === v.base + "s" || a === v.base + "es") return "Con -s es presente (he/she/it). El pasado no lleva -s: " + v.past + ".";
+  if (a === v.base && v.base !== v.past) return "Esa es la forma del presente. En pasado cambia: " + v.past + ".";
+  if (/ed$/.test(a)) return "Este verbo es irregular: no lleva -ed. Su pasado es " + v.past + ".";
+  const other = VERBS.find(x => x.past === a && x.id !== v.id);
+  if (other) return "«" + a + "» es el pasado de " + other.base + " (" + other.short + "). Aquí va " + v.past + ".";
+  return null;
+}
+
+/* ============ PROGRESO (solo en este navegador) ============ */
+const KEY = "de-burst-a-crept:v1";
+const freshP = () => ({ v: {}, steps: {}, exams: [] });
+function loadP() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      if (p && typeof p === "object") return { v: p.v || {}, steps: p.steps || {}, exams: Array.isArray(p.exams) ? p.exams : [] };
+    }
+  } catch (e) {}
+  return freshP();
+}
+function saveP() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
+let P = loadP();
+const rec = id => P.v[id] || (P.v[id] = { box: 0, ok: 0, bad: 0 });
+const boxOf = id => (P.v[id] ? P.v[id].box : 0);
+function level(id) { const r = P.v[id]; if (!r || r.ok + r.bad === 0) return 0; return r.box >= 3 ? 2 : 1; }
+const masteredCount = () => VERBS.filter(v => boxOf(v.id) >= 3).length;
+const weakIds = () => VERBS.filter(v => { const r = P.v[v.id]; return r && r.bad > 0 && r.box < 3; }).map(v => v.id);
+const weakFirst = ids => ids.map(id => ({ id, k: boxOf(id) + Math.random() * 1.6 })).sort((a, b) => a.k - b.k).map(o => o.id);
+/* nivel 0–4: elegir sube hasta 2; escribir bien sube hasta 4; fallar baja 2. Dominado = 3 o más */
+function scoreVerb(id, ok, kind) {
+  const r = rec(id);
+  if (ok) { r.ok++; if (kind === "type") r.box = Math.min(4, r.box + 1); else if (r.box < 2) r.box++; }
+  else { r.bad++; r.box = Math.max(0, r.box - 2); }
+  saveP();
+}
+function flashScore(id, knew) { const r = rec(id); if (knew) r.ok++; else { r.bad++; r.box = Math.max(0, r.box - 1); } saveP(); }
+function examStreak() { let n = 0; for (let i = P.exams.length - 1; i >= 0; i--) { if (P.exams[i].s === 10) n++; else break; } return n; }
+const nextStep = () => STEPS.find(s => !P.steps[s.id]) || null;
+const stepOf = mode => (mode === "historia" ? "story" : mode);
+
+/* ============ VOZ (lectura en inglés del navegador) ============ */
+const TTS = { ok: typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined", voice: null, keep: null };
+function pickVoice() {
+  try {
+    const en = (speechSynthesis.getVoices() || []).filter(v => /^en[-_]/i.test(v.lang));
+    TTS.voice = en.find(v => /en[-_]US/i.test(v.lang) && /(Google|Samantha|Aria|Jenny|Natural)/i.test(v.name)) || en.find(v => /en[-_]US/i.test(v.lang)) || en[0] || null;
+  } catch (e) {}
+}
+if (TTS.ok) { pickVoice(); try { speechSynthesis.addEventListener("voiceschanged", pickVoice); } catch (e) { speechSynthesis.onvoiceschanged = pickVoice; } }
+function say(text, opts) {
+  opts = opts || {};
+  if (!TTS.ok) return;
+  try {
+    if (!opts.queue) speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US"; if (TTS.voice) u.voice = TTS.voice;
+    u.rate = opts.rate || 0.9;
+    if (opts.onend) { u.onend = opts.onend; u.onerror = opts.onend; }
+    TTS.keep = u;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+/* lista reproducida en orden: resalta el elemento [data-pl="i"] que suena */
+const PL = { on: false, token: 0, kind: "" };
+function paintPlaying(i) { $$("[data-pl]").forEach(el => el.classList.toggle("playing", Number(el.dataset.pl) === i)); }
+function playList(kind, items) {
+  if (!TTS.ok) return;
+  stopList(true);
+  const tk = ++PL.token; PL.on = true; PL.kind = kind;
+  let k = -1;
+  const next = () => {
+    if (tk !== PL.token || !PL.on) return;
+    k++;
+    if (k >= items.length) { PL.on = false; PL.kind = ""; paintPlaying(-1); refreshPlayButtons(); return; }
+    paintPlaying(k);
+    const el = $('[data-pl="' + k + '"]');
+    if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    say(items[k], { queue: true, rate: 0.85, onend: () => setTimeout(next, 300) });
+  };
+  try { speechSynthesis.cancel(); } catch (e) {}
+  refreshPlayButtons();
+  next();
+}
+function stopList(silent) {
+  if (!PL.on) return;
+  PL.on = false; PL.kind = ""; PL.token++;
+  try { speechSynthesis.cancel(); } catch (e) {}
+  paintPlaying(-1);
+  if (!silent) refreshPlayButtons();
+}
+function playBtn(kind, idle) {
+  const on = PL.on && PL.kind === kind;
+  return '<button type="button" class="btn btn-2 btn-sm" data-action="play" data-kind="' + kind + '" data-plbtn="' + kind + '" data-idle="' + esc(idle) + '">' + ic(on ? "stop" : "play") + " " + (on ? "Detener" : esc(idle)) + "</button>";
+}
+function refreshPlayButtons() {
+  $$("[data-plbtn]").forEach(b => { b.outerHTML = playBtn(b.dataset.plbtn, b.dataset.idle); });
+}
+
+/* ============ ICONOS ============ */
+const ICONS = {
+  route:'<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+  book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>',
+  target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  volume:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  arrowR:'<path d="M5 12h14M12 5l7 7-7 7"/>',
+  arrowL:'<path d="M19 12H5M12 19l-7-7 7-7"/>',
+  cards:'<rect x="3" y="7" width="13" height="14" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/>',
+  list:'<path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8M13 12h8M13 18h8"/>',
+  text:'<path d="M17 6H3M21 12H3M15 18H3"/>',
+  pencil:'<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  headphones:'<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+  link:'<path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 1 1 0 10h-2M8 12h8"/>',
+  bookopen:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+  rotate:'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  clipboard:'<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+  play:'<path d="M7 4.5v15l12-7.5z"/>',
+  stop:'<rect x="6" y="6" width="12" height="12" rx="1.5"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff:'<path d="M9.9 4.2A10.4 10.4 0 0 1 12 4c6.5 0 10 8 10 8a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6A17 17 0 0 0 2 12s3.5 8 10 8a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2M2 2l20 20"/>',
+  flip:'<path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/>'
+};
+function ic(n, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[n] || "") + "</svg>"; }
+function sayBtn(text, label) { return TTS.ok ? '<button type="button" class="icon-btn" data-action="say" data-text="' + esc(text) + '" aria-label="' + esc(label) + '">' + ic("volume") + "</button>" : ""; }
+function markPast(v, w) { return '<mark class="mk" style="--mk:' + gcol(v) + '" lang="en">' + esc(w || v.past) + "</mark>"; }
+function sentMarked(en, v) { return esc(en).replace(/\{(.+?)\}/, (_, w) => markPast(v, w)); }
+function sentBlank(en, fill, hint, v) {
+  return esc(en).replace(/\{(.+?)\}/, () => fill ? markPast(v, fill) : '<span class="blank" role="img" aria-label="espacio en blanco"></span>' + (hint ? ' <span class="hint">(' + esc(hint) + ")</span>" : ""));
+}
+
+/* ============ ESTADO Y NAVEGACIÓN ============ */
+const S = { tab: "ruta", view: null, params: {}, stack: [], verbSeg: "grupos", cover: false, revealed: new Set(), storyCover: false, storyEs: true, storyRevealed: new Set(), showEs: true, resetArm: 0, lastResult: null, examMsg: "" };
+let SES = null, EXAM = null;
+
+function openView(view, params) {
+  stopList(true);
+  S.stack.push({ view: S.view, params: S.params, y: window.scrollY });
+  S.view = view; S.params = params || {};
+  render(true);
+}
+function back() {
+  stopList(true);
+  if (S.view === "session") SES = null;
+  const prev = S.stack.pop();
+  S.view = prev ? prev.view : null; S.params = prev ? prev.params || {} : {};
+  render(false);
+  window.scrollTo(0, prev && prev.y ? prev.y : 0);
+}
+function setTab(tab) {
+  stopList(true);
+  S.tab = tab; S.view = null; S.params = {}; S.stack = []; SES = null;
+  render(true);
+}
+function newExam(format) { EXAM = { format: format || (EXAM && EXAM.format) || "en", order: shuffle(VERBS.map(v => v.id)), answers: {}, graded: false, res: null, ok: 0 }; S.examMsg = ""; S.examArm = false; }
+function goStep(id, replace) {
+  if (replace) { const prev = S.stack.pop(); S.view = prev ? prev.view : null; S.params = prev ? prev.params || {} : {}; }
+  if (id === "lesson1" || id === "lesson2") openView("lesson", { id, page: 0 });
+  else if (id === "story") openView("story");
+  else if (id === "exam") { if (!EXAM || EXAM.graded) newExam(); openView("exam"); }
+  else startSession(id);
+}
+
+/* ============ VISTAS ============ */
+function brandBar() {
+  return '<header class="brand"><div class="wordmark" aria-label="De burst a crept">de <span class="mk" style="--mk:var(--g-same)" lang="en">burst</span> a <span class="mk" style="--mk:var(--g-ept)" lang="en">crept</span></div>' +
+    '<span class="pill">' + ic("check") + "<span><b>" + masteredCount() + "</b>/10 dominados</span></span></header>";
+}
+function dots(id) { const b = boxOf(id); let h = '<span class="dots" aria-hidden="true">'; for (let i = 0; i < 4; i++) h += '<i class="' + (i < b ? "on" : "") + '"></i>'; return h + "</span>"; }
+const LVL = ["sin practicar", "aprendiendo", "dominado"];
+function tile(v) {
+  const l = level(v.id);
+  return '<button type="button" class="tile l' + l + '" data-action="verb" data-vid="' + v.id + '" aria-label="' + v.base + ", pasado " + v.past + ": " + LVL[l] + '">' +
+    (l === 2 ? ic("check", "tick") : "") + '<span class="tile-past" lang="en">' + v.past + '</span><span class="tile-base" lang="en">' + v.base + "</span>" + dots(v.id) + "</button>";
+}
+function stepItem(s, i, cur) {
+  const done = !!P.steps[s.id], isCur = !!cur && cur.id === s.id;
+  return '<li><button type="button" class="step' + (done ? " done" : "") + (isCur ? " current" : "") + '" data-action="step" data-id="' + s.id + '"' + (isCur ? ' aria-current="step"' : "") + ">" +
+    '<span class="step-n">' + (done ? ic("check") : i + 1) + '</span><span><span class="step-t">' + esc(s.title) + '</span><span class="step-s">' + esc(s.sub) + "</span></span>" +
+    '<span class="step-m">' + (done ? "Hecho" : s.min + " min") + "</span></button></li>";
+}
+function viewHome() {
+  const nx = nextStep();
+  const doneN = STEPS.filter(s => P.steps[s.id]).length;
+  const started = doneN > 0 || Object.keys(P.v).length > 0;
+  const best = P.exams.length ? Math.max.apply(null, P.exams.map(e => e.s)) : null;
+  const cta = nx
+    ? '<button type="button" class="btn btn-block" data-action="step" data-id="' + nx.id + '">' + (started ? "Seguir: " + esc(nx.title) : "Empezar desde cero") + " " + ic("arrowR") + "</button>"
+    : '<button type="button" class="btn btn-block" data-action="step" data-id="exam">Hacer otro simulacro ' + ic("arrowR") + "</button>";
+  return '<div class="view">' + brandBar() +
+    '<section class="hero"><p class="eyebrow">Quiz de mañana · Past simple</p><h1>De cero a 10/10 en los verbos de mañana</h1>' +
+    '<p class="lead">El profe te da el verbo y tú escribes el pasado. Aquí primero entiendes cómo funcionan, luego practicas con 100 frases y al final haces un simulacro igualito al quiz.</p></section>' +
+    '<section class="section" aria-labelledby="h-tiles"><div class="sec-head"><h2 id="h-tiles">Tus 10 verbos</h2><span class="muted">Toca uno para verlo</span></div>' +
+    '<div class="tiles">' + VERBS.map(tile).join("") + "</div>" +
+    '<p class="legend"><span>' + ic("check") + " dominado</span><span>puntos = nivel (0 a 4)</span></p>" +
+    (best !== null ? '<p class="stats">Simulacros: ' + P.exams.length + " · mejor nota " + best + "/10 · racha de 10/10: " + examStreak() + "</p>" : "") +
+    "</section>" + cta +
+    '<section class="section" aria-labelledby="h-ruta"><div class="sec-head"><h2 id="h-ruta">Tu ruta</h2><span class="muted">' + doneN + " de " + STEPS.length + " pasos</span></div>" +
+    '<ol class="route">' + STEPS.map((s, i) => stepItem(s, i, nx)).join("") + "</ol></section>" +
+    '<section class="section" aria-labelledby="h-plan"><h2 id="h-plan">Plan para no olvidarlos</h2><ol class="plan">' +
+    PLAN.map(p => '<li><span><span class="plan-when">' + esc(p[0]) + '</span><span class="plan-what">' + esc(p[1]) + "</span></span></li>").join("") + "</ol></section></div>";
+}
+
+function groupsBlock() {
+  return GROUPS.map(g => '<section class="grp" aria-label="' + esc(g.name) + '"><div class="grp-head"><span class="chip" style="--mk:' + g.color + '">' + esc(g.name) + '</span><span class="grp-count">' + g.verbs.length + (g.verbs.length === 1 ? " verbo" : " verbos") + "</span></div>" +
+    '<p class="grp-rule">' + esc(g.rule) + "</p>" +
+    '<div class="note"><span class="hand">Truco</span><p>' + esc(g.trick) + "</p></div>" +
+    '<div class="vlist">' + g.verbs.map(id => {
+      const v = V[id];
+      return '<div class="vrow"><button type="button" class="vrow-main" data-action="verb" data-vid="' + v.id + '"><span class="vrow-pair" lang="en"><span class="vrow-base">' + v.base + "</span>" + ic("arrowR") + markPast(v) + "</span>" +
+        '<span class="vrow-es">' + esc(v.es) + dots(v.id) + "</span></button>" + sayBtn(v.base + ". " + v.past, "Escuchar " + v.base + " y " + v.past) + "</div>";
+    }).join("") + "</div></section>").join("");
+}
+function tableBlock() {
+  return '<div class="row">' + (TTS.ok ? playBtn("chant", "Escuchar los 10") : "") +
+    '<button type="button" class="btn btn-2 btn-sm" data-action="cover" aria-pressed="' + S.cover + '">' + ic(S.cover ? "eye" : "eyeoff") + " " + (S.cover ? "Mostrar el pasado" : "Tapar el pasado") + "</button></div>" +
+    '<p class="muted small">' + (S.cover ? "Di el pasado en voz alta y toca «¿…?» para comprobar." : "Como en la lista del profe: verbo, pasado y significado.") + "</p>" +
+    '<div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Verbo</th><th scope="col">Pasado</th><th scope="col">Significado</th>' + (TTS.ok ? '<th scope="col"><span class="sr-only">Escuchar</span></th>' : "") + "</tr></thead><tbody>" +
+    VERBS.map((v, i) => '<tr data-pl="' + i + '"><td class="c-base" lang="en">' + v.base + '</td><td class="c-past">' +
+      (S.cover && !S.revealed.has(v.id) ? '<button type="button" class="reveal" data-action="reveal" data-vid="' + v.id + '" aria-label="Ver el pasado de ' + v.base + '">¿…?</button>' : markPast(v)) +
+      '</td><td class="c-es">' + esc(v.es) + "</td>" + (TTS.ok ? '<td class="c-say">' + sayBtn(v.base + ". " + v.past, "Escuchar " + v.base + " y " + v.past) + "</td>" : "") + "</tr>").join("") +
+    "</tbody></table></div>";
+}
+function storyIntro() {
+  return '<div class="stack"><h2>La pizza y el gato</h2><p class="lead">Un cuento corto con los 10 verbos, en este orden: <span lang="en">came, bought, cost, cut, crept, caught, chose, clung, burst, cast</span>. Léelo en voz alta dos veces; después tapa los verbos y dilos de memoria.</p></div>';
+}
+function storyBlock() {
+  return '<div class="row">' +
+    '<button type="button" class="btn btn-2 btn-sm" data-action="story-cover" aria-pressed="' + S.storyCover + '">' + ic(S.storyCover ? "eye" : "eyeoff") + " " + (S.storyCover ? "Mostrar verbos" : "Tapar verbos") + "</button>" +
+    '<button type="button" class="btn btn-2 btn-sm" data-action="story-es" aria-pressed="' + S.storyEs + '">' + (S.storyEs ? "Ocultar español" : "Ver en español") + "</button>" +
+    (TTS.ok ? playBtn("story", "Escuchar") : "") + "</div>" +
+    '<div class="story">' + STORY.map((l, i) => {
+      const v = V[l.vid];
+      const en = esc(l.en).replace(/\{(.+?)\}/, (_, w) => (S.storyCover && !S.storyRevealed.has(i))
+        ? '<button type="button" class="gap" data-action="story-reveal" data-i="' + i + '" aria-label="Mostrar el pasado de ' + v.base + '">(' + v.base + ")</button>"
+        : markPast(v, w));
+      return '<div class="story-line" data-pl="' + i + '"><p class="story-en" lang="en">' + en + "</p>" + (S.storyEs ? '<p class="story-es">' + esc(l.es) + "</p>" : "") + "</div>";
+    }).join("") + "</div>";
+}
+function viewVerbos() {
+  const segs = [["grupos", "Por grupos"], ["tabla", "Tabla"], ["historia", "Historia"]];
+  const body = S.verbSeg === "tabla" ? tableBlock()
+    : S.verbSeg === "historia" ? storyIntro() + storyBlock() + '<button type="button" class="btn btn-block" data-action="mode" data-mode="historia">Completar la historia ' + ic("arrowR") + "</button>"
+    : groupsBlock();
+  return '<div class="view">' + brandBar() +
+    '<section class="hero"><h1>Los 10 verbos</h1><p class="lead">Toca un verbo para ver sus 10 frases, cómo suena y el truco para recordarlo.</p></section>' +
+    '<div class="seg" role="group" aria-label="Cómo ver los verbos">' + segs.map(s => '<button type="button" data-action="seg" data-seg="' + s[0] + '" aria-pressed="' + (S.verbSeg === s[0]) + '">' + s[1] + "</button>").join("") + "</div>" +
+    '<div class="seg-body">' + body + "</div></div>";
+}
+
+function modeCard(m) {
+  const weak = weakIds();
+  const off = (m.tts && !TTS.ok) || (m.id === "errores" && !weak.length);
+  const sub = m.id === "errores"
+    ? (weak.length ? weak.length + (weak.length === 1 ? " verbo por repasar: " : " verbos por repasar: ") + weak.map(id => V[id].base).join(", ") : "Aún no hay errores. Cuando falles alguno, aparece aquí.")
+    : (m.tts && !TTS.ok ? "Este navegador no puede leer en voz alta." : m.sub);
+  const done = P.steps[m.step || m.id] ? '<span class="done-badge">' + ic("check") + '<span class="sr-only">Hecho</span></span>' : "";
+  return '<button type="button" class="mode" data-action="mode" data-mode="' + m.id + '"' + (off ? " disabled" : "") + '><span class="ic-wrap" style="--mk:' + m.mk + '">' + ic(m.icon) + '</span><span class="mode-t">' + esc(m.title) + '</span><span class="mode-s">' + esc(sub) + "</span>" + done + "</button>";
+}
+function viewPractice() {
+  return '<div class="view">' + brandBar() +
+    '<section class="hero"><h1>Practicar</h1><p class="lead">Elige un modo. Lo que fallas vuelve al final de la ronda hasta que lo aciertes.</p></section>' +
+    '<button type="button" class="mode wide" data-action="step" data-id="exam"><span class="ic-wrap" style="--mk:var(--hl)">' + ic("clipboard") + '</span><span class="mode-txt"><span class="mode-t">Simulacro del quiz</span><span class="mode-s">Los 10 verbos sin pistas, como mañana.' + (P.exams.length ? " Racha de 10/10: " + examStreak() + "." : "") + "</span></span>" + ic("arrowR") + "</button>" +
+    '<div class="modes">' + MODES.map(modeCard).join("") + "</div>" +
+    '<div class="reset"><button type="button" class="btn-link" data-action="reset">' + (S.resetArm ? "Toca otra vez para borrar todo tu progreso" : "Borrar mi progreso") + "</button></div></div>";
+}
+
+/* ---------- lecciones ---------- */
+function exBox(en, es, v) { return '<div class="ex"><p class="ex-en" lang="en">' + sentMarked(en, v) + '</p><p class="ex-es">' + esc(es) + "</p>" + sayBtn(plain(en), "Escuchar la frase") + "</div>"; }
+function gCount(g) { return g.verbs.length + (g.verbs.length === 1 ? " verbo" : " verbos"); }
+const LESSONS = {
+  lesson1: { eyebrow: "Paso 1 · Qué es el pasado", done: "Siguiente: los 4 grupos", next: "lesson2", pages: [
+    () => '<h1>El pasado simple</h1><p class="lead">Sirve para contar cosas que <b>ya pasaron y terminaron</b>: ayer, anoche, la semana pasada…</p>' +
+      exBox("Yesterday I {bought} a pizza.", "Ayer compré una pizza.", V.buy) +
+      '<h3>Palabras que avisan que es pasado</h3><div class="chips">' +
+      [["yesterday", "ayer"], ["last night", "anoche"], ["last week", "la semana pasada"], ["two days ago", "hace dos días"], ["in 2020", "en 2020"], ["this morning", "esta mañana"]]
+        .map(t => '<span class="tchip"><b lang="en">' + t[0] + "</b> <span>" + t[1] + "</span></span>").join("") +
+      '</div><p class="muted">Si ves una de estas palabras, el verbo va en pasado.</p>',
+    () => '<h1>Regulares e irregulares</h1><p class="lead">La mayoría de verbos hacen el pasado agregando <b>-ed</b>. Se llaman <b>regulares</b>.</p>' +
+      '<div class="pairs" lang="en">' + [["play", "played"], ["watch", "watched"], ["cook", "cooked"], ["walk", "walked"]].map(p => '<div class="pair">' + p[0] + ic("arrowR") + "<b>" + p[1] + "</b></div>").join("") + "</div>" +
+      '<p class="lead">Los <b>irregulares</b> no siguen esa regla: cada uno cambia a su manera.</p>' +
+      '<div class="pairs" lang="en"><div class="pair">buy' + ic("arrowR") + markPast(V.buy) + "<s>buyed</s></div><div class=\"pair\">catch" + ic("arrowR") + markPast(V.catch) + "<s>catched</s></div></div>" +
+      '<div class="note"><span class="hand">Lo importante</span><p>Tus 10 verbos de mañana son <b>todos irregulares</b>. Por eso toca memorizarlos… pero con trucos es mucho más fácil.</p></div>',
+    () => '<h1>Una sola forma para todos</h1><p class="lead">En pasado el verbo <b>no cambia según la persona</b>. Aprendes una palabra y te sirve para todos.</p>' +
+      '<div class="conj">' + [["I bought", "yo compré"], ["You bought", "tú compraste"], ["He bought", "él compró"], ["She bought", "ella compró"], ["We bought", "nosotros compramos"], ["They bought", "ellos compraron"]]
+        .map(c => '<div><b lang="en">' + c[0] + "</b><span>" + c[1] + "</span></div>").join("") + "</div>" +
+      '<div class="note note-ojo"><span class="hand">¡Ojo!</span><p>En preguntas y negativas se usa <b>did</b> y el verbo vuelve a su forma normal: <i lang="en">Did you buy it?</i> · <i lang="en">I didn’t buy it.</i> En el quiz te piden la forma afirmativa: <b lang="en">bought</b>.</p></div>',
+    () => '<h1>Así será el quiz</h1><p class="lead">El profe te da el verbo y tú escribes su pasado. Por ejemplo:</p>' +
+      '<div class="sheet"><div class="sheet-head"><span class="sheet-title">Quiz · Past simple</span></div><ol class="ex-list">' +
+      [["buy", "bought"], ["catch", "caught"], ["cut", "cut"]].map((r, i) => '<li class="ex-row"><span class="ex-n">' + (i + 1) + '.</span><span class="ex-prompt" lang="en">' + r[0] + '</span><span class="ex-hand" lang="en">' + r[1] + "</span></li>").join("") + "</ol></div>" +
+      '<ul class="checks">' + ["Son 10 verbos, siempre los mismos: los de la lista del profe.", 'La ortografía cuenta: <b lang="en">caught</b>, no «cought».', "Aquí vas paso a paso: primero los conoces, luego practicas y al final haces un simulacro."]
+        .map(t => "<li>" + ic("check") + "<span>" + t + "</span></li>").join("") + "</ul>"
+  ]},
+  lesson2: { eyebrow: "Paso 2 · Los 4 grupos", done: "Siguiente: la historia", next: "story", pages: [
+    () => '<h1>10 verbos, 4 patrones</h1><p class="lead">No son 10 cosas sueltas: se agrupan en 4 patrones. Aprende el patrón y te sabes el grupo.</p>' +
+      '<div class="gsum">' + GROUPS.map(g => '<div class="gsum-row"><span class="chip" style="--mk:' + g.color + '">' + esc(g.name) + '</span><span class="ex-w" lang="en">' + g.verbs.map(id => V[id].base + " → " + V[id].past).join(", ") + '</span><span class="muted">' + gCount(g) + "</span></div>").join("") + "</div>" +
+      '<div class="note"><span class="hand">Dato curioso</span><p>Los 10 empiezan por <b>B</b> o <b>C</b>: <span lang="en">burst, buy, cast, catch, come, cost, cut, choose, cling, creep</span>.</p></div>',
+    ...GROUPS.map((g, gi) => () => '<span class="chip" style="--mk:' + g.color + ';align-self:flex-start">Grupo ' + (gi + 1) + " de 4 · " + gCount(g) + "</span><h1>" + esc(g.name) + '</h1><p class="lead">' + esc(g.rule) + "</p>" +
+      '<div class="gverbs">' + g.verbs.map(id => { const v = V[id]; return '<div class="gv"><span class="gv-pair" lang="en">' + v.base + ic("arrowR") + markPast(v) + '</span><span class="gv-es">' + esc(v.es) + "</span>" + sayBtn(v.base + ". " + v.past, "Escuchar " + v.base + " y " + v.past) + "</div>"; }).join("") + "</div>" +
+      '<div class="note"><span class="hand">Truco</span><p>' + esc(g.trick) + "</p></div>" +
+      '<div class="note note-ojo"><span class="hand">¡Ojo!</span><p>' + esc(g.extra) + "</p></div>"),
+    () => '<h1>Repaso en voz alta</h1><p class="lead">Dilos como una canción, verbo y pasado. Repetirlos en voz alta los fija en la memoria.</p>' +
+      (TTS.ok ? '<div class="row">' + playBtn("chant2", "Escuchar los 10") + "</div>" : "") +
+      '<div class="chant-list" lang="en">' + VERBS.map((v, i) => '<div class="chant-item" data-pl="' + i + '">' + v.base + " <span>–</span> " + v.past + "</div>").join("") + "</div>"
+  ]}
+};
+function viewLesson() {
+  const L = LESSONS[S.params.id], p = S.params.page || 0, n = L.pages.length, last = p === n - 1;
+  return '<div class="page">' +
+    '<header class="page-top"><button type="button" class="icon-btn" data-action="back" aria-label="Salir de la lección">' + ic("x") + '</button><div class="pdots" role="img" aria-label="Página ' + (p + 1) + " de " + n + '">' + L.pages.map((_, i) => '<i class="' + (i <= p ? "on" : "") + '"></i>').join("") + "</div></header>" +
+    '<p class="eyebrow">' + esc(L.eyebrow) + " · " + (p + 1) + "/" + n + "</p>" +
+    '<div class="lesson-body">' + L.pages[p]() + "</div>" +
+    '<div class="lesson-nav">' + (p > 0 ? '<button type="button" class="btn btn-2" data-action="lesson-prev">' + ic("arrowL") + " Atrás</button>" : "") +
+    '<button type="button" class="btn" data-action="' + (last ? "lesson-done" : "lesson-next") + '">' + (last ? esc(L.done) : "Siguiente") + " " + ic("arrowR") + "</button></div></div>";
+}
+
+/* ---------- ficha de verbo ---------- */
+function viewVerb() {
+  const v = V[S.params.vid], g = G[v.group];
+  return '<div class="page">' +
+    '<header class="page-top"><button type="button" class="icon-btn" data-action="back" aria-label="Volver">' + ic("arrowL") + '</button><span class="eyebrow">Ficha del verbo</span><span class="chip" style="--mk:' + g.color + '">' + esc(g.name) + "</span></header>" +
+    '<section class="vd"><div class="vd-pair">' +
+      '<div class="vd-col"><span class="eyebrow">Verbo</span><div class="vd-wrow"><span class="vd-w" lang="en">' + v.base + "</span>" + sayBtn(v.base, "Escuchar " + v.base) + "</div></div>" +
+      '<span class="vd-arrow">' + ic("arrowR") + "</span>" +
+      '<div class="vd-col"><span class="eyebrow">Pasado</span><div class="vd-wrow"><span class="vd-w">' + markPast(v) + "</span>" + sayBtn(v.past, "Escuchar " + v.past) + "</div></div>" +
+    '</div><p class="vd-es">' + esc(v.es) + '</p><p class="vd-say">Suena más o menos: «' + v.sayB + "» → «" + v.sayP + "»</p></section>" +
+    '<div class="note"><span class="hand">Truco</span><p>' + esc(v.tip) + '</p></div><div class="note note-ojo"><span class="hand">¡Ojo!</span><p>' + esc(v.ojo) + "</p></div>" +
+    '<div class="wrongs"><span class="eyebrow">Como pasado, estas están mal</span><div class="chips" lang="en">' + v.wrong.slice(0, 3).map(w => '<s class="wchip">' + esc(w) + "</s>").join("") + "</div></div>" +
+    '<section class="section"><div class="sec-head"><h2>10 frases con ' + markPast(v) + '</h2><button type="button" class="btn-link" data-action="toggle-es">' + (S.showEs ? "Ocultar español" : "Ver en español") + "</button></div>" +
+    '<ol class="sents">' + v.s.map((s, i) => '<li class="sent"><div><p class="sent-en" lang="en">' + sentMarked(s[0], v) + "</p>" + (S.showEs ? '<p class="sent-es">' + esc(s[1]) + "</p>" : "") + "</div>" + sayBtn(plain(s[0]), "Escuchar la frase " + (i + 1)) + "</li>").join("") + "</ol></section>" +
+    '<button type="button" class="btn btn-block" data-action="practice-verb" data-vid="' + v.id + '">Practicar solo ' + v.base + " → " + v.past + " " + ic("arrowR") + "</button></div>";
+}
+function viewStoryPage() {
+  return '<div class="page"><header class="page-top"><button type="button" class="icon-btn" data-action="back" aria-label="Volver">' + ic("arrowL") + '</button><span class="eyebrow">Paso 3 · La historia de la pizza</span></header>' +
+    storyIntro() + storyBlock() +
+    '<div class="stack"><button type="button" class="btn btn-block" data-action="mode" data-mode="historia">Completar la historia ' + ic("arrowR") + '</button><p class="muted small">Te muestro cada frase con el verbo en blanco y tú escribes el pasado.</p></div></div>';
+}
+
+/* ---------- simulacro ---------- */
+function exRow(id, i) {
+  const v = V[id], E = EXAM, g = E.graded, good = g && E.res[id];
+  let prompt;
+  if (E.format === "en") prompt = '<span class="ex-prompt" lang="en">' + v.base + "</span>";
+  else if (E.format === "es") prompt = '<span class="ex-prompt ex-es">' + esc(v.short) + "</span>";
+  else prompt = '<span class="ex-prompt-audio"><button type="button" class="btn-say" data-action="say" data-text="' + v.base + '" aria-label="Escuchar el verbo ' + (i + 1) + '">' + ic("volume") + "<span>Oír</span></button>" + (g ? '<b lang="en">' + v.base + "</b>" : "") + "</span>";
+  const mark = g ? (good ? '<span class="ex-ok">' + ic("check") + '<span class="sr-only">Bien</span></span>' : '<span class="ex-fix" lang="en"><span class="sr-only">Correcto: </span>' + v.past + "</span>") : "";
+  return '<li class="ex-row"><span class="ex-n">' + (i + 1) + ".</span>" + prompt +
+    '<span class="ex-ans"><label class="sr-only" for="ex-' + id + '">Pasado del verbo ' + (i + 1) + '</label><input class="ex-input' + (g && !good ? " strike" : "") + '" id="ex-' + id + '" data-vid="' + id + '" type="text" lang="en" value="' + esc(E.answers[id] || "") + '" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"' + (g ? " readonly" : "") + ">" + mark + "</span></li>";
+}
+function viewExam() {
+  const E = EXAM, g = E.graded;
+  const fmts = [["en", "En inglés"], ["es", "En español"]].concat(TTS.ok ? [["audio", "Dictado"]] : []);
+  let top;
+  if (g) {
+    const ok = E.ok;
+    const msg = ok === 10 ? "¡10/10!" : ok >= 8 ? "¡Casi!" : ok >= 5 ? "Vas bien" : "A repasar";
+    const sub = ok === 10 ? (examStreak() >= 2 ? "Dos seguidos o más: llegas al quiz con todo." : "Haz otro para confirmarlo: la meta son dos 10/10 seguidos.")
+      : ok >= 8 ? "Te faltaron " + (10 - ok) + ". Repásalos y vuelve a intentarlo."
+      : "Repasa los que fallaste y haz otro. Cada intento cuenta.";
+    top = '<div class="res-top"><div class="grade" role="img" aria-label="Nota: ' + ok + ' de 10"><span>' + ok + '<small>/10</small></span></div><div class="res-txt"><h1>' + msg + '</h1><p class="lead">' + sub + '</p><p class="muted small">Racha de 10/10: ' + examStreak() + " · mejor nota: " + Math.max.apply(null, P.exams.map(e => e.s)) + "/10</p></div></div>";
+  } else {
+    top = '<div class="stack"><h1>Simulacro del quiz</h1><p class="lead">Como mañana: escribe el pasado de cada verbo, sin pistas. La ortografía cuenta.</p></div>' +
+      '<div class="stack"><span class="eyebrow" id="fmt-lbl">Cómo te dan el verbo</span><div class="seg" role="group" aria-labelledby="fmt-lbl">' + fmts.map(f => '<button type="button" data-action="exam-format" data-f="' + f[0] + '" aria-pressed="' + (E.format === f[0]) + '">' + f[1] + "</button>").join("") + "</div></div>";
+  }
+  let date = "";
+  try { date = new Date().toLocaleDateString("es-CO", { day: "numeric", month: "long" }); } catch (e) {}
+  const sheet = '<div class="sheet"><div class="sheet-head"><span class="sheet-title">Quiz · Past simple</span><span class="sheet-date">' + esc(date) + '</span></div><ol class="ex-list">' + E.order.map(exRow).join("") + "</ol></div>";
+  const missed = g ? E.order.filter(id => !E.res[id]) : [];
+  const actions = g
+    ? '<div class="stack"><button type="button" class="btn btn-block" data-action="exam-new">Otro simulacro ' + ic("rotate") + "</button>" +
+      (missed.length ? '<button type="button" class="btn btn-2 btn-block" data-action="lista" data-ids="' + missed.join(",") + '">Practicar los que fallé</button>' : "") +
+      '<button type="button" class="btn btn-2 btn-block" data-action="back">Volver</button></div>'
+    : '<div class="stack"><p class="form-msg" id="exam-msg">' + esc(S.examMsg) + '</p><button type="button" class="btn btn-block" data-action="exam-grade">Entregar y calificar</button></div>';
+  return '<div class="page"><header class="page-top"><button type="button" class="icon-btn" data-action="back" aria-label="Volver">' + ic("arrowL") + '</button><span class="eyebrow">Paso 8 · Simulacro</span></header>' + top + sheet + actions + "</div>";
+}
+
+/* ---------- resultado de una ronda ---------- */
+function viewResult() {
+  const R = S.lastResult, pct = R.total ? R.ok / R.total : 0, nx = nextStep();
+  const msg = pct === 1 ? "¡Perfecto!" : pct >= 0.8 ? "¡Muy bien!" : pct >= 0.5 ? "Vas bien" : "Así se aprende";
+  const sub = pct === 1 ? "Todo a la primera. Sigue así." : pct >= 0.8 ? "Casi todo a la primera. Repasa los que fallaste." : pct >= 0.5 ? "Ya tienes más de la mitad. Otra ronda y lo subes." : "Los errores de hoy son los aciertos de mañana. Repite esta ronda.";
+  const line = R.mode === "flash" ? "Te sabías " + R.ok + " de " + R.total + "." : R.ok + " de " + R.total + " a la primera.";
+  const showNext = nx && nx.id !== stepOf(R.mode);
+  return '<div class="page">' +
+    '<p class="eyebrow">' + esc(MODE_TITLE[R.mode] || "Práctica") + " · terminado</p>" +
+    '<div class="res-top"><div class="grade" role="img" aria-label="' + R.ok + " de " + R.total + '"><span>' + R.ok + "<small>/" + R.total + '</small></span></div><div class="res-txt"><h1>' + msg + '</h1><p class="lead">' + line + " " + sub + "</p></div></div>" +
+    (R.missed.length ? '<section class="section"><h2>Para repasar</h2><ul class="miss-list">' + R.missed.map(id => { const v = V[id]; return '<li><button type="button" class="miss" data-action="verb" data-vid="' + id + '"><span lang="en">' + v.base + "</span>" + ic("arrowR") + markPast(v) + '<span class="muted">' + esc(v.short) + "</span></button></li>"; }).join("") + "</ul></section>" : "") +
+    '<div class="stack">' +
+      (showNext ? '<button type="button" class="btn btn-block" data-action="step-replace" data-id="' + nx.id + '">Siguiente paso: ' + esc(nx.title) + " " + ic("arrowR") + "</button>" : "") +
+      (R.missed.length ? '<button type="button" class="btn ' + (showNext ? "btn-2 " : "") + 'btn-block" data-action="lista" data-ids="' + R.missed.join(",") + '">Practicar los que fallé</button>' : "") +
+      '<button type="button" class="btn ' + (showNext || R.missed.length ? "btn-2 " : "") + 'btn-block" data-action="again">Otra ronda ' + ic("rotate") + "</button>" +
+      '<button type="button" class="btn btn-2 btn-block" data-action="back">Volver</button>' +
+    "</div></div>";
+}
+
+/* ============ RONDAS DE PRÁCTICA ============ */
+function pickSent(v, used) {
+  const all = v.s.map((_, i) => i);
+  let pool = used ? all.filter(i => !used.has(v.id + ":" + i)) : all;
+  if (!pool.length) pool = all;
+  const i = pickOne(pool);
+  if (used) used.add(v.id + ":" + i);
+  return v.s[i];
+}
+const optsFor = v => shuffle([v.past].concat(shuffle(v.wrong).slice(0, 3)));
+function whichOpts(v) {
+  const bad = CONFUSE[v.id] || [];
+  const others = VERBS.filter(x => x.id !== v.id && bad.indexOf(x.id) < 0);
+  return shuffle([v.past].concat(shuffle(others).slice(0, 3).map(x => x.past)));
+}
+const qBase = (v, kind, used) => ({ kind, prompt: "base", vid: v.id, options: kind === "choice" ? optsFor(v) : null, ex: pickSent(v, used) });
+const qEs = (v, used) => ({ kind: "type", prompt: "es", vid: v.id, ex: pickSent(v, used) });
+const qSent = (v, kind, used, hint) => ({ kind, prompt: "sentence", vid: v.id, sent: pickSent(v, used), hint: hint || "en", options: kind === "choice" ? optsFor(v) : null });
+const qWhich = (v, used) => ({ kind: "choice", prompt: "which", vid: v.id, sent: pickSent(v, used), options: whichOpts(v) });
+const qAudio = (v, used) => ({ kind: "type", prompt: "audio", vid: v.id, ex: pickSent(v, used) });
+const qFlash = (v, used) => ({ kind: "flash", vid: v.id, sent: pickSent(v, used) });
+
+function buildQuestions(mode, opts) {
+  const used = new Set(), all = VERBS.map(v => v.id);
+  switch (mode) {
+    case "flash": return shuffle(VERBS).map(v => qFlash(v, used));
+    case "elige": return shuffle(VERBS).map((v, i) => i % 2 ? qBase(v, "choice", used) : qSent(v, "choice", used));
+    case "frases": {
+      const a = shuffle(VERBS), qs = [];
+      a.slice(0, 4).forEach(v => qs.push(qSent(v, "choice", used)));
+      a.slice(4).forEach((v, i) => qs.push(qSent(v, "type", used, i % 3 === 2 ? "es" : "en")));
+      shuffle(VERBS).slice(0, 3).forEach(v => qs.push(qWhich(v, used)));
+      return qs;
+    }
+    case "escribe": return shuffle(shuffle(VERBS).map((v, i) => i < 7 ? qBase(v, "type", used) : qEs(v, used)));
+    case "dictado": return shuffle(VERBS).map(v => qAudio(v, used));
+    case "parejas": { const a = shuffle(all); return [{ kind: "match", pairs: a.slice(0, 5) }, { kind: "match", pairs: a.slice(5) }]; }
+    case "historia": return STORY.map((l, n) => ({ kind: "type", prompt: "story", vid: l.vid, sent: [l.en, l.es], n, hint: "en" }));
+    case "verb": { const v = V[opts.vid]; return [qBase(v, "choice", used), qSent(v, "choice", used), qSent(v, "type", used), qEs(v, used), qSent(v, "type", used, "es"), qBase(v, "type", used)]; }
+    case "errores":
+    case "lista": {
+      let ids = mode === "lista" ? (opts.ids || []).filter(id => V[id]) : weakIds();
+      if (!ids.length) ids = weakFirst(all).slice(0, 3);
+      ids = ids.slice(0, 6);
+      const qs = [];
+      ids.forEach(id => { const v = V[id]; qs.push(qSent(v, "type", used), qBase(v, "type", used)); });
+      if (ids.length < 3) ids.forEach(id => qs.push(qSent(V[id], "choice", used)));
+      return shuffle(qs);
+    }
+  }
+  return [];
+}
+
+const cur = () => SES.qs[SES.i];
+function startSession(mode, opts) {
+  opts = opts || {};
+  stopList(true);
+  const qs = buildQuestions(mode, opts).map((q, i) => Object.assign({ key: "q" + i }, q));
+  if (!qs.length) return;
+  if (S.view !== "session" && S.view !== "result") S.stack.push({ view: S.view, params: S.params, y: window.scrollY });
+  SES = { mode, opts, qs, i: 0, log: [] };
+  S.view = "session"; S.params = {};
+  prepQ();
+  render(true);
+}
+function prepQ() {
+  const q = cur();
+  SES.state = "ask"; SES.input = ""; SES.picked = null; SES.fb = null; SES.fbAt = 0; SES.showBase = false; SES.spoken = false;
+  SES.match = q.kind === "match" ? { L: shuffle(q.pairs), R: shuffle(q.pairs), sel: null, done: new Set(), miss: new Set() } : null;
+}
+const sesTitle = () => MODE_TITLE[SES.mode] + (SES.mode === "verb" ? ": " + V[SES.opts.vid].base : "");
+const OK_TITLES = ["¡Correcto!", "¡Bien!", "¡Eso es!", "¡Exacto!"];
+
+function finishQ(ok, user, extra) {
+  const q = cur(), v = V[q.vid];
+  extra = extra || {};
+  SES.state = "fb"; SES.fbAt = Date.now();
+  SES.fb = Object.assign({ ok, user, title: ok ? (q.retry ? "¡Ahora sí!" : pickOne(OK_TITLES)) : extra.near ? "¡Casi!" : extra.gaveUp ? "Así se escribe" : "No es así" }, extra);
+  SES.log.push({ vid: q.vid, ok, retry: !!q.retry });
+  scoreVerb(q.vid, ok, q.kind === "type" && !q.retry ? "type" : "choice");
+  if (!ok && !q.retry) SES.qs.push(Object.assign({}, q, { key: q.key + "r", retry: true, options: q.options ? shuffle(q.options) : null }));
+  live.textContent = ok ? "Correcto." : "Incorrecto. La respuesta es " + v.past + ".";
+  render();
+}
+function checkType(giveUp) {
+  if (!SES || SES.state !== "ask") return;
+  const q = cur(), v = V[q.vid], inp = $("#ans");
+  const raw = inp ? inp.value : SES.input;
+  SES.input = raw;
+  if (giveUp) { finishQ(false, "", { gaveUp: true }); return; }
+  const a = norm(raw);
+  if (!a) {
+    const m = $("#type-msg"), t = "Escribe tu respuesta primero, o toca «No me lo sé».";
+    if (m) m.textContent = t; live.textContent = t;
+    if (inp) inp.focus();
+    return;
+  }
+  const ok = a === v.past;
+  const diag = ok ? null : diagnose(v, a);
+  finishQ(ok, raw, { near: !ok && !diag && lev(a, v.past) <= 2, note: diag });
+}
+function pickOpt(val) {
+  if (!SES || SES.state !== "ask") return;
+  const v = V[cur().vid];
+  SES.picked = val;
+  const ok = val === v.past;
+  finishQ(ok, val, { note: ok ? null : diagnose(v, norm(val)) });
+}
+function flipCard() {
+  if (!SES || SES.state !== "ask" || cur().kind !== "flash") return;
+  SES.state = "back";
+  const f = $("#flash");
+  if (f) {
+    f.classList.add("flipped");
+    f.querySelector(".front").setAttribute("aria-hidden", "true");
+    f.querySelector(".back").removeAttribute("aria-hidden");
+    $("#flash-actions").innerHTML = flashActions(true);
+    const b = $('#flash-actions [data-k="1"]'); if (b) b.focus({ preventScroll: true });
+  } else render();
+  say(V[cur().vid].past);
+}
+function rateFlash(knew) {
+  if (!SES || SES.state !== "back") return;
+  const q = cur();
+  SES.log.push({ vid: q.vid, ok: knew, retry: !!q.retry });
+  flashScore(q.vid, knew);
+  if (!knew && !q.retry) SES.qs.push(Object.assign({}, q, { key: q.key + "r", retry: true }));
+  nextQ();
+}
+function tapMatch(side, id, el) {
+  const M = SES && SES.match;
+  if (!M || SES.state !== "ask" || M.done.has(id)) return;
+  if (!M.sel || M.sel.side === side) { M.sel = (M.sel && M.sel.side === side && M.sel.id === id) ? null : { side, id }; paintMatch(); return; }
+  const a = M.sel; M.sel = null;
+  if (a.id === id) {
+    M.done.add(id); paintMatch(); say(V[id].past);
+    live.textContent = "Pareja correcta: " + V[id].short + ", " + V[id].past + ".";
+    if (M.done.size === M.L.length) finishMatch();
+  } else {
+    M.miss.add(a.id); paintMatch();
+    const other = $('.m-item[data-side="' + a.side + '"][data-vid="' + a.id + '"]');
+    [other, el].forEach(x => { if (!x) return; x.classList.remove("shake"); void x.offsetWidth; x.classList.add("shake", "miss"); setTimeout(() => x.classList.remove("miss"), 650); });
+    live.textContent = "No es pareja. Intenta otra vez.";
+  }
+}
+function paintMatch() {
+  const M = SES.match;
+  $$(".m-item").forEach(b => {
+    const id = b.dataset.vid, side = b.dataset.side, d = M.done.has(id), s = !!(M.sel && M.sel.side === side && M.sel.id === id);
+    b.classList.toggle("done", d); b.classList.toggle("sel", s); b.disabled = d; b.setAttribute("aria-pressed", String(s));
+  });
+}
+function finishMatch() {
+  const M = SES.match;
+  cur().pairs.forEach(id => { const ok = !M.miss.has(id); SES.log.push({ vid: id, ok, retry: false }); scoreVerb(id, ok, "choice"); });
+  SES.state = "fb"; SES.fbAt = Date.now(); SES.fb = { ok: M.miss.size === 0 };
+  render();
+}
+function nextQ() {
+  if (!SES) return;
+  if (SES.fbAt && Date.now() - SES.fbAt < 250) return;
+  stopList(true);
+  SES.i++;
+  if (SES.i >= SES.qs.length) { endSession(); return; }
+  prepQ();
+  render(true);
+}
+function endSession() {
+  const first = SES.log.filter(l => !l.retry);
+  const ok = first.filter(l => l.ok).length;
+  const missed = Array.from(new Set(first.filter(l => !l.ok).map(l => l.vid)));
+  const st = stepOf(SES.mode);
+  if (STEPS.some(s => s.id === st)) P.steps[st] = true;
+  saveP();
+  S.lastResult = { mode: SES.mode, opts: SES.opts, ok, total: first.length, missed };
+  SES = null; S.view = "result"; S.params = {};
+  render(true);
+}
+
+/* ---------- pantalla de la ronda ---------- */
+function viewSession() {
+  const q = cur(), tot = SES.qs.length, pct = Math.round(SES.i / tot * 100);
+  const body = q.kind === "flash" ? flashHTML(q) : q.kind === "match" ? matchHTML(q) : qHTML(q);
+  return '<div class="ses">' +
+    '<header class="ses-top"><button type="button" class="icon-btn" data-action="quit" aria-label="Salir de la práctica">' + ic("x") + "</button>" +
+    '<div class="bar" role="progressbar" aria-label="Progreso de la ronda" aria-valuemin="0" aria-valuemax="' + tot + '" aria-valuenow="' + SES.i + '"><span style="width:' + pct + '%"></span></div>' +
+    '<span class="ses-count">' + (SES.i + 1) + "/" + tot + "</span></header>" +
+    '<p class="eyebrow">' + esc(sesTitle()) + (q.retry ? ' · <span class="retry">otra vez</span>' : "") + "</p>" + body + "</div>";
+}
+function qHTML(q) {
+  const v = V[q.vid], fb = SES.state === "fb" ? SES.fb : null, typing = q.kind === "type";
+  let card = "";
+  if (q.prompt === "base") {
+    card = '<p class="q-label">' + (typing ? "Escribe el pasado de" : "¿Cuál es el pasado de…?") + '</p><div class="q-word-row"><span class="q-word" lang="en">' + v.base + "</span>" + sayBtn(v.base, "Escuchar " + v.base) + '</div><p class="q-sub">' + esc(v.es) + "</p>";
+  } else if (q.prompt === "es") {
+    card = '<p class="q-label">Escríbelo en inglés, en pasado</p><div class="q-word-row"><span class="q-word q-word-es">' + esc(v.short) + '</span></div><p class="q-sub">Como en «' + esc(v.esPast) + "»</p>";
+  } else if (q.prompt === "sentence" || q.prompt === "story") {
+    const lbl = q.prompt === "story" ? "La pizza y el gato · frase " + (q.n + 1) + " de 10" : q.hint === "es" ? "Completa con el pasado en inglés" : "Completa la frase con el pasado";
+    card = '<p class="q-label">' + lbl + '</p><p class="q-sentence" lang="en">' + sentBlank(q.sent[0], fb ? v.past : null, q.hint === "es" ? v.short : v.base, v) + '</p><p class="q-es">' + esc(q.sent[1]) + "</p>" + (fb ? sayBtn(plain(q.sent[0]), "Escuchar la frase") : "");
+  } else if (q.prompt === "which") {
+    card = '<p class="q-label">¿Qué verbo va aquí? Guíate por la traducción.</p><p class="q-sentence" lang="en">' + sentBlank(q.sent[0], fb ? v.past : null, null, v) + '</p><p class="q-es">' + esc(q.sent[1]) + "</p>" + (fb ? sayBtn(plain(q.sent[0]), "Escuchar la frase") : "");
+  } else if (q.prompt === "audio") {
+    card = '<p class="q-label">Escucha el verbo y escribe su pasado</p><div class="q-word-row"><button type="button" class="btn-listen" data-action="say" data-text="' + v.base + '">' + ic("volume") + "<span>Escuchar</span></button>" +
+      '<button type="button" class="btn btn-2 btn-sm" data-action="say-slow" data-text="' + v.base + '">Más lento</button></div>' +
+      ((SES.showBase || fb) ? '<p class="q-sub">Era: <b lang="en">' + v.base + "</b> (" + esc(v.short) + ")</p>" : '<button type="button" class="btn-link" data-action="show-base">No lo entiendo: mostrar el verbo</button>');
+  }
+  const area = q.kind === "choice" ? optsHTML(q, v, fb) : typeHTML(fb);
+  const actions = fb
+    ? '<button type="button" class="btn btn-block' + (fb.ok ? " btn-ok" : "") + '" id="btn-next" data-action="next">Continuar ' + ic("arrowR") + "</button>"
+    : typing ? '<button type="button" class="btn btn-block" data-action="check">Comprobar</button><button type="button" class="btn-link" data-action="giveup">No me lo sé: muéstrame la respuesta</button>' : "";
+  return '<section class="q-card">' + card + "</section>" + area + (fb ? fbHTML(q, v, fb) : "") + '<div class="ses-actions">' + actions + "</div>";
+}
+function optsHTML(q, v, fb) {
+  return '<div class="opts" role="group" aria-label="Opciones">' + q.options.map((o, i) => {
+    let cls = "";
+    if (fb) { if (o === v.past) cls = " is-right"; else if (o === SES.picked) cls = " is-wrong"; }
+    return '<button type="button" class="opt' + cls + '" data-action="opt" data-val="' + esc(o) + '" lang="en"' + (fb ? " disabled" : "") + '><span class="opt-k" aria-hidden="true">' + (i + 1) + "</span>" + esc(o) + "</button>";
+  }).join("") + "</div>";
+}
+function typeHTML(fb) {
+  return '<div class="type-area"><label class="field-label" for="ans">Tu respuesta</label><input id="ans" class="answer' + (fb ? (fb.ok ? " is-right" : " is-wrong") : "") + '" type="text" lang="en" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Escribe el pasado" value="' + esc(SES.input || "") + '"' + (fb ? " disabled" : "") + '><p class="form-msg" id="type-msg"></p></div>';
+}
+function fbHTML(q, v, fb) {
+  let h = '<div class="fb ' + (fb.ok ? "ok" : "bad") + '" id="fb"><p class="fb-title">' + ic(fb.ok ? "check" : "x") + " " + esc(fb.title) + "</p>";
+  h += '<p class="fb-ans">' + (fb.ok ? '<span lang="en">' + v.base + "</span> →" : "La respuesta es") + " " + markPast(v) + sayBtn(v.past, "Escuchar " + v.past) + "</p>";
+  if (!fb.ok && fb.near && fb.user) h += '<p class="fb-note">Escribiste «' + esc(fb.user.trim()) + '». Mira la letra marcada: <span class="fb-diff" lang="en">' + diffMarkup(norm(fb.user), v.past) + "</span></p>";
+  if (!fb.ok) h += '<p class="fb-note">' + esc(fb.note || v.tip) + "</p>";
+  if (q.ex) h += '<p class="fb-sent"><span lang="en">' + sentMarked(q.ex[0], v) + '</span><span class="fb-sent-es">' + esc(q.ex[1]) + "</span></p>";
+  return h + "</div>";
+}
+function flashActions(flipped) {
+  return flipped
+    ? '<div class="two"><button type="button" class="btn btn-2" data-action="know" data-k="0">' + ic("x") + ' No me lo sabía</button><button type="button" class="btn btn-ok" data-action="know" data-k="1">' + ic("check") + " Me lo sabía</button></div>"
+    : '<button type="button" class="btn btn-block" data-action="flip">' + ic("flip") + " Voltear</button>";
+}
+function flashHTML(q) {
+  const v = V[q.vid], flipped = SES.state === "back";
+  return '<div class="flash' + (flipped ? " flipped" : "") + '" id="flash"><div class="flash-inner">' +
+    '<div class="face front" data-action="flip"' + (flipped ? ' aria-hidden="true"' : "") + '><span class="eyebrow">Verbo</span><div class="q-word-row"><span class="q-word" lang="en">' + v.base + "</span>" + sayBtn(v.base, "Escuchar " + v.base) + '</div><p class="q-sub">' + esc(v.es) + '</p><p class="flash-ask">¿Cuál es su pasado? Dilo en voz alta y voltea la tarjeta.</p></div>' +
+    '<div class="face back"' + (flipped ? "" : ' aria-hidden="true"') + '><span class="eyebrow">Pasado de ' + v.base + '</span><div class="q-word-row"><span class="q-word">' + markPast(v) + "</span>" + sayBtn(v.past, "Escuchar " + v.past) + '</div><p class="q-sub">Suena: «' + v.sayP + '»</p><p class="flash-sent" lang="en">' + sentMarked(q.sent[0], v) + '</p><p class="q-es">' + esc(q.sent[1]) + '</p><p class="flash-tip"><span class="hand">Truco</span><span>' + esc(v.tip) + "</span></p></div>" +
+    '</div></div><div class="ses-actions" id="flash-actions">' + flashActions(flipped) + "</div>";
+}
+function matchHTML(q) {
+  const M = SES.match, fb = SES.state === "fb" ? SES.fb : null;
+  const item = (side, id) => {
+    const v = V[id], d = M.done.has(id), s = !!(M.sel && M.sel.side === side && M.sel.id === id);
+    return '<button type="button" class="m-item' + (side === "R" ? " en" : "") + (d ? " done" : "") + (s ? " sel" : "") + '" data-action="m" data-side="' + side + '" data-vid="' + id + '" aria-pressed="' + s + '"' + (side === "R" ? ' lang="en"' : "") + (d ? " disabled" : "") + ">" + (side === "L" ? esc(v.short) : v.past) + "</button>";
+  };
+  let h = '<section class="q-card"><p class="q-label">Une cada significado con su pasado en inglés</p><p class="q-sub">Toca uno de cada columna.</p></section>' +
+    '<div class="match"><div class="match-col"><span class="eyebrow">Significado</span>' + M.L.map(id => item("L", id)).join("") + '</div><div class="match-col"><span class="eyebrow">Pasado</span>' + M.R.map(id => item("R", id)).join("") + "</div></div>";
+  if (fb) {
+    const n = M.miss.size;
+    h += '<div class="fb ' + (fb.ok ? "ok" : "bad") + '" id="fb"><p class="fb-title">' + ic(fb.ok ? "check" : "x") + " " + (fb.ok ? "¡Todas a la primera!" : n === 1 ? "Completado con 1 error" : "Completado con " + n + " errores") + "</p>" +
+      (n ? '<p class="fb-note">Repasa: ' + Array.from(M.miss).map(id => esc(V[id].short) + ' = <b lang="en">' + V[id].past + "</b>").join(" · ") + "</p>" : "") + "</div>" +
+      '<div class="ses-actions"><button type="button" class="btn btn-block btn-ok" id="btn-next" data-action="next">Continuar ' + ic("arrowR") + "</button></div>";
+  }
+  return h;
+}
+
+/* ---------- simulacro: calificar ---------- */
+function gradeExam() {
+  if (!EXAM || EXAM.graded) return;
+  $$(".ex-input").forEach(el => { EXAM.answers[el.dataset.vid] = el.value; });
+  const empty = EXAM.order.filter(id => !norm(EXAM.answers[id])).length;
+  if (empty && !S.examArm) {
+    S.examArm = true;
+    S.examMsg = "Te falta" + (empty === 1 ? " 1 verbo" : "n " + empty + " verbos") + ". Si quieres calificar así, toca «Entregar y calificar» otra vez.";
+    live.textContent = S.examMsg;
+    const m = $("#exam-msg"); if (m) m.textContent = S.examMsg;
+    const first = EXAM.order.find(id => !norm(EXAM.answers[id])), inp = first && $("#ex-" + first);
+    if (inp) inp.focus();
+    return;
+  }
+  let ok = 0; const res = {};
+  EXAM.order.forEach(id => { const good = norm(EXAM.answers[id]) === V[id].past; res[id] = good; if (good) ok++; scoreVerb(id, good, "type"); });
+  EXAM.graded = true; EXAM.res = res; EXAM.ok = ok; S.examMsg = ""; S.examArm = false;
+  P.exams.push({ t: Date.now(), s: ok, f: EXAM.format });
+  if (P.exams.length > 40) P.exams = P.exams.slice(-40);
+  P.steps.exam = true; saveP();
+  live.textContent = "Nota: " + ok + " de 10.";
+  render(true);
+}
+
+/* ============ PINTAR ============ */
+function renderTabbar() {
+  const tabs = [["ruta", "Ruta", "route"], ["verbos", "Verbos", "book"], ["practicar", "Practicar", "target"]];
+  $("#tabbar").innerHTML = '<div class="tabbar-inner">' + tabs.map(t => '<button type="button" class="tab" data-action="tab" data-tab="' + t[0] + '"' + (S.tab === t[0] ? ' aria-current="page"' : "") + ">" + ic(t[2]) + "<span>" + t[1] + "</span></button>").join("") + "</div>";
+}
+function render(toTop) {
+  if (S.view === "session" && !SES) S.view = null;
+  if (S.view === "result" && !S.lastResult) S.view = null;
+  if (S.view === "exam" && !EXAM) newExam();
+  let html;
+  switch (S.view) {
+    case "session": html = viewSession(); break;
+    case "result": html = viewResult(); break;
+    case "lesson": html = viewLesson(); break;
+    case "verb": html = viewVerb(); break;
+    case "story": html = viewStoryPage(); break;
+    case "exam": html = viewExam(); break;
+    default: html = S.tab === "verbos" ? viewVerbos() : S.tab === "practicar" ? viewPractice() : viewHome();
+  }
+  app.innerHTML = html;
+  app.classList.toggle("no-tabs", !!S.view);
+  $("#tabbar").hidden = !!S.view;
+  renderTabbar();
+  if (toTop) window.scrollTo(0, 0);
+  afterRender();
+}
+function afterRender() {
+  if (S.view !== "session" || !SES) return;
+  const q = cur();
+  if (SES.state === "ask" && q.kind === "type") {
+    const inp = $("#ans");
+    if (inp) { try { inp.focus({ preventScroll: true }); } catch (e) { inp.focus(); } }
+    if (q.prompt === "audio" && !SES.spoken) { SES.spoken = true; say(V[q.vid].base); }
+  } else if (SES.state === "fb") {
+    const b = $("#btn-next");
+    if (b) { try { b.focus({ preventScroll: true }); } catch (e) {} if (b.scrollIntoView) b.scrollIntoView({ block: "nearest" }); }
+  }
+}
+
+/* ============ EVENTOS ============ */
+const ACT = {
+  tab: el => setTab(el.dataset.tab),
+  step: el => goStep(el.dataset.id),
+  "step-replace": el => goStep(el.dataset.id, true),
+  verb: el => openView("verb", { vid: el.dataset.vid }),
+  back: () => back(),
+  quit: () => back(),
+  say: el => say(el.dataset.text),
+  "say-slow": el => say(el.dataset.text, { rate: 0.6 }),
+  play: el => {
+    const k = el.dataset.kind;
+    if (PL.on && PL.kind === k) { stopList(); return; }
+    if (k === "story") playList(k, STORY.map(l => plain(l.en)));
+    else playList(k, VERBS.map(v => v.base + ". " + v.past + "."));
+  },
+  seg: el => { stopList(true); S.verbSeg = el.dataset.seg; render(); },
+  cover: () => { S.cover = !S.cover; S.revealed.clear(); render(); },
+  reveal: el => { S.revealed.add(el.dataset.vid); say(V[el.dataset.vid].past); render(); },
+  "story-cover": () => { stopList(true); S.storyCover = !S.storyCover; S.storyRevealed.clear(); render(); },
+  "story-es": () => { stopList(true); S.storyEs = !S.storyEs; render(); },
+  "story-reveal": el => { const i = Number(el.dataset.i); S.storyRevealed.add(i); say(V[STORY[i].vid].past); render(); },
+  "toggle-es": () => { S.showEs = !S.showEs; render(); },
+  mode: el => startSession(el.dataset.mode),
+  "practice-verb": el => startSession("verb", { vid: el.dataset.vid }),
+  lista: el => startSession("lista", { ids: el.dataset.ids.split(",") }),
+  again: () => { const R = S.lastResult; if (R) startSession(R.mode, R.opts); },
+  opt: el => pickOpt(el.dataset.val),
+  check: () => checkType(false),
+  giveup: () => checkType(true),
+  next: () => nextQ(),
+  flip: () => flipCard(),
+  know: el => rateFlash(el.dataset.k === "1"),
+  m: el => tapMatch(el.dataset.side, el.dataset.vid, el),
+  "show-base": () => { if (SES) { SES.showBase = true; render(); } },
+  "lesson-next": () => { S.params.page++; render(true); },
+  "lesson-prev": () => { S.params.page--; render(true); },
+  "lesson-done": () => { const L = LESSONS[S.params.id]; P.steps[S.params.id] = true; saveP(); goStep(L.next, true); },
+  "exam-format": el => { if (!EXAM || EXAM.graded) return; newExam(el.dataset.f); render(); },
+  "exam-grade": () => gradeExam(),
+  "exam-new": () => { newExam(); render(true); },
+  reset: () => {
+    if (S.resetArm && Date.now() - S.resetArm < 6000) {
+      P = freshP(); saveP(); EXAM = null; S.resetArm = 0; render(); live.textContent = "Progreso borrado.";
+    } else {
+      S.resetArm = Date.now(); render();
+      setTimeout(() => { if (S.resetArm && Date.now() - S.resetArm >= 6000) { S.resetArm = 0; if (!S.view && S.tab === "practicar") render(); } }, 6100);
+    }
+  }
+};
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-action]");
+  if (!el || el.disabled) return;
+  const fn = ACT[el.dataset.action];
+  if (fn) { e.preventDefault(); fn(el, e); }
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.id === "ans" && SES) {
+    SES.input = t.value;
+    const m = $("#type-msg"); if (m && m.textContent) m.textContent = "";
+  } else if (t.classList && t.classList.contains("ex-input") && EXAM && !EXAM.graded) {
+    EXAM.answers[t.dataset.vid] = t.value;
+    if (S.examArm) { S.examArm = false; S.examMsg = ""; const m = $("#exam-msg"); if (m) m.textContent = ""; }
+  }
+});
+document.addEventListener("keydown", e => {
+  const tag = e.target.tagName;
+  if (S.view === "session" && SES) {
+    const q = cur();
+    if (e.key === "Enter") {
+      if (e.repeat || tag === "BUTTON" || tag === "A") return;
+      if (SES.state === "ask" && q.kind === "type") { e.preventDefault(); checkType(false); }
+      else if (SES.state === "ask" && q.kind === "flash") { e.preventDefault(); flipCard(); }
+      else if (SES.state === "fb") { e.preventDefault(); nextQ(); }
+    } else if (/^[1-4]$/.test(e.key) && tag !== "INPUT" && SES.state === "ask" && q.kind === "choice") {
+      const b = $$(".opt")[Number(e.key) - 1]; if (b) b.click();
+    } else if (e.key === " " && tag !== "INPUT" && tag !== "BUTTON" && SES.state === "ask" && q.kind === "flash") {
+      e.preventDefault(); flipCard();
+    }
+    return;
+  }
+  if (S.view === "exam" && e.key === "Enter" && e.target.classList && e.target.classList.contains("ex-input")) {
+    e.preventDefault();
+    const ins = $$(".ex-input"), k = ins.indexOf(e.target);
+    if (k > -1 && k < ins.length - 1) ins[k + 1].focus();
+    else { const b = $('[data-action="exam-grade"]'); if (b) b.focus(); }
+  }
+});
+
+/* ============ ARRANQUE ============ */
+const app = $("#app"), live = $("#live");
+try { document.documentElement.lang = "es"; } catch (e) {}
+render(false);
+</script>
+
+</body>
+</html>
