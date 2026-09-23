@@ -1,19 +1,21 @@
-# De Burst a Crept
+# De Deal a Feed
 
-Videojuego de estudio para aprender los 10 verbos irregulares en pasado del quiz de inglés.
+Videojuego de estudio para aprender 10 verbos irregulares en pasado del quiz de inglés.
 
-| Verbo | Pasado | Significado |
-|---|---|---|
-| burst | burst | reventar, estallar |
-| buy | bought | comprar |
-| cast | cast | lanzar, arrojar |
-| catch | caught | atrapar, agarrar |
-| come | came | venir, llegar |
-| cost | cost | costar |
-| cut | cut | cortar |
-| choose | chose | elegir, escoger |
-| cling | clung | aferrarse |
-| creep | crept | moverse sigilosamente |
+| Verbo | Pasado | Participio | Significado |
+|---|---|---|---|
+| deal | dealt | dealt | tratar, lidiar con |
+| dig | dug | dug | cavar |
+| do (does) | did | done | hacer |
+| draw | drew | drawn | dibujar |
+| dream | dreamt / dreamed | dreamt / dreamed | soñar |
+| drink | drank | drunk | beber |
+| drive | drove | driven | conducir |
+| eat | ate | eaten | comer |
+| fall | fell | fallen | caer |
+| feed | fed | fed | alimentar |
+
+El quiz solo pide el **pasado simple** (columna "Pasado"). El participio queda de referencia en el Verbodex, por si el profe lo usa más adelante.
 
 ## Cómo se juega
 
@@ -28,7 +30,7 @@ Un mapa de misión espacial con 10 planetas + un jefe final. Cada planeta es un 
 
 Tiene vidas (corazones), racha de combo, puntaje, 3 estrellas por nivel, rango por XP, logros, sonidos sintetizados (sin archivos externos) y confeti. El progreso se guarda en el navegador de cada persona (localStorage).
 
-También hay pestañas de **Verbodex** (los 10 verbos por tipo, tabla y la historia de la pizza) y **Arcade** (práctica libre sin bloqueos, incluye repetir al jefe cuando quieras).
+También hay pestañas de **Verbodex** (los 10 verbos por tipo, tabla con las 4 columnas y la historia del tesoro) y **Arcade** (práctica libre sin bloqueos, incluye repetir al jefe cuando quieras).
 
 ## Cómo usarla
 
@@ -36,4 +38,4 @@ Abre `index.html` en el navegador (mejor en Chrome). Es un solo archivo, sin ins
 
 ## Cambiar los verbos
 
-Los datos están al inicio del `<script>` de `index.html`: `VERBS` (verbo, pasado, significado, frases y errores típicos), `TYPES` (los 4 patrones de memoria), `STORY` (el cuento) y `LEVELS` (qué verbos y qué minijuego tiene cada planeta del mapa).
+Los datos están al inicio del `<script>` de `index.html`: `VERBS` (verbo, pasado, participio, significado, frases y errores típicos — `altPast`/`altPart` para verbos con dos formas válidas como dream), `TYPES` (los patrones de memoria), `STORY` (el cuento) y `LEVELS` (qué verbos y qué minijuego tiene cada planeta del mapa).

@@ -1,4 +1,4 @@
-<title>De Burst a Crept</title>
+<title>De Deal a Feed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lexend:wght@400;500;600;700&family=Lilita+One&display=swap">
@@ -403,202 +403,197 @@ b,strong{font-weight:600}
 <script>
 "use strict";
 /* ============ DATOS ============ */
+/* El quiz solo pide el PASADO SIMPLE (past). El participio (part) es solo de referencia
+   en el Verbodex — no se pregunta en ningún minijuego. */
 const VERBS = [
-{ id:"burst", base:"burst", past:"burst", type:"same", es:"reventar, estallar", short:"reventar", esPast:"la bomba se reventó", sayB:"bérst", sayP:"bérst",
-  tip:"No cambia: burst → burst.", ojo:"Nunca «bursted». Frase útil: burst into tears = romper a llorar.",
-  wrong:["bursted","bursts","bursten"],
+{ id:"deal", base:"deal", past:"dealt", part:"dealt", type:"addt", es:"tratar, lidiar con", short:"lidiar con", esPast:"ella lidió con el problema", sayB:"díil", sayP:"delt",
+  tip:"Se le pega una T al final: deal + t = dealt. Se pronuncia «delt», no «díilt».", ojo:"Nunca «dealed». El participio es igual: dealt.",
+  wrong:["dealed","delt","deals"],
   s:[
-  ["The balloon {burst} when my little brother sat on it.","La bomba se reventó cuando mi hermanito se sentó encima."],
-  ["Yesterday a water pipe {burst} in our kitchen.","Ayer se reventó un tubo de agua en nuestra cocina."],
-  ["She {burst} into tears when she heard the news.","Ella rompió a llorar cuando oyó la noticia."],
-  ["We {burst} out laughing at his joke last night.","Anoche nos echamos a reír con su chiste."],
-  ["The door opened and the kids {burst} into the room.","La puerta se abrió y los niños entraron de golpe al cuarto."],
-  ["My bike tire {burst} on the way to school this morning.","Esta mañana se me reventó la llanta de la bici camino al colegio."],
-  ["The river {burst} its banks after three days of rain.","El río se desbordó después de tres días de lluvia."],
-  ["I {burst} all the balloons after the party.","Reventé todas las bombas después de la fiesta."],
-  ["The soap bubble {burst} a second later.","La burbuja de jabón se reventó un segundo después."],
-  ["He {burst} into the classroom five minutes late.","Él entró de golpe al salón cinco minutos tarde."]
+  ["I {dealt} with a difficult problem at school yesterday.","Ayer tuve que lidiar con un problema difícil en el colegio."],
+  ["My mom {dealt} with the angry customer calmly.","Mi mamá trató con calma al cliente enojado."],
+  ["We {dealt} the cards before we started the game.","Repartimos las cartas antes de empezar el juego."],
+  ["The teacher {dealt} with three fights last week.","El profe tuvo que lidiar con tres peleas la semana pasada."],
+  ["I {dealt} with my fear and jumped into the pool.","Enfrenté mi miedo y salté a la piscina."],
+  ["She {dealt} with her little brother's tantrum.","Ella lidió con la rabieta de su hermanito."],
+  ["The manager {dealt} with the problem in five minutes.","El gerente resolvió el problema en cinco minutos."],
+  ["We {dealt} with the flat tire on the highway.","Tuvimos que arreglar la llanta pinchada en la autopista."],
+  ["I {dealt} with a lot of homework last night.","Anoche tuve que lidiar con mucha tarea."],
+  ["He {dealt} with the bully calmly and told a teacher.","Él manejó al matón con calma y le avisó a un profe."]
   ]},
-{ id:"buy", base:"buy", past:"bought", type:"ght", es:"comprar", short:"comprar", esPast:"yo compré, ella compró", sayB:"bái", sayP:"bot",
-  tip:"La gh no suena: se dice «bot». Rima con caught.", ojo:"No lo confundas con brought (de bring, traer). Comprar es bought, sin r.",
-  wrong:["buyed","brought","bougth","boughted"],
+{ id:"dig", base:"dig", past:"dug", part:"dug", type:"vowel", es:"cavar", short:"cavar", esPast:"cavamos un hueco", sayB:"dig", sayP:"dag",
+  tip:"Solo cambia la vocal: dig → dug (i → u).", ojo:"Nunca «digged».",
+  wrong:["digged","dugg","dags"],
   s:[
-  ["I {bought} a new phone last week.","Compré un celular nuevo la semana pasada."],
-  ["My mom {bought} bread this morning.","Mi mamá compró pan esta mañana."],
-  ["We {bought} tickets for the concert yesterday.","Ayer compramos boletas para el concierto."],
-  ["He {bought} flowers for his girlfriend on Saturday.","Él le compró flores a su novia el sábado."],
-  ["They {bought} a house two years ago.","Ellos compraron una casa hace dos años."],
-  ["What did you buy? — I {bought} a pair of shoes.","¿Qué compraste? — Compré un par de zapatos."],
-  ["She {bought} a gift for her best friend yesterday.","Ayer ella compró un regalo para su mejor amiga."],
-  ["I {bought} a coffee before class this morning.","Esta mañana compré un café antes de clase."],
-  ["My dad {bought} a car in 2019.","Mi papá compró un carro en 2019."],
-  ["We {bought} pizza for the whole class last Friday.","El viernes pasado compramos pizza para todo el salón."]
+  ["We {dug} a hole for the new tree in the garden.","Cavamos un hueco para el árbol nuevo en el jardín."],
+  ["My dog {dug} under the fence yesterday.","Mi perro cavó por debajo de la cerca ayer."],
+  ["The kids {dug} in the sand all afternoon.","Los niños cavaron en la arena toda la tarde."],
+  ["I {dug} through my backpack to find my keys.","Busqué a fondo en mi mochila para encontrar las llaves."],
+  ["They {dug} a big hole for the swimming pool.","Cavaron un hueco grande para la piscina."],
+  ["We {dug} up some old photos in the attic.","Encontramos unas fotos viejas en el ático."],
+  ["The archaeologists {dug} for three months at the site.","Los arqueólogos excavaron durante tres meses en el sitio."],
+  ["My grandpa {dug} a small garden behind the house.","Mi abuelo cavó un jardín pequeño detrás de la casa."],
+  ["I {dug} into my savings to buy the gift.","Usé mis ahorros para comprar el regalo."],
+  ["The dog {dug} up his bone from last week.","El perro desenterró su hueso de la semana pasada."]
   ]},
-{ id:"cast", base:"cast", past:"cast", type:"same", es:"lanzar, arrojar", short:"lanzar", esPast:"él lanzó la red", sayB:"kast", sayP:"kast",
-  tip:"No cambia: cast → cast.", ojo:"Nunca «casted». También sirve para: cast a spell (lanzar un hechizo) y cast a vote (votar).",
-  wrong:["casted","casts","cost"],
+{ id:"do", base:"do", past:"did", part:"done", type:"vowel", es:"hacer", short:"hacer", esPast:"yo hice la tarea", sayB:"du", sayP:"did",
+  tip:"Cambia la vocal: do → did (o → i).", ojo:"En presente, con he/she/it, es DOES (se pronuncia «dozz», no «dous»). El participio es done (I have done), distinto de did.",
+  wrong:["doed","does","done"],
   s:[
-  ["The fisherman {cast} his net into the sea early this morning.","El pescador lanzó su red al mar esta mañana temprano."],
-  ["The witch {cast} a spell on the prince.","La bruja le lanzó un hechizo al príncipe."],
-  ["Millions of people {cast} their votes last Sunday.","Millones de personas votaron el domingo pasado."],
-  ["The old tree {cast} a long shadow over the house.","El árbol viejo proyectó una sombra larga sobre la casa."],
-  ["The director {cast} my cousin in the school play.","El director escogió a mi primo para la obra del colegio."],
-  ["He {cast} a quick look at the clock.","Él le echó un vistazo rápido al reloj."],
-  ["I {cast} my line into the river and waited for an hour.","Lancé el anzuelo al río y esperé una hora."],
-  ["The sailors {cast} the anchor near the island.","Los marineros echaron el ancla cerca de la isla."],
-  ["She {cast} her vote for the first time in 2022.","Ella votó por primera vez en 2022."],
-  ["Last night the moon {cast} a silver light on the lake.","Anoche la luna proyectó una luz plateada sobre el lago."]
+  ["I {did} my homework right after school.","Hice la tarea apenas salí del colegio."],
+  ["She {did} a great job on her project.","Ella hizo un gran trabajo en su proyecto."],
+  ["We {did} the dishes together last night.","Lavamos los platos juntos anoche."],
+  ["He {did} his best in the exam yesterday.","Él dio lo mejor de sí en el examen de ayer."],
+  ["I {did} nothing special this weekend.","No hice nada especial este fin de semana."],
+  ["My mom {did} the shopping on Saturday morning.","Mi mamá hizo las compras el sábado en la mañana."],
+  ["They {did} all the exercises in the book.","Hicieron todos los ejercicios del libro."],
+  ["What {did} you do after class yesterday?","¿Qué hiciste después de clase ayer?"],
+  ["We {did} a science experiment in the lab.","Hicimos un experimento de ciencias en el laboratorio."],
+  ["I {did} my chores before watching TV.","Hice mis oficios antes de ver televisión."]
   ]},
-{ id:"catch", base:"catch", past:"caught", type:"ght", es:"atrapar, agarrar", short:"atrapar", esPast:"yo atrapé, él atrapó", sayB:"kach", sayP:"kot",
-  tip:"La A de cAtch se queda: cAUght. Suena «kot», igual que bought.", ojo:"Nunca «catched» ni «cought».",
-  wrong:["catched","cought","caugth","catches"],
+{ id:"draw", base:"draw", past:"drew", part:"drawn", type:"vowel", es:"dibujar", short:"dibujar", esPast:"ella dibujó un mapa", sayB:"dro", sayP:"drú",
+  tip:"Cambia la vocal: draw → drew (aw → ew).", ojo:"Nunca «drawed». El participio es drawn (I have drawn), no drew.",
+  wrong:["drawed","drewed","draws"],
   s:[
-  ["The police {caught} the thief last night.","La policía atrapó al ladrón anoche."],
-  ["I {caught} the ball with one hand.","Atrapé la pelota con una mano."],
-  ["She {caught} a cold last week.","Ella se resfrió la semana pasada."],
-  ["We ran and {caught} the last bus home.","Corrimos y alcanzamos el último bus a casa."],
-  ["My grandpa {caught} a big fish yesterday.","Mi abuelo pescó un pez grande ayer."],
-  ["The cat {caught} a mouse in the garden.","El gato atrapó un ratón en el jardín."],
-  ["The teacher {caught} him copying in the exam.","El profe lo pilló copiando en el examen."],
-  ["The goalkeeper {caught} the ball and saved the game.","El arquero atrapó el balón y salvó el partido."],
-  ["The rain {caught} us without an umbrella.","La lluvia nos cogió sin paraguas."],
-  ["Something in the shop window {caught} my attention.","Algo en la vitrina me llamó la atención."]
+  ["I {drew} a picture of my family for art class.","Dibujé un cuadro de mi familia para la clase de arte."],
+  ["She {drew} a map to her new house.","Ella dibujó un mapa hacia su casa nueva."],
+  ["We {drew} on the sidewalk with chalk yesterday.","Ayer dibujamos en el andén con tiza."],
+  ["The artist {drew} my portrait in ten minutes.","El artista dibujó mi retrato en diez minutos."],
+  ["My little sister {drew} a dinosaur on the wall!","¡Mi hermanita dibujó un dinosaurio en la pared!"],
+  ["He {drew} a diagram to explain his idea.","Él dibujó un diagrama para explicar su idea."],
+  ["We {drew} straws to see who went first.","Sacamos pajitas para ver quién iba primero."],
+  ["I {drew} a heart on her birthday card.","Dibujé un corazón en su tarjeta de cumpleaños."],
+  ["The game {drew} a huge crowd last Saturday.","El partido atrajo una multitud enorme el sábado pasado."],
+  ["She {drew} the curtains before the movie started.","Ella corrió las cortinas antes de que empezara la película."]
   ]},
-{ id:"come", base:"come", past:"came", type:"vowel", es:"venir, llegar", short:"venir", esPast:"yo vine, ella llegó", sayB:"kam", sayP:"kéim",
-  tip:"Solo cambia la o por a: come → came.", ojo:"«come» también existe, pero es presente: I come every day. En pasado: came.",
-  wrong:["comed","come","camed","comes"],
+{ id:"dream", base:"dream", past:"dreamt", altPast:"dreamed", part:"dreamt", altPart:"dreamed", type:"addt", es:"soñar", short:"soñar", esPast:"anoche soñé con volar", sayB:"driim", sayP:"dremt",
+  tip:"Igual que deal: se le pega una T. dream + t = dreamt. También se acepta dreamed (regular).", ojo:"En el juego practicamos dreamt, pero dreamed también está bien. Nunca «dreampt» (sin esa p).",
+  wrong:["dreams","dreampt","dreamd"],
   s:[
-  ["My cousins {came} to my house yesterday.","Mis primos vinieron a mi casa ayer."],
-  ["She {came} home late last night.","Ella llegó tarde a casa anoche."],
-  ["The teacher {came} into the classroom and everyone sat down.","El profe entró al salón y todos se sentaron."],
-  ["They {came} to Colombia in 2015.","Ellos vinieron a Colombia en 2015."],
-  ["He {came} first in the race.","Él llegó de primero en la carrera."],
-  ["Only ten people {came} to the party.","Solo vinieron diez personas a la fiesta."],
-  ["The bus {came} ten minutes late this morning.","Esta mañana el bus llegó diez minutos tarde."],
-  ["My dog {came} running when I called him.","Mi perro vino corriendo cuando lo llamé."],
-  ["A great idea {came} to me in the shower.","Se me ocurrió una gran idea en la ducha."],
-  ["We {came} back from the beach on Sunday.","Volvimos de la playa el domingo."]
+  ["Last night I {dreamt} about flying over my city.","Anoche soñé que volaba sobre mi ciudad."],
+  ["She {dreamt} about her exam and woke up nervous.","Ella soñó con el examen y se despertó nerviosa."],
+  ["I {dreamt} that I won the lottery.","Soñé que me ganaba la lotería."],
+  ["We {dreamt} about the beach the night before the trip.","Soñamos con la playa la noche antes del viaje."],
+  ["He {dreamt} about his favorite soccer team winning.","Él soñó que su equipo de fútbol favorito ganaba."],
+  ["I never {dreamt} I would travel to another country.","Nunca soñé que viajaría a otro país."],
+  ["She {dreamt} about her grandmother last week.","Ella soñó con su abuela la semana pasada."],
+  ["I {dreamt} in English for the first time!","¡Soñé en inglés por primera vez!"],
+  ["We {dreamt} about a big house by the sea.","Soñamos con una casa grande junto al mar."],
+  ["He {dreamt} about the monster under his bed.","Él soñó con el monstruo debajo de la cama."]
   ]},
-{ id:"cost", base:"cost", past:"cost", type:"same", es:"costar", short:"costar", esPast:"costó mucho", sayB:"kost", sayP:"kost",
-  tip:"No cambia: cost → cost.", ojo:"Presente: it costs (con -s). Pasado: it cost (sin -s). Nunca «costed».",
-  wrong:["costed","costs","cast"],
+{ id:"drink", base:"drink", past:"drank", part:"drunk", type:"vowel", es:"beber, tomar", short:"beber", esPast:"me tomé un jugo", sayB:"drink", sayP:"drank",
+  tip:"Cambia la vocal: drink → drank (i → a).", ojo:"Nunca «drinked». El participio es drunk (I have drunk) — y como adjetivo significa borracho, ¡ojo con confundirlos!",
+  wrong:["drinked","drunk","drinks"],
   s:[
-  ["The shoes I bought yesterday {cost} 150,000 pesos.","Los zapatos que compré ayer costaron 150.000 pesos."],
-  ["The trip to Cartagena {cost} a lot of money.","El viaje a Cartagena costó mucha plata."],
-  ["How much did it cost? — It {cost} ten dollars.","¿Cuánto costó? — Costó diez dólares."],
-  ["His mistake {cost} us the game.","Su error nos costó el partido."],
-  ["My phone {cost} more than my laptop.","Mi celular costó más que mi portátil."],
-  ["Being late {cost} me a point on the exam.","Llegar tarde me costó un punto en el examen."],
-  ["The house {cost} 200 million pesos in 2010.","La casa costó 200 millones de pesos en 2010."],
-  ["That jacket {cost} me all my savings.","Esa chaqueta me costó todos mis ahorros."],
-  ["The repair {cost} more than we expected.","La reparación costó más de lo que esperábamos."],
-  ["Each notebook {cost} five thousand pesos.","Cada cuaderno costó cinco mil pesos."]
+  ["I {drank} a glass of milk before bed.","Me tomé un vaso de leche antes de dormir."],
+  ["She {drank} all her water during the game.","Ella se tomó toda el agua durante el partido."],
+  ["We {drank} hot chocolate on the cold morning.","Tomamos chocolate caliente en la mañana fría."],
+  ["He {drank} his coffee too fast and burned his tongue.","Se tomó el café muy rápido y se quemó la lengua."],
+  ["I {drank} orange juice with my breakfast.","Tomé jugo de naranja con el desayuno."],
+  ["The dog {drank} all the water from its bowl.","El perro se tomó toda el agua de su plato."],
+  ["We {drank} lemonade at the party.","Tomamos limonada en la fiesta."],
+  ["She {drank} two bottles of water after the run.","Ella se tomó dos botellas de agua después de correr."],
+  ["I {drank} my soup slowly because it was hot.","Me tomé la sopa despacio porque estaba caliente."],
+  ["They {drank} a toast to the new year.","Brindaron por el año nuevo."]
   ]},
-{ id:"cut", base:"cut", past:"cut", type:"same", es:"cortar", short:"cortar", esPast:"yo corté, él cortó", sayB:"kat", sayP:"kat",
-  tip:"No cambia: cut → cut.", ojo:"Nunca «cutted». Se pronuncia «kat», no «kut».",
-  wrong:["cutted","cuts","cutt"],
+{ id:"drive", base:"drive", past:"drove", part:"driven", type:"vowel", es:"conducir, manejar", short:"manejar", esPast:"mi papá nos llevó en carro", sayB:"dráiv", sayP:"dróuv",
+  tip:"Cambia la vocal: drive → drove (i → o).", ojo:"Nunca «drived». El participio es driven (I have driven), no drove.",
+  wrong:["drived","droved","driven"],
   s:[
-  ["I {cut} my finger with a knife yesterday.","Ayer me corté el dedo con un cuchillo."],
-  ["She {cut} her hair very short last month.","Ella se cortó el pelo muy corto el mes pasado."],
-  ["My dad {cut} the grass on Saturday.","Mi papá cortó el pasto el sábado."],
-  ["He {cut} the cake into eight pieces.","Él cortó la torta en ocho pedazos."],
-  ["They {cut} the electricity for three hours last night.","Anoche cortaron la luz tres horas."],
-  ["Mom {cut} the vegetables for the soup.","Mamá cortó las verduras para la sopa."],
-  ["The barber {cut} my hair too short!","¡El peluquero me cortó el pelo demasiado corto!"],
-  ["She {cut} the paper with scissors.","Ella cortó el papel con tijeras."],
-  ["The company {cut} fifty jobs last year.","La empresa recortó cincuenta empleos el año pasado."],
-  ["He {cut} himself while shaving this morning.","Esta mañana se cortó mientras se afeitaba."]
+  ["My dad {drove} us to school this morning.","Mi papá nos llevó al colegio en carro esta mañana."],
+  ["She {drove} to Bogotá last weekend.","Ella manejó hasta Bogotá el fin de semana pasado."],
+  ["We {drove} for three hours to get to the beach.","Manejamos tres horas para llegar a la playa."],
+  ["He {drove} his new car for the first time yesterday.","Él manejó su carro nuevo por primera vez ayer."],
+  ["I {drove} my little brother to soccer practice.","Llevé a mi hermanito a la práctica de fútbol."],
+  ["They {drove} around the city looking for the hotel.","Manejaron por la ciudad buscando el hotel."],
+  ["My uncle {drove} a taxi for ten years.","Mi tío manejó un taxi durante diez años."],
+  ["We {drove} past my old school on the way home.","Pasamos manejando por mi antiguo colegio de camino a casa."],
+  ["She {drove} very carefully in the rain.","Ella manejó con mucho cuidado bajo la lluvia."],
+  ["He {drove} me crazy with all his questions!","¡Me volvió loco con todas sus preguntas!"]
   ]},
-{ id:"choose", base:"choose", past:"chose", type:"vowel", es:"elegir, escoger", short:"elegir", esPast:"yo elegí, ella escogió", sayB:"chuuz", sayP:"chóuz",
-  tip:"En pasado se le cae una O: choose → chose.", ojo:"chosen es otra forma (participio: I have chosen). En el juego va chose.",
-  wrong:["choosed","chosen","choose","chosed"],
+{ id:"eat", base:"eat", past:"ate", part:"eaten", type:"short", es:"comer", short:"comer", esPast:"comí desayuno", sayB:"íit", sayP:"éit",
+  tip:"Mismas 3 letras, en otro orden: eat → ate.", ojo:"Nunca «eated». El participio es eaten (I have eaten), no ate.",
+  wrong:["eated","ated","eaten"],
   s:[
-  ["I {chose} the blue shirt for the party.","Escogí la camisa azul para la fiesta."],
-  ["She {chose} to study medicine.","Ella eligió estudiar medicina."],
-  ["We {chose} a movie and made popcorn.","Escogimos una película e hicimos crispetas."],
-  ["The team {chose} Laura as captain.","El equipo eligió a Laura como capitana."],
-  ["He {chose} the chocolate ice cream.","Él escogió el helado de chocolate."],
-  ["They {chose} a small hotel near the beach.","Eligieron un hotel pequeño cerca de la playa."],
-  ["The teacher {chose} me to read first.","El profe me escogió para leer de primero."],
-  ["I {chose} the wrong answer in question 5.","Escogí la respuesta equivocada en la pregunta 5."],
-  ["My parents {chose} my name before I was born.","Mis papás escogieron mi nombre antes de que yo naciera."],
-  ["You {chose} a great restaurant last night!","¡Escogiste un restaurante buenísimo anoche!"]
+  ["I {ate} breakfast before I left for school.","Comí desayuno antes de salir para el colegio."],
+  ["She {ate} all her vegetables at dinner.","Ella se comió todas las verduras en la cena."],
+  ["We {ate} pizza for my birthday party.","Comimos pizza en mi fiesta de cumpleaños."],
+  ["He {ate} too much candy and got a stomachache.","Comió demasiados dulces y le dolió el estómago."],
+  ["I {ate} lunch with my friends in the cafeteria.","Almorcé con mis amigos en la cafetería."],
+  ["They {ate} arepas for breakfast every day.","Ellos comían arepas todos los días en el desayuno."],
+  ["We {ate} outside because it was sunny.","Comimos afuera porque hacía sol."],
+  ["She {ate} a mango straight from the tree.","Ella se comió un mango directo del árbol."],
+  ["I {ate} nothing before the exam, and I regretted it.","No comí nada antes del examen, y me arrepentí."],
+  ["The dog {ate} my homework — it's true this time!","¡El perro se comió mi tarea, esta vez es verdad!"]
   ]},
-{ id:"cling", base:"cling", past:"clung", type:"vowel", es:"aferrarse, agarrarse fuerte", short:"aferrarse", esPast:"se aferró a su mamá", sayB:"kling", sayP:"klang",
-  tip:"La i se vuelve u: cling → clung, como swing → swung.", ojo:"Nunca «clinged».",
-  wrong:["clinged","clang","clong","clunged"],
+{ id:"fall", base:"fall", past:"fell", part:"fallen", type:"short", es:"caer, caerse", short:"caerse", esPast:"me caí de la bici", sayB:"fol", sayP:"fel",
+  tip:"Cambia la vocal: fall → fell (a → e).", ojo:"Nunca «falled». El participio es fallen (I have fallen), no fell.",
+  wrong:["falled","fallen","falls"],
   s:[
-  ["The baby {clung} to her mother.","La bebé se aferró a su mamá."],
-  ["The cat {clung} to the curtain with its claws.","El gato se agarró de la cortina con las uñas."],
-  ["He {clung} to the rope and didn’t let go.","Él se agarró fuerte de la cuerda y no la soltó."],
-  ["My wet shirt {clung} to my body.","La camisa mojada se me pegó al cuerpo."],
-  ["On the first day of school, the little boy {clung} to his dad’s leg.","El primer día de colegio, el niño se aferró a la pierna de su papá."],
-  ["She {clung} to the hope that her dog would come back.","Ella se aferró a la esperanza de que su perro volviera."],
-  ["We {clung} to each other during the storm.","Nos abrazamos fuerte durante la tormenta."],
-  ["The monkey {clung} to the branch.","El mico se agarró de la rama."],
-  ["Mud {clung} to my shoes after the football game.","El barro se me pegó a los zapatos después del partido."],
-  ["The survivors {clung} to a piece of wood for hours.","Los sobrevivientes se aferraron a un pedazo de madera durante horas."]
+  ["I {fell} off my bike and hurt my knee.","Me caí de la bici y me lastimé la rodilla."],
+  ["She {fell} asleep during the movie.","Ella se quedó dormida durante la película."],
+  ["The rain {fell} all night long.","La lluvia cayó toda la noche."],
+  ["He {fell} down the stairs but he's okay.","Se cayó por las escaleras pero está bien."],
+  ["Leaves {fell} from the trees in October.","Las hojas cayeron de los árboles en octubre."],
+  ["I {fell} in love with the city the moment I saw it.","Me enamoré de la ciudad en el momento en que la vi."],
+  ["We {fell} behind on our project this week.","Nos atrasamos con el proyecto esta semana."],
+  ["The little boy {fell} and started crying.","El niño se cayó y empezó a llorar."],
+  ["Prices {fell} a lot after the holidays.","Los precios bajaron mucho después de las vacaciones."],
+  ["She {fell} silent when the teacher walked in.","Ella se quedó callada cuando entró el profe."]
   ]},
-{ id:"creep", base:"creep", past:"crept", type:"ept", es:"moverse sigilosamente, arrastrarse", short:"moverse sigiloso", esPast:"el gato se acercó sigiloso", sayB:"kriip", sayP:"krept",
-  tip:"EE → E + T: creep → crept, como sleep → slept y keep → kept.", ojo:"En el colegio el pasado es crept, no «creeped».",
-  wrong:["creeped","creept","crapt","crepped"],
+{ id:"feed", base:"feed", past:"fed", part:"fed", type:"short", es:"alimentar, dar de comer", short:"alimentar", esPast:"alimenté al perro", sayB:"fíid", sayP:"fed",
+  tip:"Se acorta: feed → fed (se come una e).", ojo:"Nunca «feeded».",
+  wrong:["feeded","fedded","feeds"],
   s:[
-  ["The cat {crept} towards the bird.","El gato se acercó sigilosamente al pájaro."],
-  ["I {crept} into the house at 2 a.m.","Entré a la casa a escondidas a las 2 de la mañana."],
-  ["The thief {crept} up the stairs.","El ladrón subió las escaleras sin hacer ruido."],
-  ["The baby {crept} across the floor.","El bebé gateó por el piso."],
-  ["She {crept} out of the room so she wouldn’t wake him up.","Ella salió del cuarto en silencio para no despertarlo."],
-  ["A spider {crept} up my arm.","Una araña me subió por el brazo."],
-  ["We {crept} downstairs to see our Christmas presents.","Bajamos a escondidas para ver los regalos de Navidad."],
-  ["The soldiers {crept} through the jungle at night.","Los soldados avanzaron sigilosamente por la selva de noche."],
-  ["Fog {crept} over the hills in the morning.","La neblina fue cubriendo las montañas en la mañana."],
-  ["He {crept} up behind me and shouted “Boo!”","Se me acercó por detrás sin hacer ruido y gritó «¡Bu!»."]
+  ["I {fed} my dog before I went to school.","Alimenté a mi perro antes de ir al colegio."],
+  ["She {fed} the baby at seven in the morning.","Ella le dio de comer al bebé a las siete de la mañana."],
+  ["We {fed} the ducks at the park yesterday.","Ayer le dimos de comer a los patos en el parque."],
+  ["My grandma {fed} the whole family with one pot of soup.","Mi abuela alimentó a toda la familia con una olla de sopa."],
+  ["He {fed} the cat before he left for work.","Él alimentó al gato antes de irse a trabajar."],
+  ["We {fed} the horses some carrots at the farm.","Le dimos zanahorias a los caballos en la finca."],
+  ["I {fed} my little sister while my mom cooked.","Le di de comer a mi hermanita mientras mi mamá cocinaba."],
+  ["They {fed} the fire with more wood.","Alimentaron el fuego con más leña."],
+  ["She {fed} the chickens every morning on the farm.","Ella les daba de comer a las gallinas todas las mañanas en la finca."],
+  ["I {fed} the class hamster over the weekend.","Alimenté al hámster del salón durante el fin de semana."]
   ]}
 ];
 
 const TYPES = [
-{ id:"same", name:"No cambian", color:"var(--b)", verbs:["burst","cast","cost","cut"],
-  rule:"El pasado es igual al verbo normal. No hay nada que cambiar.",
-  trick:"Son 4, cortitos y todos terminan en T: burst, cast, cost, cut. La T los deja congelados." },
-{ id:"ght", name:"Terminan en -ght", color:"var(--p)", verbs:["buy","catch"],
-  rule:"Se vuelven -ought / -aught. La gh no suena.",
-  trick:"Riman: bought «bot» y caught «kot». Mira la vocal del verbo: bUy → boUght, cAtch → cAught." },
-{ id:"vowel", name:"Cambia la vocal", color:"var(--o)", verbs:["come","choose","cling"],
-  rule:"Solo cambia la vocal del medio; el resto queda igual.",
-  trick:"come → came (o→a) · choose → chose (se cae una o) · cling → clung (i→u)." },
-{ id:"ept", name:"EE → EPT", color:"var(--g)", verbs:["creep"],
-  rule:"La doble E se vuelve una E y se agrega T.",
-  trick:"creep → crept, igual que sleep → slept y keep → kept." }
+{ id:"addt", name:"Le agregan una T", color:"var(--p)", verbs:["deal","dream"],
+  rule:"Casi no cambian: solo se les pega una T al final.",
+  trick:"deal + t = dealt · dream + t = dreamt. Se pronuncian cortico: «delt», «dremt»." },
+{ id:"vowel", name:"Cambia la vocal de en medio", color:"var(--b)", verbs:["dig","do","draw","drink","drive"],
+  rule:"Las consonantes se quedan igual; solo cambia la vocal de adentro.",
+  trick:"dig→dUg (i→u) · dO→dId (o→i) · drAW→drEW · drInk→drAnk · drIve→drOve." },
+{ id:"short", name:"Se acortan o cambian del todo", color:"var(--g)", verbs:["eat","fall","feed"],
+  rule:"No hay un patrón fijo: cada uno se aprende por separado.",
+  trick:"eat→ate (¡las mismas 3 letras, en otro orden!) · fall→fell (a→e) · feed→fed (se come una e)." }
 ];
 const T = Object.fromEntries(TYPES.map(t => [t.id, t]));
 
 const STORY = [
-  { en:"Last Friday I {came} home very hungry.", es:"El viernes pasado llegué a casa con mucha hambre.", vid:"come" },
-  { en:"I {bought} a big pizza at the corner shop.", es:"Compré una pizza grande en la tienda de la esquina.", vid:"buy" },
-  { en:"It {cost} 40,000 pesos.", es:"Costó 40.000 pesos.", vid:"cost" },
-  { en:"I {cut} it into eight slices.", es:"La corté en ocho pedazos.", vid:"cut" },
-  { en:"Suddenly, my cat {crept} into the kitchen", es:"De repente, mi gato entró sigilosamente a la cocina", vid:"creep" },
-  { en:"and {caught} a slice with its paws!", es:"¡y atrapó un pedazo con sus patas!", vid:"catch" },
-  { en:"I {chose} to fight for my pizza,", es:"Decidí pelear por mi pizza,", vid:"choose" },
-  { en:"but the cat {clung} to it with all its claws.", es:"pero el gato se aferró a ella con todas sus garras.", vid:"cling" },
-  { en:"In the end, I {burst} out laughing", es:"Al final, me eché a reír", vid:"burst" },
-  { en:"and {cast} the last slice to my cat.", es:"y le lancé el último pedazo a mi gato.", vid:"cast" }
+  { en:"Last weekend I {dealt} with a big surprise.", es:"El fin de semana pasado tuve que lidiar con una gran sorpresa.", vid:"deal" },
+  { en:"My dog {dug} a hole in the garden.", es:"Mi perro cavó un hueco en el jardín.", vid:"dig" },
+  { en:"He {did} it while I was sleeping.", es:"Lo hizo mientras yo dormía.", vid:"do" },
+  { en:"In the hole, I found a box and {drew} a treasure map.", es:"En el hueco encontré una caja y dibujé un mapa del tesoro.", vid:"draw" },
+  { en:"That night, I {dreamt} about pirates.", es:"Esa noche soñé con piratas.", vid:"dream" },
+  { en:"In my dream, I {drank} salty sea water.", es:"En el sueño, bebí agua salada del mar.", vid:"drink" },
+  { en:"Then I {drove} an old pirate ship.", es:"Luego conduje un barco pirata viejo.", vid:"drive" },
+  { en:"Suddenly, I {fell} into the ocean!", es:"¡De repente, me caí al océano!", vid:"fall" },
+  { en:"A shark almost {ate} my leg.", es:"Un tiburón casi se comió mi pierna.", vid:"eat" },
+  { en:"Luckily, my mom {fed} the dog and woke me up.", es:"Por suerte, mi mamá alimentó al perro y me despertó.", vid:"feed" }
 ];
 
-/* verbos que también encajarían en ciertas frases: nunca se ofrecen como distractores de "¿cuál va aquí?" */
-const CONFUSE = { buy:["choose"], choose:["buy"], come:["creep","burst"], creep:["come","burst"], burst:["come","creep","cut"], cut:["buy","choose","burst"], cling:["come","creep"], cast:["catch"], catch:["cast"] };
-
-/* ---------- niveles: mapa de 10 planetas + jefe ---------- */
 const LEVELS = [
-  { id:1, vids:["burst","cast"], game:"meteors", name:"Campo de meteoritos", planet:"Mercurio", icon:"meteor", c:"var(--o)" },
-  { id:2, vids:["cost","cut"], game:"balloons", name:"Globos de la nebulosa", planet:"Venus", icon:"balloon", c:"var(--p)" },
-  { id:3, vids:["burst","cast","cost","cut"], game:"memory", name:"Memoria cósmica", planet:"Tierra", icon:"cards", c:"var(--v)" },
-  { id:4, vids:["buy","catch"], game:"spell", name:"Taller de ortografía", planet:"Luna", icon:"pencil", c:"var(--b)" },
-  { id:5, vids:["burst","cast","cost","cut","buy","catch"], game:"truefalse", name:"Portal veloz", planet:"Marte", icon:"bolt", c:"var(--y)" },
-  { id:6, vids:["come","choose"], game:"meteors", name:"Cinturón de asteroides", planet:"Júpiter", icon:"meteor", c:"var(--o)" },
-  { id:7, vids:["cling","creep"], game:"balloons", name:"Globos helados", planet:"Saturno", icon:"balloon", c:"var(--p)" },
-  { id:8, vids:["come","choose","cling","creep"], game:"memory", name:"Memoria estelar", planet:"Urano", icon:"cards", c:"var(--v)" },
-  { id:9, vids:["buy","catch","come","choose","cling","creep"], game:"spell", name:"Academia final", planet:"Neptuno", icon:"pencil", c:"var(--b)" },
+  { id:1, vids:["deal","dream"], game:"meteors", name:"Verbos con T final", planet:"Mercurio", icon:"meteor", c:"var(--p)" },
+  { id:2, vids:["dig","do"], game:"balloons", name:"Cambia la vocal (I)", planet:"Venus", icon:"balloon", c:"var(--b)" },
+  { id:3, vids:["dig","do","draw","drink"], game:"memory", name:"Memoria cósmica", planet:"Tierra", icon:"cards", c:"var(--v)" },
+  { id:4, vids:["draw","drive"], game:"spell", name:"Taller de ortografía", planet:"Luna", icon:"pencil", c:"var(--b)" },
+  { id:5, vids:["deal","dream","dig","do","draw"], game:"truefalse", name:"Portal veloz", planet:"Marte", icon:"bolt", c:"var(--y)" },
+  { id:6, vids:["drink","drive"], game:"meteors", name:"Cambia la vocal (II)", planet:"Júpiter", icon:"meteor", c:"var(--b)" },
+  { id:7, vids:["eat","fall"], game:"balloons", name:"Sin patrón fijo", planet:"Saturno", icon:"balloon", c:"var(--g)" },
+  { id:8, vids:["eat","fall","feed"], game:"memory", name:"Memoria estelar", planet:"Urano", icon:"cards", c:"var(--v)" },
+  { id:9, vids:["drink","drive","eat","fall","feed"], game:"spell", name:"Academia final", planet:"Neptuno", icon:"pencil", c:"var(--b)" },
   { id:10, vids:VERBS.map(v => v.id), game:"truefalse", name:"Portal veloz II", planet:"Plutón", icon:"bolt", c:"var(--y)" },
   { id:11, vids:VERBS.map(v => v.id), game:"boss", name:"El Profesor del Vacío", planet:"Jefe final", icon:"skull", c:"var(--bad)", boss:true }
 ];
@@ -610,6 +605,9 @@ const GAME_META = {
   truefalse:{ label:"Verdadero o falso", sub:"Decide rápido si el pasado mostrado es correcto.", icon:"bolt", c:"var(--y)" },
   boss:{ label:"Jefe final", sub:"Escríbelo tú mismo, sin pistas ni opciones.", icon:"skull", c:"var(--bad)" }
 };
+
+/* verbos que también encajarían en ciertas frases: nunca se ofrecen como distractores de "¿cuál va aquí?" */
+const CONFUSE = { eat:["drink"], drink:["eat"], fall:["feed"] };
 
 /* ---------- rangos por XP ---------- */
 const RANKS = [
@@ -637,7 +635,7 @@ const PLAN = [
   ["Esta noche · 20–30 min", "Recorre el mapa del planeta 1 al 10. Cada nivel prepara el siguiente."],
   ["Antes de dormir", "Reta al jefe final una vez más. Dormir después de estudiar ayuda a fijarlo."],
   ["Mañana al despertar", "Un reto rápido en Arcade con los verbos que peor te fueron."],
-  ["Justo antes del quiz", "Di los 10 en voz alta: burst–burst, buy–bought, cast–cast…"]
+  ["Justo antes del quiz", "Di los 10 en voz alta: deal–dealt, dig–dug, do–did…"]
 ];
 
 /* ============ BÁSICOS ============ */
@@ -662,13 +660,17 @@ function lev(a, b) {
   }
   return prev[b.length];
 }
+/* true si `a` (ya pasado por norm()) es una forma de pasado aceptada para v: la principal o, si
+   existe (como dream → dreamt/dreamed), la alterna. */
+function isCorrectPast(v, a) { return a === v.past || (v.altPast && a === v.altPast); }
 function diagnose(v, a) {
-  if (a === v.past) return null;
+  if (isCorrectPast(v, a)) return null;
   if (v.id === "buy" && a === "brought") return "«brought» es el pasado de bring (traer). Comprar es bought, sin r.";
   if (a === "chosen") return "«chosen» es el participio. El pasado simple es chose, con una sola o.";
+  if (v.part && (a === v.part || a === v.altPart) && v.part !== v.past) return "«" + a + "» es el participio. El pasado simple es " + v.past + ".";
   if (a === v.base + "s" || a === v.base + "es") return "Con -s es presente. El pasado no lleva -s: " + v.past + ".";
   if (a === v.base && v.base !== v.past) return "Esa es la forma del presente. En pasado cambia: " + v.past + ".";
-  if (/ed$/.test(a)) return "Este verbo es irregular: no lleva -ed. Su pasado es " + v.past + ".";
+  if (/ed$/.test(a) && a !== v.altPast) return "Este verbo es irregular: no lleva -ed. Su pasado es " + v.past + ".";
   const other = VERBS.find(x => x.past === a && x.id !== v.id);
   if (other) return "«" + a + "» es el pasado de " + other.base + " (" + other.short + "). Aquí va " + v.past + ".";
   return null;
@@ -944,7 +946,7 @@ function rankCard() {
     '<div class="xpbar"><span style="width:' + Math.round(r.prog * 100) + '%"></span></div></div></div>';
 }
 function topBar(title) {
-  return '<header class="top"><div class="wordmark">de <span class="mk" style="--mk:var(--b)" lang="en">burst</span> a <span class="mk" style="--mk:var(--g)" lang="en">crept</span></div>' +
+  return '<header class="top"><div class="wordmark">de <span class="mk" style="--mk:var(--p)" lang="en">deal</span> a <span class="mk" style="--mk:var(--g)" lang="en">feed</span></div>' +
     '<button type="button" class="icon-btn" data-action="sound" aria-pressed="' + P.sound + '" aria-label="' + (P.sound ? "Silenciar sonido" : "Activar sonido") + '">' + ic(P.sound ? "volume" : "mute") + "</button></header>";
 }
 
@@ -1013,7 +1015,7 @@ function verbCard(v) {
   const t = T[v.type], mastered = dexLevel(v.id) === 2;
   return '<div class="card' + (mastered ? " holo" : "") + '" style="--tc:' + t.color + '"><button type="button" class="card-in" data-action="verb" data-vid="' + v.id + '" style="width:100%;text-align:left">' +
     (mastered ? '<span class="card-badge">' + ic("star") + "</span>" : "") +
-    '<span class="card-type" style="--tc2:' + t.color + '">' + ic("book") + esc(t.name) + '</span><span class="card-past" lang="en">' + v.past + '</span><span class="card-base" lang="en">' + v.base + '</span><span class="card-es">' + esc(v.es) + "</span>" + dexPips(v.id) + "</button></div>";
+    '<span class="card-type" style="--tc2:' + t.color + '">' + ic("book") + esc(t.name) + '</span><span class="card-past" lang="en">' + v.past + '</span><span class="card-base" lang="en">' + v.base + '</span><span class="card-es">' + esc(v.es) + '</span><span class="card-es">Participio: <span lang="en">' + v.part + "</span></span>" + dexPips(v.id) + "</button></div>";
 }
 function typesBlock() {
   return TYPES.map(t => '<div class="type-card" style="--tc:' + t.color + '"><div class="type-ic" style="--tc:' + t.color + '">' + ic("bulb") + '</div><div><div class="type-name" style="--tc:' + t.color + '">' + esc(t.name) + '</div><div class="type-verbs">' + esc(t.trick) + "</div></div></div>").join("") +
@@ -1022,14 +1024,15 @@ function typesBlock() {
 function tableBlock() {
   return '<div class="row">' + (TTS.ok ? playBtn("chant", "Escuchar los 10") : "") +
     '<button type="button" class="btn btn-ghost btn-sm" data-action="cover" aria-pressed="' + S.cover + '">' + ic(S.cover ? "eye" : "eyeoff") + " " + (S.cover ? "Mostrar el pasado" : "Tapar el pasado") + "</button></div>" +
-    '<div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Verbo</th><th scope="col">Pasado</th><th scope="col">Significado</th>' + (TTS.ok ? '<th scope="col"><span class="sr-only">Escuchar</span></th>' : "") + "</tr></thead><tbody>" +
+    '<p class="muted small">El quiz solo pregunta la columna «Pasado». El participio es de referencia.</p>' +
+    '<div class="tbl-wrap"><table class="tbl"><thead><tr><th scope="col">Verbo</th><th scope="col">Pasado</th><th scope="col">Participio</th><th scope="col">Significado</th>' + (TTS.ok ? '<th scope="col"><span class="sr-only">Escuchar</span></th>' : "") + "</tr></thead><tbody>" +
     VERBS.map((v, i) => '<tr data-pl="' + i + '"><td lang="en">' + v.base + '</td><td class="c-past">' +
       (S.cover && !S.revealed.has(v.id) ? '<button type="button" class="link" data-action="reveal" data-vid="' + v.id + '" aria-label="Ver el pasado de ' + v.base + '">¿…?</button>' : markPast(v)) +
-      '</td><td class="c-es">' + esc(v.es) + "</td>" + (TTS.ok ? '<td class="c-say">' + sayBtn(v.base + ". " + v.past, "Escuchar " + v.base + " y " + v.past) + "</td>" : "") + "</tr>").join("") +
+      '</td><td class="c-es" lang="en">' + esc(v.part) + '</td><td class="c-es">' + esc(v.es) + "</td>" + (TTS.ok ? '<td class="c-say">' + sayBtn(v.base + ". " + v.past, "Escuchar " + v.base + " y " + v.past) + "</td>" : "") + "</tr>").join("") +
     "</tbody></table></div>";
 }
 function storyBlock() {
-  return '<p class="lead">Un cuento corto con los 10 verbos en orden: <span lang="en">came, bought, cost, cut, crept, caught, chose, clung, burst, cast</span>.</p>' +
+  return '<p class="lead">Un cuento corto con los 10 verbos en orden: <span lang="en">dealt, dug, did, drew, dreamt, drank, drove, fell, ate, fed</span>.</p>' +
     '<div class="row"><button type="button" class="btn btn-ghost btn-sm" data-action="story-cover" aria-pressed="' + S.storyCover + '">' + ic(S.storyCover ? "eye" : "eyeoff") + " " + (S.storyCover ? "Mostrar verbos" : "Tapar verbos") + "</button>" +
     '<button type="button" class="btn btn-ghost btn-sm" data-action="story-es" aria-pressed="' + S.storyEs + '">' + (S.storyEs ? "Ocultar español" : "Ver en español") + "</button>" + (TTS.ok ? playBtn("story", "Escuchar") : "") + "</div>" +
     '<div class="story">' + STORY.map((l, i) => {
@@ -1053,7 +1056,7 @@ function viewVerb() {
       '<div class="vd-col"><span class="eyebrow">Verbo</span><div class="vd-wrow"><span class="vd-w" lang="en">' + v.base + "</span>" + sayBtn(v.base, "Escuchar " + v.base) + "</div></div>" +
       '<span class="vd-arrow">' + ic("arrowR") + "</span>" +
       '<div class="vd-col"><span class="eyebrow">Pasado</span><div class="vd-wrow"><span class="vd-w">' + markPast(v) + "</span>" + sayBtn(v.past, "Escuchar " + v.past) + "</div></div>" +
-    '</div><p class="lead">' + esc(v.es) + '</p><p class="muted small">Suena: «' + v.sayB + "» → «" + v.sayP + "»</p>" + dexPips(v.id) + "</section>" +
+    '</div><p class="lead">' + esc(v.es) + '</p><p class="muted small">Suena: «' + v.sayB + "» → «" + v.sayP + '»</p><p class="muted small">Participio (no lo pregunta el quiz): <b lang="en">' + esc(v.part) + "</b></p>" + dexPips(v.id) + "</section>" +
     '<div class="note"><span class="tag">Truco</span><p>' + esc(v.tip) + '</p></div><div class="note ojo"><span class="tag">¡Ojo!</span><p>' + esc(v.ojo) + "</p></div>" +
     '<div class="stack"><span class="eyebrow">Como pasado, estas están mal</span><div class="chips" lang="en">' + v.wrong.slice(0, 3).map(w => '<s class="wchip">' + esc(w) + "</s>").join("") + "</div></div>" +
     '<section class="section"><div class="sec-head"><h2>10 frases</h2><button type="button" class="link" data-action="toggle-es">' + (S.showEs ? "Ocultar español" : "Ver en español") + "</button></div>" +
@@ -1424,7 +1427,7 @@ function bossCheck() {
   SES.typed = raw;
   const a = norm(raw);
   if (!a) { shakeEl(inp); if (inp) inp.focus(); return; }
-  const ok = a === v.past;
+  const ok = isCorrectPast(v, a);
   SES.resolved = true; SES.lastOk = ok;
   applyAnswer(v.id, ok);
   if (ok) { SES.bossHP = Math.max(0, SES.bossHP - 1); SES.bossSay = pickOne(BOSS_HITLINES); SES.hitFx = true; sparkBurst(50, 32, "var(--y)", 16); }
