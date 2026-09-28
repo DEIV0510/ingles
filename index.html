@@ -96,13 +96,14 @@ b,strong{font-weight:600}
 
 /* barra inferior */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:rgba(14,17,53,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
-.tabbar-inner{max-width:560px;margin-inline:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tabbar-inner{max-width:560px;margin-inline:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
 .tab{min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:14px;color:var(--ink-3);font-size:12px;font-weight:600}
 .tab:hover{color:var(--ink)}
 .tab[aria-current="page"]{color:var(--on-neon);background:var(--y)}
 
 /* mapa */
 .mission{display:flex;flex-direction:column;gap:6px}
+.hero{display:flex;flex-direction:column;gap:8px}
 .map{position:relative;width:100%;max-width:420px;margin-inline:auto}
 .map-path{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .map-path path{fill:none;stroke:var(--line-2);stroke-width:5;stroke-linecap:round;stroke-dasharray:1 13;vector-effect:non-scaling-stroke}
@@ -263,7 +264,10 @@ b,strong{font-weight:600}
 .answer{width:100%;min-height:62px;padding:10px 16px;border-radius:16px;border:3px solid var(--line-2);background:var(--bg-3);color:var(--ink);font-weight:700;font-size:25px;text-align:center}
 .answer::placeholder{color:var(--ink-3);font-weight:500;font-size:18px}
 .answer:focus{outline:none;border-color:var(--y)}
-.answer.bad{border-color:var(--bad)}
+.answer.bad,.answer[data-bad]{border-color:var(--bad)}
+/* frase completa (Transforma): dos líneas, alineada a la izquierda, para ver todo lo que se escribe */
+textarea.answer{display:block;font-family:inherit;font-size:19px;font-weight:600;text-align:left;line-height:1.4;resize:none;min-height:88px}
+textarea.answer::placeholder{font-size:16px}
 .shot{position:absolute;left:50%;bottom:8px;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:var(--y);box-shadow:0 0 18px var(--y);transition:transform .32s ease-in,opacity .32s}
 
 /* resultados */
@@ -385,6 +389,80 @@ b,strong{font-weight:600}
 .rules{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .rules li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;padding:10px 12px;border-radius:16px;background:var(--bg-2);border:1px solid var(--line)}
 .rules .ic{width:28px;height:28px}
+
+/* textos de las preguntas (compartidos por todos los minijuegos) */
+.q-label{font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.q-word-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.q-word{font-family:var(--f-game);font-size:clamp(38px,11vw,52px);line-height:1.05;letter-spacing:.01em}
+.q-sub{font-size:15px;color:var(--ink-3)}
+.q-sentence{font-size:clamp(19px,5.4vw,22px);line-height:1.55;font-weight:600}
+.q-es{font-size:14.5px;color:var(--ink-3)}
+.fb-note{font-size:15px;color:var(--ink-2)}
+
+/* retroalimentación en caja (Arma la frase, Transforma) */
+.fbx{padding:14px 16px;border-radius:18px;border:2px solid;display:flex;flex-direction:column;gap:6px;animation:fbIn .22s ease-out}
+.fbx.ok{background:rgba(125,235,107,.1);border-color:var(--g)}
+.fbx.bad{background:rgba(255,92,112,.1);border-color:var(--bad)}
+.fbx-t{display:flex;align-items:center;gap:8px;font-family:var(--f-game);font-size:20px}
+.fbx.ok .fbx-t{color:var(--g)}
+.fbx.bad .fbx-t{color:var(--bad)}
+.fbx-en{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:18px;font-weight:600}
+.fbx-en span{flex:1 1 200px;min-width:0}
+.fbx-note{font-size:14.5px;color:var(--ink-2)}
+@keyframes fbIn{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* sección «Did?»: negativo y pregunta */
+.dcard{padding:16px;border-radius:22px;background:var(--bg-2);border:1px solid var(--line-2);display:flex;flex-direction:column;gap:14px}
+.dcard h2{font-size:21px}
+.vpick{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.vpick button{flex:none;min-height:44px;padding:6px 15px;border-radius:99px;background:var(--bg-3);color:var(--ink-2);font-weight:600;font-size:14.5px}
+.vpick button[aria-pressed="true"]{background:var(--y);color:var(--on-neon)}
+.formula{display:flex;flex-wrap:wrap;gap:10px 6px;align-items:flex-start}
+.tok{display:flex;flex-direction:column;align-items:center;gap:4px}
+.tok-w{padding:6px 11px;border-radius:12px;background:var(--bg-3);border:2px solid var(--line-2);font-weight:700;font-size:18px;line-height:1.25}
+.tok-r{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.tok.subj .tok-w{border-color:var(--b)}
+.tok.aux .tok-w{background:var(--y);border-color:var(--y);color:var(--on-neon)}
+.tok.base .tok-w{background:var(--g);border-color:var(--g);color:var(--on-neon)}
+.tok.past .tok-w{background:var(--p);border-color:var(--p);color:var(--on-neon)}
+.tok.rest .tok-w{background:transparent;border-color:transparent;color:var(--ink-2);padding-inline:3px}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-3)}
+.legend2 i{display:inline-block;width:11px;height:11px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.cap{font-size:15px;color:var(--ink-2)}
+.xo{display:flex;flex-direction:column;gap:6px}
+.xo-row{display:flex;align-items:center;gap:8px;font-size:16px}
+.xo-row .ic{width:18px;height:18px;flex:none}
+.xo-bad{color:var(--bad)}
+.xo-bad span{text-decoration:line-through;text-decoration-thickness:2px}
+.xo-ok{color:var(--g);font-weight:600}
+.fcard{padding:14px 16px;border-radius:18px;background:var(--bg-2);border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;transition:background-color .2s}
+.fcard.playing{background:rgba(255,225,74,.14)}
+.fcard-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700;font-size:19px}
+.fcard-h .icon-btn{margin-left:auto}
+.fcard-h .muted{font-weight:400;font-size:14px}
+.frow{display:grid;grid-template-columns:86px minmax(0,1fr);gap:8px;align-items:baseline;font-size:16.5px}
+.frow-l{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+
+/* Arma la frase */
+.aline{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;min-height:76px;padding:12px;border-radius:18px;border:2px dashed var(--line-2);background:rgba(255,255,255,.03)}
+.aline.done{border-style:solid;border-color:var(--g);background:rgba(125,235,107,.08)}
+.aline .w{padding:7px 12px;border-radius:12px;background:var(--bg-3);border:2px solid var(--b);font-weight:700;font-size:18px;line-height:1.25;animation:wIn .18s ease-out}
+.aline .w.aux{background:var(--y);border-color:var(--y);color:var(--on-neon)}
+.aline .w.base{background:var(--g);border-color:var(--g);color:var(--on-neon)}
+.aline .wp{align-self:center;font-weight:700;font-size:22px;color:var(--ink-3)}
+@keyframes wIn{from{transform:scale(.8);opacity:.4}to{transform:none;opacity:1}}
+.wtray{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.wtile{min-height:48px;padding:8px 15px;border-radius:14px;background:var(--y);color:var(--on-neon);font-weight:700;font-size:18px;box-shadow:0 4px 0 #B39A1C;transition:transform .08s,opacity .15s,box-shadow .08s}
+.wtile:active{transform:translateY(3px);box-shadow:0 1px 0 #B39A1C}
+.wtile.used{opacity:.15;box-shadow:none}
+.wtile.bad{background:var(--bad);color:#fff;box-shadow:0 4px 0 #A82A3C}
+
+/* ¿Bien o mal? y Transforma */
+.jform{align-self:center;padding:3px 12px;border-radius:99px;background:var(--bg-4);color:var(--ink-2);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.jen{font-size:clamp(22px,6vw,27px);font-weight:700;line-height:1.35;margin:0}
+.jwhy{font-size:14.5px;color:var(--ink-2);max-width:36ch}
+.xhint{display:flex;gap:8px;align-items:flex-start;font-size:14.5px;color:var(--y)}
+.xhint .ic{width:18px;height:18px;flex:none;margin-top:2px}
 
 @media (prefers-reduced-motion:reduce){
   .node.current .node-btn::after,.card.holo,.boss{animation:none!important}
@@ -585,17 +663,89 @@ const LEVELS = [
   { id:10, vids:VERBS.map(v => v.id), game:"truefalse", name:"Portal veloz II", planet:"Plutón", icon:"bolt", c:"var(--y)" },
   { id:11, vids:VERBS.map(v => v.id), game:"boss", name:"El Profesor del Vacío", planet:"Jefe final", icon:"skull", c:"var(--bad)", boss:true }
 ];
+/* ---------- Misión 2 («Did?»): negativo e interrogativo del pasado ---------- */
+const LEVELS_Q = [
+  { id:21, world:"q", vids:["feel","find","fly","forget"], game:"memory", variant:"neg", name:"El truco del didn't", planet:"Nova", icon:"cards", c:"var(--v)", sub:"Une cada pasado con su forma negativa. Fíjate: con didn't el verbo vuelve a su forma normal." },
+  { id:22, world:"q", vids:["feel","fight","find","flee"], game:"gap", form:"n", name:"Completa: negativas", planet:"Lyra", icon:"balloon", c:"var(--p)", sub:"Completa la frase negativa con el verbo en forma normal, no en pasado." },
+  { id:23, world:"q", vids:["feel","fight","find","flee","fly","freeze"], game:"judge", form:"n", name:"¿Bien o mal? Negativas", planet:"Orión", icon:"help", c:"var(--y)", sub:"Decide rápido si la frase negativa está bien escrita." },
+  { id:24, world:"q", vids:["fly","forbid","forget","forgive","freeze"], game:"build", form:"n", name:"Arma la frase negativa", planet:"Vega", icon:"blocks", c:"var(--b)", sub:"Toca las palabras en orden para armar la frase negativa en inglés." },
+  { id:25, world:"q", vids:VERBS.map(v => v.id), game:"gap", form:"q", name:"Completa: preguntas", planet:"Sirio", icon:"balloon", c:"var(--p)", sub:"Completa la pregunta con el verbo en forma normal, no en pasado." },
+  { id:26, world:"q", vids:VERBS.map(v => v.id), game:"judge", form:"q", name:"¿Bien o mal? Preguntas", planet:"Altair", icon:"help", c:"var(--y)", sub:"Decide rápido si la pregunta está bien escrita." },
+  { id:27, world:"q", vids:VERBS.map(v => v.id), game:"build", form:"q", name:"Arma la pregunta", planet:"Rigel", icon:"blocks", c:"var(--b)", sub:"Toca las palabras en orden para armar la pregunta en inglés." },
+  { id:28, world:"q", vids:VERBS.map(v => v.id), game:"judge", form:"mix", name:"Mezcla veloz", planet:"Polaris", icon:"bolt", c:"var(--y)", sub:"Negativas y preguntas mezcladas: ¿bien o mal?" },
+  { id:29, world:"q", vids:VERBS.map(v => v.id), game:"transform", form:"mix", name:"El Profesor del Vacío II", planet:"Jefe final II", icon:"skull", c:"var(--bad)", boss:true, sub:"Escribe tú solo la versión negativa o la pregunta de cada frase, sin opciones." }
+];
 const GAME_META = {
   meteors:{ label:"Meteoritos", sub:"Dispara la respuesta correcta antes de que caiga.", icon:"meteor", c:"var(--o)" },
   balloons:{ label:"Revienta globos", sub:"Explota el globo con el pasado correcto.", icon:"balloon", c:"var(--p)" },
   memory:{ label:"Memoria", sub:"Encuentra cada verbo con su pasado.", icon:"cards", c:"var(--v)" },
   spell:{ label:"Deletrea", sub:"Arma la palabra letra por letra, sin ver la respuesta.", icon:"pencil", c:"var(--b)" },
   truefalse:{ label:"Verdadero o falso", sub:"Decide rápido si el pasado mostrado es correcto.", icon:"bolt", c:"var(--y)" },
-  boss:{ label:"Jefe final", sub:"Escríbelo tú mismo, sin pistas ni opciones.", icon:"skull", c:"var(--bad)" }
+  boss:{ label:"Jefe final", sub:"Escríbelo tú mismo, sin pistas ni opciones.", icon:"skull", c:"var(--bad)" },
+  /* los de la Misión 2 (q:true) no salen en Arcade */
+  gap:{ label:"Completa", sub:"Explota el globo con el verbo en su forma normal.", icon:"balloon", c:"var(--p)", q:true },
+  judge:{ label:"¿Bien o mal?", sub:"Decide rápido si la frase está bien escrita.", icon:"help", c:"var(--y)", q:true },
+  build:{ label:"Arma la frase", sub:"Toca las palabras en el orden correcto.", icon:"blocks", c:"var(--b)", q:true },
+  transform:{ label:"Transforma", sub:"Escribe la frase en negativo o en pregunta.", icon:"swap", c:"var(--bad)", q:true }
 };
 
 /* verbos que también encajarían en ciertas frases: nunca se ofrecen como distractores de "¿cuál va aquí?" */
 const CONFUSE = { flee:["fly"], fly:["flee"], feel:["find"], find:["feel"] };
+
+/* ---------- NEGATIVO E INTERROGATIVO (sección «Did?») ----------
+   Cada fila: [verbo, sujeto, sujeto en la pregunta, resto de la frase, ES afirmativa, ES negativa, ES pregunta].
+   El inglés se arma solo (formEn en c-core.js):
+     afirmativa  →  S {past} rest.          negativa  →  S didn't {base} rest.          pregunta  →  Did sq {base} rest?
+   Al agregar filas: el «resto» NO debe llevar verbos en pasado (se confunde con el didn't) y debe ser corto
+   (la frase completa no pasa de ~9 palabras, para que quepan las fichas de «Arma la frase» en el celular). */
+const FORM_ROWS = [
+  ["feel","He","he","tired after the game","Él se sintió cansado después del partido.","Él no se sintió cansado después del partido.","¿Él se sintió cansado después del partido?"],
+  ["feel","She","she","nervous before the exam","Ella se sintió nerviosa antes del examen.","Ella no se sintió nerviosa antes del examen.","¿Ella se sintió nerviosa antes del examen?"],
+  ["feel","You","you","the ground shake last night","Sentiste temblar el suelo anoche.","No sentiste temblar el suelo anoche.","¿Sentiste temblar el suelo anoche?"],
+  ["feel","The kids","the kids","safe in the house","Los niños se sintieron seguros en la casa.","Los niños no se sintieron seguros en la casa.","¿Los niños se sintieron seguros en la casa?"],
+  ["feel","My mom","my mom","proud of my grades","Mi mamá se sintió orgullosa de mis notas.","Mi mamá no se sintió orgullosa de mis notas.","¿Mi mamá se sintió orgullosa de mis notas?"],
+  ["fight","The boys","the boys","in the schoolyard","Los niños pelearon en el patio del colegio.","Los niños no pelearon en el patio del colegio.","¿Los niños pelearon en el patio del colegio?"],
+  ["fight","Your brother","your brother","with his friend","Tu hermano peleó con su amigo.","Tu hermano no peleó con su amigo.","¿Tu hermano peleó con su amigo?"],
+  ["fight","They","they","for their country","Ellos lucharon por su país.","Ellos no lucharon por su país.","¿Ellos lucharon por su país?"],
+  ["fight","She","she","for her dream","Ella luchó por su sueño.","Ella no luchó por su sueño.","¿Ella luchó por su sueño?"],
+  ["fight","The team","the team","until the last minute","El equipo luchó hasta el último minuto.","El equipo no luchó hasta el último minuto.","¿El equipo luchó hasta el último minuto?"],
+  ["find","She","she","a wallet on the street","Ella encontró una billetera en la calle.","Ella no encontró una billetera en la calle.","¿Ella encontró una billetera en la calle?"],
+  ["find","You","you","your keys this morning","Encontraste tus llaves esta mañana.","No encontraste tus llaves esta mañana.","¿Encontraste tus llaves esta mañana?"],
+  ["find","The police","the police","the missing dog","La policía encontró al perro perdido.","La policía no encontró al perro perdido.","¿La policía encontró al perro perdido?"],
+  ["find","They","they","a good hotel near the beach","Ellos encontraron un buen hotel cerca de la playa.","Ellos no encontraron un buen hotel cerca de la playa.","¿Ellos encontraron un buen hotel cerca de la playa?"],
+  ["find","He","he","the answer to the question","Él encontró la respuesta a la pregunta.","Él no encontró la respuesta a la pregunta.","¿Él encontró la respuesta a la pregunta?"],
+  ["flee","The thief","the thief","from the police","El ladrón huyó de la policía.","El ladrón no huyó de la policía.","¿El ladrón huyó de la policía?"],
+  ["flee","The people","the people","from the building","La gente huyó del edificio.","La gente no huyó del edificio.","¿La gente huyó del edificio?"],
+  ["flee","The cat","the cat","up the tree","El gato huyó hacia el árbol.","El gato no huyó hacia el árbol.","¿El gato huyó hacia el árbol?"],
+  ["flee","They","they","to another country","Ellos huyeron a otro país.","Ellos no huyeron a otro país.","¿Ellos huyeron a otro país?"],
+  ["flee","The robbers","the robbers","in a black car","Los ladrones huyeron en un carro negro.","Los ladrones no huyeron en un carro negro.","¿Los ladrones huyeron en un carro negro?"],
+  ["fly","The bird","the bird","over the house","El pájaro voló sobre la casa.","El pájaro no voló sobre la casa.","¿El pájaro voló sobre la casa?"],
+  ["fly","They","they","to Cartagena last summer","Ellos volaron a Cartagena el verano pasado.","Ellos no volaron a Cartagena el verano pasado.","¿Ellos volaron a Cartagena el verano pasado?"],
+  ["fly","Your dad","your dad","to Miami for work","Tu papá voló a Miami por trabajo.","Tu papá no voló a Miami por trabajo.","¿Tu papá voló a Miami por trabajo?"],
+  ["fly","The plane","the plane","through the storm","El avión voló a través de la tormenta.","El avión no voló a través de la tormenta.","¿El avión voló a través de la tormenta?"],
+  ["fly","You","you","a kite yesterday","Volaste una cometa ayer.","No volaste una cometa ayer.","¿Volaste una cometa ayer?"],
+  ["forbid","The teacher","the teacher","phones in the classroom","El profe prohibió los celulares en el salón.","El profe no prohibió los celulares en el salón.","¿El profe prohibió los celulares en el salón?"],
+  ["forbid","Your mom","your mom","you to go out","Tu mamá te prohibió salir.","Tu mamá no te prohibió salir.","¿Tu mamá te prohibió salir?"],
+  ["forbid","The doctor","the doctor","him to eat sugar","El doctor le prohibió comer azúcar.","El doctor no le prohibió comer azúcar.","¿El doctor le prohibió comer azúcar?"],
+  ["forbid","The school","the school","skateboards","El colegio prohibió las patinetas.","El colegio no prohibió las patinetas.","¿El colegio prohibió las patinetas?"],
+  ["forbid","They","they","the kids to swim","Ellos les prohibieron nadar a los niños.","Ellos no les prohibieron nadar a los niños.","¿Ellos les prohibieron nadar a los niños?"],
+  ["forget","He","he","his homework at home","Él olvidó su tarea en la casa.","Él no olvidó su tarea en la casa.","¿Él olvidó su tarea en la casa?"],
+  ["forget","You","you","your umbrella on the bus","Olvidaste tu paraguas en el bus.","No olvidaste tu paraguas en el bus.","¿Olvidaste tu paraguas en el bus?"],
+  ["forget","The teacher","the teacher","her glasses","La profe olvidó sus gafas.","La profe no olvidó sus gafas.","¿La profe olvidó sus gafas?"],
+  ["forget","They","they","the password","Ellos olvidaron la contraseña.","Ellos no olvidaron la contraseña.","¿Ellos olvidaron la contraseña?"],
+  ["forget","Laura","Laura","her lunch box","Laura olvidó su lonchera.","Laura no olvidó su lonchera.","¿Laura olvidó su lonchera?"],
+  ["forgive","Your mom","your mom","you","Tu mamá te perdonó.","Tu mamá no te perdonó.","¿Tu mamá te perdonó?"],
+  ["forgive","She","she","her friend","Ella perdonó a su amiga.","Ella no perdonó a su amiga.","¿Ella perdonó a su amiga?"],
+  ["forgive","The teacher","the teacher","my mistake","La profe perdonó mi error.","La profe no perdonó mi error.","¿La profe perdonó mi error?"],
+  ["forgive","They","they","the boy","Ellos perdonaron al niño.","Ellos no perdonaron al niño.","¿Ellos perdonaron al niño?"],
+  ["forgive","You","you","your cousin","Perdonaste a tu primo.","No perdonaste a tu primo.","¿Perdonaste a tu primo?"],
+  ["freeze","The lake","the lake","in winter","El lago se heló en invierno.","El lago no se heló en invierno.","¿El lago se heló en invierno?"],
+  ["freeze","The water","the water","overnight","El agua se congeló durante la noche.","El agua no se congeló durante la noche.","¿El agua se congeló durante la noche?"],
+  ["freeze","Your computer","your computer","during the class","Tu computador se congeló durante la clase.","Tu computador no se congeló durante la clase.","¿Tu computador se congeló durante la clase?"],
+  ["freeze","She","she","the soup for later","Ella congeló la sopa para después.","Ella no congeló la sopa para después.","¿Ella congeló la sopa para después?"],
+  ["freeze","The rain","the rain","on the road","La lluvia se congeló en la carretera.","La lluvia no se congeló en la carretera.","¿La lluvia se congeló en la carretera?"]
+];
+const FORMS = FORM_ROWS.map(r => ({ v: r[0], s: r[1], sq: r[2], rest: r[3], es: { a: r[4], n: r[5], q: r[6] } }));
 
 /* ---------- rangos por XP ---------- */
 const RANKS = [
@@ -616,7 +766,10 @@ const ACHIEVEMENTS = [
   { id:"all_verbs", name:"Verbodex completo", desc:"Domina los " + VERBS.length + " verbos.", icon:"book", check:st => VERBS.every(v => (st.dex[v.id] || 0) >= 3) },
   { id:"boss_down", name:"Cazador de profesores", desc:"Vence al jefe final.", icon:"skull", check:st => !!(st.levels[11] && st.levels[11].stars > 0) },
   { id:"all_stars", name:"Constelación completa", desc:"Consigue 3 estrellas en los " + LEVELS.length + " niveles.", icon:"crown", check:st => LEVELS.every(l => st.levels[l.id] && st.levels[l.id].stars >= 3) },
-  { id:"no_hint", name:"Sin ayuda", desc:"Vence al jefe final sin usar pistas.", icon:"eye", check:st => !!st.bossNoHint }
+  { id:"no_hint", name:"Sin ayuda", desc:"Vence al jefe final sin usar pistas.", icon:"eye", check:st => !!st.bossNoHint },
+  { id:"q_first", name:"Primer did", desc:"Gana tu primera estrella en la Misión 2.", icon:"help", check:st => LEVELS_Q.some(l => st.levels[l.id] && st.levels[l.id].stars >= 1) },
+  { id:"q_boss", name:"Dueño del did", desc:"Vence al Profesor del Vacío II.", icon:"swap", check:st => { const b = LEVELS_Q[LEVELS_Q.length - 1]; return !!(st.levels[b.id] && st.levels[b.id].stars > 0); } },
+  { id:"q_stars", name:"Galaxia 2 completa", desc:"Consigue 3 estrellas en los " + LEVELS_Q.length + " niveles de la Misión 2.", icon:"crown", check:st => LEVELS_Q.every(l => st.levels[l.id] && st.levels[l.id].stars >= 3) }
 ];
 
 const PLAN = [
@@ -631,7 +784,12 @@ const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
 const V = Object.fromEntries(VERBS.map(v => [v.id, v]));
-const LV = Object.fromEntries(LEVELS.map(l => [l.id, l]));
+const ALL_LEVELS = LEVELS.concat(LEVELS_Q);
+const LV = Object.fromEntries(ALL_LEVELS.map(l => [l.id, l]));
+/* cada misión es una lista con su propia cadena de desbloqueo: el primer nivel siempre está abierto y los demás
+   piden haber superado el anterior DE SU MISMA lista */
+const levelListOf = id => (LEVELS.some(l => l.id === id) ? LEVELS : LEVELS_Q);
+const levelNum = lv => levelListOf(lv.id).findIndex(l => l.id === lv.id) + 1;
 const plain = en => en.replace(/[{}]/g, "");
 const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 const pickOne = a => a[Math.floor(Math.random() * a.length)];
@@ -665,6 +823,54 @@ function diagnose(v, a) {
   if (otherVerb) return "«" + a + "» es otro verbo (" + otherVerb.short + "), no el pasado de " + v.base + ". Aquí va " + v.past + ".";
   return null;
 }
+/* ============ NEGATIVO E INTERROGATIVO (sección «Did?») ============ */
+const formPunct = f => (f === "q" ? "?" : ".");
+/* inglés de una fila de FORMS en la forma f ("a" afirmativa, "n" negativa, "q" pregunta), con {llaves} en el verbo principal */
+function formEn(t, f) {
+  const v = V[t.v];
+  if (f === "a") return t.s + " {" + v.past + "} " + t.rest + ".";
+  if (f === "n") return t.s + " didn't {" + v.base + "} " + t.rest + ".";
+  return "Did " + t.sq + " {" + v.base + "} " + t.rest + "?";
+}
+/* lo mismo palabra por palabra, cada una con su papel: subj (quién) · aux (did/didn't) · base (verbo normal) · past · rest */
+function formTokens(t, f) {
+  const v = V[t.v], sp = s => s.split(/\s+/).filter(Boolean);
+  const subj = sp(f === "q" ? t.sq : t.s).map(w => ({ w, role: "subj" }));
+  const rest = sp(t.rest).map(w => ({ w, role: "rest" }));
+  if (f === "a") return subj.concat([{ w: v.past, role: "past" }], rest);
+  if (f === "n") return subj.concat([{ w: "didn't", role: "aux" }, { w: v.base, role: "base" }], rest);
+  return [{ w: "Did", role: "aux" }].concat(subj, [{ w: v.base, role: "base" }], rest);
+}
+const formPlain = (t, f) => formTokens(t, f).map(x => x.w).join(" ") + formPunct(f);
+/* «did not» y «didn't» valen lo mismo; norm() ya quita mayúsculas, apóstrofos y signos */
+const normForm = s => norm(s).replace(/\bdid not\b/g, "didnt");
+const AUX_NAME = { n: "didn't", q: "Did" };
+/* versión con un error típico de una frase correcta: { text, kind, why } */
+function wrongVariant(t, f) {
+  const v = V[t.v], toks = formTokens(t, f);
+  const bi = toks.findIndex(x => x.role === "base"), ai = toks.findIndex(x => x.role === "aux");
+  const kind = Math.random() < 0.7 ? "past" : (f === "n" ? "not" : "order");
+  let out, why;
+  if (kind === "past") { out = toks.map((x, i) => (i === bi ? { w: v.past, role: "past" } : x)); why = "Después de " + AUX_NAME[f] + " el verbo vuelve a su forma normal: " + v.base + ", no " + v.past + "."; }
+  else if (kind === "not") { out = toks.map((x, i) => (i === ai ? { w: "not", role: "aux" } : x)); why = "Para negar en pasado se usa didn't (did + not) antes del verbo, no solo «not»."; }
+  else { const subj = toks.filter(x => x.role === "subj"), rest = toks.filter(x => x.role === "rest"); out = [toks[ai], toks[bi]].concat(subj, rest); why = "En la pregunta el sujeto va justo después de Did: " + formPlain(t, f); }
+  return { text: out.map(x => x.w).join(" ") + formPunct(f), kind, why };
+}
+const okWhy = (t, f) => "Bien: " + AUX_NAME[f] + " + " + (f === "q" ? "sujeto + " : "") + "verbo en forma normal (" + V[t.v].base + ").";
+/* qué le decimos al jugador por lo que escribió (a ya pasó por normForm); null si no hay nada específico */
+function diagnoseForm(t, f, a) {
+  const v = V[t.v], target = normForm(formPlain(t, f));
+  if (a === target) return null;
+  if (a === normForm(formPlain(t, "a"))) return f === "n" ? "Esa es la frase afirmativa. Para negar: sujeto + didn't + verbo en forma normal." : "Esa es la frase afirmativa. Para preguntar: Did + sujeto + verbo en forma normal.";
+  const asPast = normForm(formTokens(t, f).map(x => (x.role === "base" ? v.past : x.w)).join(" "));
+  if (a === asPast) return "Después de " + AUX_NAME[f] + " el verbo vuelve a su forma normal: " + v.base + ", no " + v.past + ".";
+  if (/\b(do|does|dont|doesnt)\b/.test(a)) return "En pasado se usa did / didn't, no do / does.";
+  if (f === "q" && !/^did\b/.test(a)) return "La pregunta empieza con Did.";
+  if (f === "n" && !/\bdidnt\b/.test(a)) return "Para negar en pasado necesitas didn't (did + not) antes del verbo.";
+  if (lev(a, target) <= 3) return "Muy cerca. Revisa las palabras y su orden.";
+  return null;
+}
+
 function markPast(v, w) { return '<mark class="mk" style="--mk:' + T[v.type].color + '" lang="en">' + esc(w || v.past) + "</mark>"; }
 function sentMarked(en, v) { return esc(en).replace(/\{(.+?)\}/, (_, w) => markPast(v, w)); }
 function sentBlank(en, fill, hint, v) {
@@ -705,7 +911,10 @@ const ICONS = {
   rotate:'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
   home:'<path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v10h5v-6h2v6h5V10"/>',
   gift:'<rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 9h18M12 9v12M12 9C9 9 8 4 12 4s3 5 0 5ZM12 9c3 0 4-5 0-5s-3 5 0 5Z"/>',
-  bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.3 1 2.2h5.2c0-.9.4-1.7 1-2.2A6 6 0 0 0 12 3Z"/>'
+  bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.3 1 2.2h5.2c0-.9.4-1.7 1-2.2A6 6 0 0 0 12 3Z"/>',
+  help:'<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.6-3 4.5M12 17.6h.01"/>',
+  blocks:'<rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><path d="M13.5 17.25h7.5M17.25 13.5V21"/>',
+  swap:'<path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/>'
 };
 function ic(n, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[n] || "") + "</svg>"; }
 
@@ -893,7 +1102,12 @@ function checkAchievements() {
   return unlocked;
 }
 function starsFor(acc, failed) { if (failed) return 0; if (acc >= 0.9) return 3; if (acc >= 0.7) return 2; return 1; }
-function isUnlocked(levelId) { if (levelId <= 1) return true; const prev = P.levels[levelId - 1]; return !!(prev && prev.stars >= 1); }
+function isUnlocked(levelId) {
+  const list = levelListOf(levelId), i = list.findIndex(l => l.id === levelId);
+  if (i <= 0) return true;
+  const prev = P.levels[list[i - 1].id];
+  return !!(prev && prev.stars >= 1);
+}
 function recordLevelResult(levelId, correct, total, failed, xpEarned) {
   const prevBest = P.levels[levelId] ? P.levels[levelId].stars : 0;
   const acc = total ? correct / total : 0;
@@ -906,7 +1120,7 @@ function recordLevelResult(levelId, correct, total, failed, xpEarned) {
 }
 
 /* ============ ESTADO DE NAVEGACIÓN (efímero, no se guarda) ============ */
-const S = { tab: "mapa", view: null, params: {}, stack: [], sheet: null, dexSeg: "tipos", cover: false, revealed: new Set(), storyCover: false, storyEs: true, storyRevealed: new Set(), showEs: true, resetArm: 0 };
+const S = { tab: "mapa", view: null, params: {}, stack: [], sheet: null, dexSeg: "tipos", cover: false, revealed: new Set(), storyCover: false, storyEs: true, storyRevealed: new Set(), showEs: true, resetArm: 0, didSeg: "n", didVerb: "find" };
 let SES = null;
 
 function openView(view, params) {
@@ -943,7 +1157,7 @@ function topBar(title) {
 
 /* ============ TABBAR ============ */
 function renderTabbar() {
-  const tabs = [["mapa", "Misión", "route"], ["verbodex", "Verbodex", "book"], ["arcade", "Arcade", "target"], ["logros", "Logros", "trophy"]];
+  const tabs = [["mapa", "Misión", "route"], ["did", "Did?", "help"], ["verbodex", "Verbodex", "book"], ["arcade", "Arcade", "target"], ["logros", "Logros", "trophy"]];
   $("#tabbar").innerHTML = '<div class="tabbar-inner">' + tabs.map(t => '<button type="button" class="tab" data-action="tab" data-tab="' + t[0] + '"' + (S.tab === t[0] ? ' aria-current="page"' : "") + ">" + ic(t[2]) + "<span>" + t[1] + "</span></button>").join("") + "</div>";
 }
 
@@ -956,13 +1170,14 @@ function starRow(stars, size) {
   for (let i = 0; i < 3; i++) h += ic(i < stars ? "star" : "starOutline", i < stars ? "st-on" : "st-off");
   return h + "</span>";
 }
-function viewMapa() {
-  const totalH = MAP_PAD + (LEVELS.length - 1) * MAP_GAP + 70;
+/* mapa de una misión (LEVELS o LEVELS_Q): nodos en zigzag unidos por un camino punteado */
+function mapBlock(list) {
+  const totalH = MAP_PAD + (list.length - 1) * MAP_GAP + 70;
   let firstOpen = null;
-  const nodes = LEVELS.map((lv, i) => {
+  const nodes = list.map((lv, i) => {
     const pos = mapPos(i), rec = P.levels[lv.id], unlocked = isUnlocked(lv.id), cleared = !!(rec && rec.stars >= 1);
     if (!firstOpen && unlocked && (!rec || rec.stars < 3)) firstOpen = lv.id;
-    return { lv, pos, rec, unlocked, cleared };
+    return { lv, i, pos, rec, unlocked, cleared };
   });
   const segs = [];
   for (let i = 0; i < nodes.length - 1; i++) {
@@ -972,30 +1187,39 @@ function viewMapa() {
   const nodeHtml = nodes.map(n => {
     const cur = n.lv.id === firstOpen;
     const cls = "node" + (n.lv.boss ? " boss" : "") + (!n.unlocked ? " locked" : "") + (cur ? " current" : "");
-    const badge = n.unlocked ? n.lv.id : ic("lock");
+    const badge = n.unlocked ? n.i + 1 : ic("lock");
     const sub = !n.unlocked ? '<span class="ic-lock">' + ic("lock") + "</span>" : n.rec ? starRow(n.rec.stars) : '<span class="muted small">Nuevo</span>';
     return '<div class="' + cls + '" style="left:' + n.pos.x + '%;top:' + n.pos.y + 'px">' +
-      '<button type="button" class="node-btn" style="--nc:' + n.lv.c + '" data-action="' + (n.unlocked ? "sheet" : "locked") + '" data-id="' + n.lv.id + '" aria-label="Nivel ' + n.lv.id + ": " + esc(n.lv.planet) + (n.unlocked ? "" : " (bloqueado)") + '">' + ic(n.lv.icon) + '<span class="node-num">' + badge + "</span></button>" +
+      '<button type="button" class="node-btn" style="--nc:' + n.lv.c + '" data-action="' + (n.unlocked ? "sheet" : "locked") + '" data-id="' + n.lv.id + '" aria-label="Nivel ' + (n.i + 1) + ": " + esc(n.lv.planet) + (n.unlocked ? "" : " (bloqueado)") + '">' + ic(n.lv.icon) + '<span class="node-num">' + badge + "</span></button>" +
       '<span class="node-label">' + esc(n.lv.planet) + "</span>" + sub + "</div>";
   }).join("");
+  return '<div class="map" style="height:' + totalH + 'px"><svg class="map-path" viewBox="0 0 100 ' + totalH + '" preserveAspectRatio="none">' + segs.join("") + "</svg>" + nodeHtml + "</div>";
+}
+function viewMapa() {
   return '<div class="view">' + topBar() + rankCard() +
     '<section class="mission"><div class="sec-head"><h1>Misión: los ' + VERBS.length + ' verbos</h1></div><p class="lead">Viaja de planeta en planeta jugando. Cada nivel practica unos pocos verbos con sus trucos, y al final está <b>El Profesor del Vacío</b>: el jefe que pregunta los ' + VERBS.length + ' sin ayuda.</p></section>' +
-    '<div class="map" style="height:' + totalH + 'px"><svg class="map-path" viewBox="0 0 100 ' + totalH + '" preserveAspectRatio="none">' + segs.join("") + "</svg>" + nodeHtml + "</div>" +
+    mapBlock(LEVELS) +
     '<section class="box"><h3>Plan para no olvidarlos</h3><ul class="rules">' + PLAN.map((p, i) => '<li><span class="ic">' + ic(["route", "rotate", "bulb", "star"][i] || "star") + "</span><span><b>" + esc(p[0]) + "</b><br><span class=\"muted small\">" + esc(p[1]) + "</span></span></li>").join("") + "</ul></section></div>";
 }
 
 /* ============ FICHA DE NIVEL (hoja modal) ============ */
 function openSheet(id) { S.sheet = Number(id); renderOverlay(); }
 function closeSheet() { S.sheet = null; renderOverlay(); }
+/* texto de cada verbo en la hoja de nivel */
+function lvChip(lv, v) {
+  if (lv.variant === "neg") return v.past + " ↔ didn't " + v.base;
+  if (lv.world === "q") return lv.form === "n" ? "didn't " + v.base : lv.form === "q" ? "Did … " + v.base + "?" : v.base;
+  return v.base + " → " + v.past;
+}
 function renderOverlay() {
   const el = $("#overlay");
   if (!S.sheet) { el.innerHTML = ""; return; }
   const lv = LV[S.sheet], meta = GAME_META[lv.game], rec = P.levels[lv.id];
   el.innerHTML = '<div class="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-label="' + esc(lv.name) + '">' +
-    '<div class="sheet-head"><div class="game-ic" style="--nc:' + lv.c + '">' + ic(meta.icon) + '</div><div><p class="eyebrow">Nivel ' + lv.id + " · " + esc(lv.planet) + '</p><h2>' + esc(lv.name) + "</h2></div>" +
+    '<div class="sheet-head"><div class="game-ic" style="--nc:' + lv.c + '">' + ic(meta.icon) + '</div><div><p class="eyebrow">' + (lv.world === "q" ? "Misión 2 · " : "") + "Nivel " + levelNum(lv) + " · " + esc(lv.planet) + '</p><h2>' + esc(lv.name) + "</h2></div>" +
     '<button type="button" class="icon-btn" style="margin-left:auto" data-action="sheet-close" aria-label="Cerrar">' + ic("x") + "</button></div>" +
-    '<p class="lead">' + esc(meta.sub) + "</p>" +
-    '<div class="chips">' + lv.vids.map(id => { const v = V[id]; return '<span class="chip" style="--mk:' + T[v.type].color + '" lang="en">' + v.base + " → " + v.past + "</span>"; }).join("") + "</div>" +
+    '<p class="lead">' + esc(lv.sub || meta.sub) + "</p>" +
+    '<div class="chips">' + lv.vids.map(id => { const v = V[id]; return '<span class="chip" style="--mk:' + T[v.type].color + '" lang="en">' + esc(lvChip(lv, v)) + "</span>"; }).join("") + "</div>" +
     (rec ? '<div class="row">' + starRow(rec.stars) + '<span class="muted small">Mejor: ' + rec.best + " correctas · " + rec.tries + (rec.tries === 1 ? " intento" : " intentos") + "</span></div>" : '<p class="muted small">Aún no lo has jugado.</p>') +
     '<button type="button" class="btn btn-block" data-action="play-level" data-id="' + lv.id + '">' + (lv.boss ? "¡Enfrentar al jefe! " : rec ? "Jugar de nuevo " : "Jugar ") + ic(lv.boss ? "skull" : "play") + "</button></div></div>";
 }
@@ -1048,11 +1272,72 @@ function viewVerb() {
       '<span class="vd-arrow">' + ic("arrowR") + "</span>" +
       '<div class="vd-col"><span class="eyebrow">Pasado</span><div class="vd-wrow"><span class="vd-w">' + markPast(v) + "</span>" + sayBtn(v.past, "Escuchar " + v.past) + "</div></div>" +
     '</div><p class="lead">' + esc(v.es) + '</p><p class="muted small">Suena: «' + v.sayB + "» → «" + v.sayP + '»</p><p class="muted small">Participio (no lo pregunta el quiz): <b lang="en">' + esc(v.part) + "</b></p>" + dexPips(v.id) + "</section>" +
-    '<div class="note"><span class="tag">Truco</span><p>' + esc(v.tip) + '</p></div><div class="note ojo"><span class="tag">¡Ojo!</span><p>' + esc(v.ojo) + "</p></div>" +
+    '<div class="note"><span class="tag">Truco</span><p>' + esc(v.tip) + '</p></div><div class="note ojo"><span class="tag">¡Ojo!</span><p>' + esc(v.ojo) + "</p></div>" + didBox(v) +
     '<div class="stack"><span class="eyebrow">Como pasado, estas están mal</span><div class="chips" lang="en">' + v.wrong.slice(0, 3).map(w => '<s class="wchip">' + esc(w) + "</s>").join("") + "</div></div>" +
     '<section class="section"><div class="sec-head"><h2>' + v.s.length + ' frases</h2><button type="button" class="link" data-action="toggle-es">' + (S.showEs ? "Ocultar español" : "Ver en español") + "</button></div>" +
     '<ol class="sents">' + v.s.map((s, i) => '<li class="sent"><div><p class="sent-en" lang="en">' + sentMarked(s[0], v) + "</p>" + (S.showEs ? '<p class="sent-es">' + esc(s[1]) + "</p>" : "") + "</div>" + sayBtn(plain(s[0]), "Escuchar la frase " + (i + 1)) + "</li>").join("") + "</ol></section>" +
     '<button type="button" class="btn btn-block" data-action="practice-verb" data-vid="' + v.id + '">Practicar ' + v.base + " → " + v.past + " " + ic("play") + "</button></div>";
+}
+
+/* ============ DID? — NEGATIVO E INTERROGATIVO ============ */
+const ROLE_LBL = { subj: "quién", aux: "did", base: "verbo normal", past: "pasado", rest: "" };
+const tokHtml = x => '<span class="tok ' + x.role + '"><span class="tok-w" lang="en">' + esc(x.w) + '</span><span class="tok-r">' + ROLE_LBL[x.role] + "</span></span>";
+const hlWord = (w, c) => '<mark class="mk" style="--mk:' + c + '">' + esc(w) + "</mark>";
+/* la frase con «she» y las palabras clave coloreadas: la usan la tabla de referencia y la ficha de cada verbo */
+function hlPhrase(f, v) {
+  if (f === "a") return "she " + hlWord(v.past, "var(--p)");
+  if (f === "n") return "she " + hlWord("didn't", "var(--y)") + " " + hlWord(v.base, "var(--g)");
+  return hlWord("Did", "var(--y)") + " she " + hlWord(v.base, "var(--g)") + "?";
+}
+const FORM_NAMES = [["a", "Afirmativa"], ["n", "Negativa"], ["q", "Pregunta"]];
+const formRows = v => FORM_NAMES.map(r => '<div class="frow"><span class="frow-l">' + r[1] + '</span><span lang="en">' + hlPhrase(r[0], v) + "</span></div>").join("");
+const sheSay = v => "She " + v.past + ". She didn't " + v.base + ". Did she " + v.base + "?";
+
+function formulaCard() {
+  const seg = S.didSeg, vid = S.didVerb, t = FORMS.find(x => x.v === vid);
+  const toks = formTokens(t, seg).map(x => Object.assign({}, x));
+  toks[toks.length - 1].w += formPunct(seg);
+  const caps = {
+    a: "Afirmativa: sujeto + verbo en pasado.",
+    n: "Negativa: sujeto + didn't + verbo en forma normal. Didn't ya lleva el pasado, así que el verbo se queda quieto.",
+    q: "Pregunta: Did + sujeto + verbo en forma normal. Se responde: Yes, she did. / No, she didn't."
+  };
+  return '<section class="dcard" aria-label="El truco de did">' +
+    '<h2>El truco de <span lang="en">did</span></h2>' +
+    '<div class="seg" role="group" aria-label="Forma de la frase">' + FORM_NAMES.map(s => '<button type="button" data-action="did-seg" data-seg="' + s[0] + '" aria-pressed="' + (seg === s[0]) + '">' + s[1] + "</button>").join("") + "</div>" +
+    '<div class="vpick" role="group" aria-label="Verbo del ejemplo">' + VERBS.map(x => '<button type="button" lang="en" data-action="did-verb" data-vid="' + x.id + '" aria-pressed="' + (vid === x.id) + '">' + x.base + "</button>").join("") + "</div>" +
+    '<div class="formula" lang="en">' + toks.map(tokHtml).join("") + "</div>" +
+    '<div class="row"><p class="cap" style="flex:1;min-width:190px">' + caps[seg] + "</p>" + sayBtn(plain(formEn(t, seg)), "Escuchar la frase") + "</div>" +
+    '<p class="muted small">' + esc(t.es[seg]) + "</p>" +
+    '<div class="legend2"><span><i style="background:var(--b)"></i>quién</span><span><i style="background:var(--y)"></i>did / didn\'t</span><span><i style="background:var(--g)"></i>verbo normal</span><span><i style="background:var(--p)"></i>verbo en pasado</span></div></section>';
+}
+function ojoNote() {
+  const t = FORMS.find(x => x.v === S.didVerb), v = V[t.v];
+  const row = (cls, icon, text) => '<div class="xo-row ' + cls + '">' + ic(icon) + '<span lang="en">' + esc(text) + "</span></div>";
+  return '<div class="note ojo"><span class="tag">¡Ojo!</span><div class="xo">' +
+    row("xo-bad", "x", t.s + " didn't " + v.past + " " + t.rest + ".") + row("xo-ok", "check", plain(formEn(t, "n"))) +
+    row("xo-bad", "x", "Did " + t.sq + " " + v.past + " " + t.rest + "?") + row("xo-ok", "check", plain(formEn(t, "q"))) +
+    '<p class="muted small">Did y didn\'t ya llevan el pasado. El verbo se queda quieto.</p></div></div>';
+}
+function viewDid() {
+  return '<div class="view">' + topBar() +
+    '<section class="hero"><p class="eyebrow">Misión 2</p><h1>Negativo y pregunta</h1><p class="lead">En pasado, para decir que NO hiciste algo o para preguntar, no cambias el verbo: usas <b lang="en">did</b>. Y ojo: cuando aparece did, el verbo vuelve a su forma normal.</p></section>' +
+    formulaCard() + ojoNote() +
+    '<button type="button" class="btn btn-ghost btn-block" data-action="forms">' + ic("book") + " Los " + VERBS.length + " verbos así, en una tabla</button>" +
+    '<section class="mission"><div class="sec-head"><h2>Practica con los ' + VERBS.length + ' verbos</h2></div><p class="lead">' + LEVELS_Q.length + " niveles con 4 juegos: completa, ¿bien o mal?, arma la frase y, al final, escribe tú solo.</p></section>" +
+    mapBlock(LEVELS_Q) + "</div>";
+}
+function viewForms() {
+  return '<div class="view"><header class="top"><button type="button" class="icon-btn" data-action="back" aria-label="Volver">' + ic("arrowL") + '</button><span class="eyebrow">Referencia</span></header>' +
+    '<section class="hero"><h1>Negativo y pregunta</h1><p class="lead">Los ' + VERBS.length + ' verbos con <b lang="en">she</b>. Con he, they, you… todo sigue igual: solo cambia el sujeto.</p></section>' +
+    '<div class="row">' + (TTS.ok ? playBtn("forms", "Escuchar los " + VERBS.length) : "") + "</div>" +
+    '<div class="stack">' + VERBS.map((v, i) => '<div class="fcard" data-pl="' + i + '"><div class="fcard-h"><span lang="en">' + v.base + '</span><span class="muted">' + esc(v.es) + "</span>" + sayBtn(sheSay(v), "Escuchar las tres formas de " + v.base) + "</div>" + formRows(v) + "</div>").join("") + "</div></div>";
+}
+/* cuadro «Negativo y pregunta» de la ficha de cada verbo */
+function didBox(v) {
+  const t = FORMS.find(x => x.v === v.id);
+  const ex = ["n", "q"].map(f => '<li class="sent"><div><p class="sent-en" lang="en">' + esc(plain(formEn(t, f))) + "</p>" + (S.showEs ? '<p class="sent-es">' + esc(t.es[f]) + "</p>" : "") + "</div>" + sayBtn(plain(formEn(t, f)), "Escuchar la frase") + "</li>").join("");
+  return '<section class="box"><h3>Negativo y pregunta</h3>' + formRows(v) + '<ol class="sents">' + ex + '</ol><button type="button" class="btn btn-ghost btn-sm" data-action="tab" data-tab="did">' + ic("help") + " Practicar en Did?</button></section>";
 }
 
 /* ============ ARCADE ============ */
@@ -1061,7 +1346,7 @@ function arcadeCard(gameId) {
   return '<button type="button" class="acard" data-action="arcade" data-game="' + gameId + '"><div class="game-ic" style="--nc:' + m.c + '">' + ic(m.icon) + '</div><span class="acard-t">' + esc(m.label) + '</span><span class="acard-s">' + esc(m.sub) + "</span>" + (best ? '<span class="acard-best">' + ic("star", "") + " Mejor: " + best + (best === 1 ? " acierto" : " aciertos") + "</span>" : "") + "</button>";
 }
 function viewArcade() {
-  const games = Object.keys(GAME_META).filter(g => g !== "boss");
+  const games = Object.keys(GAME_META).filter(g => g !== "boss" && !GAME_META[g].q);
   return '<div class="view">' + topBar() +
     '<section class="hero"><h1>Arcade</h1><p class="lead">Práctica libre con los ' + VERBS.length + ' verbos, en el juego que quieras. Ganas XP pero no estrellas del mapa.</p></section>' +
     '<button type="button" class="acard wide" data-action="play-level" data-id="11"><div class="game-ic" style="--nc:var(--bad)">' + ic("skull") + '</div><span class="acard-txt"><span class="acard-t">Reto: El Profesor del Vacío</span><span class="acard-s">El jefe final, cuando quieras repasarlo.</span></span>' + ic("arrowR") + "</button>" +
@@ -1107,7 +1392,8 @@ function render(toTop) {
     case "play": html = viewSession(); break;
     case "result": html = viewResult(); break;
     case "verb": html = viewVerb(); break;
-    default: html = S.tab === "verbodex" ? viewVerbodex() : S.tab === "arcade" ? viewArcade() : S.tab === "logros" ? viewLogros() : viewMapa();
+    case "forms": html = viewForms(); break;
+    default: html = S.tab === "verbodex" ? viewVerbodex() : S.tab === "arcade" ? viewArcade() : S.tab === "logros" ? viewLogros() : S.tab === "did" ? viewDid() : viewMapa();
   }
   app.innerHTML = html;
   app.classList.toggle("full", S.view === "play");
@@ -1146,11 +1432,46 @@ function buildSession(level) {
   if (game === "balloons") return questionVids(vids, 10).map(vid => ({ vid, options: optsFor(V[vid]), sent: pickOne(V[vid].s) }));
   if (game === "truefalse") { const seq = questionVids(vids, 10).map((vid, i) => { const wantTrue = i % 2 === 0; const shown = tfCandidate(V[vid], wantTrue); return { vid, shown, isTrue: shown === V[vid].past }; }); return shuffle(seq); }
   if (game === "spell") return questionVids(vids, Math.min(8, Math.max(4, vids.length * 2))).map(vid => ({ vid, sent: pickOne(V[vid].s) }));
+  if (game === "gap" || game === "judge" || game === "build") return buildFormSession(game, vids, level.form || "mix");
   return [];
 }
-function buildMemoryBoard(vids) {
+/* ---------- Misión 2: una fila de FORMS por pregunta; no se repite la misma dentro de la ronda mientras queden otras ---------- */
+function pickForms(vids, count) {
+  const used = new Set();
+  return questionVids(vids, count).map(vid => {
+    const pool = FORMS.filter(t => t.v === vid), fresh = pool.filter(t => !used.has(t));
+    const t = pickOne(fresh.length ? fresh : pool); used.add(t); return t;
+  });
+}
+const formAt = (form, i) => (form === "mix" ? (i % 2 === 0 ? "n" : "q") : form);
+/* opciones de «Completa»: el verbo normal (correcto), el pasado (la trampa de siempre) y 2 errores típicos */
+function gapOptions(v) {
+  const set = [v.base, v.past];
+  shuffle(v.wrong).forEach(w => { if (set.length < 4 && set.indexOf(w) < 0) set.push(w); });
+  return shuffle(set);
+}
+function buildFormSession(game, vids, form) {
+  const qs = pickForms(vids, 10).map((t, i) => {
+    const f = formAt(form, i), v = V[t.v], q = { vid: t.v, t, form: f, es: t.es[f] };
+    if (game === "gap") return Object.assign(q, { sent: [formEn(t, f), t.es[f]], options: gapOptions(v), answer: v.base });
+    if (game === "judge") {
+      /* en «mix» la forma alterna con i%2; si la verdad también fuera i%2, las negativas saldrían siempre bien. Con
+         (i>>1)+(i&1) hay 5 correctas y 5 con error, y cada forma tiene de las dos */
+      const isTrue = form === "mix" ? (((i >> 1) + (i & 1)) % 2 === 0) : i % 2 === 0, w = isTrue ? null : wrongVariant(t, f);
+      return Object.assign(q, { isTrue, shown: isTrue ? formPlain(t, f) : w.text, fix: formPlain(t, f), why: isTrue ? okWhy(t, f) : w.why });
+    }
+    const toks = formTokens(t, f);
+    return Object.assign(q, { words: toks.map(x => x.w), roles: toks.map(x => x.role), punct: formPunct(f), en: formPlain(t, f) });
+  });
+  return game === "build" ? qs.slice(0, 8) : shuffle(qs);
+}
+function buildMemoryBoard(vids, variant) {
   const tiles = [];
-  vids.forEach(vid => { const v = V[vid]; tiles.push({ key: vid + "-b", vid, kind: "base", label: v.base }); tiles.push({ key: vid + "-p", vid, kind: "past", label: v.past }); });
+  vids.forEach(vid => {
+    const v = V[vid];
+    tiles.push({ key: vid + "-b", vid, kind: "base", label: variant === "neg" ? v.past : v.base });
+    tiles.push({ key: vid + "-p", vid, kind: "past", label: variant === "neg" ? "didn't " + v.base : v.past });
+  });
   return shuffle(tiles);
 }
 
@@ -1158,11 +1479,14 @@ function buildMemoryBoard(vids) {
 let SESSION_ID = 0;
 /* Todo setTimeout que toque SES debe capturar `SES.sid` y comprobar `!SES || SES.sid !== mySid` al disparar:
    si el jugador sale y empieza otra partida dentro de esa ventana, SES ya es un objeto distinto. */
-function commonInitSES(game, vids, levelId, arcade) {
-  SES = { sid: ++SESSION_ID, game, vids, levelId: levelId || null, arcade: !!arcade, hearts: 3, score: 0, combo: 0, maxCombo: 0, correctCount: 0, totalCount: 0, missed: new Set(), hintUsed: false, justHurt: false, resolved: false, picked: null, armedFor: -1 };
-  if (game === "memory") { SES.board = buildMemoryBoard(vids); SES.flipped = []; SES.matched = new Set(); SES.badPair = null; }
+function commonInitSES(game, vids, levelId, arcade, lv) {
+  lv = lv || {};
+  /* noDex: en la Misión 2 los aciertos no suben el «dominado» del verbo (eso mide el pasado afirmativo, que es lo que pide el quiz) */
+  SES = { sid: ++SESSION_ID, game, vids, levelId: levelId || null, arcade: !!arcade, form: lv.form || null, variant: lv.variant || null, noDex: lv.world === "q", hearts: 3, score: 0, combo: 0, maxCombo: 0, correctCount: 0, totalCount: 0, missed: new Set(), hintUsed: false, justHurt: false, resolved: false, picked: null, armedFor: -1 };
+  if (game === "memory") { SES.board = buildMemoryBoard(vids, SES.variant); SES.flipped = []; SES.matched = new Set(); SES.badPair = null; }
   else if (game === "boss") { SES.bossHP = SES.bossMax = vids.length; SES.bossPool = shuffle(vids.slice()); SES.curVid = SES.bossPool.pop(); SES.typed = ""; SES.lastNote = null; SES.bossSay = null; SES.hitFx = false; }
-  else { SES.qs = buildSession({ vids, game }); SES.i = 0; initQuestionState(); }
+  else if (game === "transform") { SES.bossHP = SES.bossMax = vids.length; SES.xPool = shuffle(vids.slice()); SES.xUsed = new Set(); SES.xn = Math.random() < 0.5 ? 0 : 1; SES.hitFx = false; nextXform(); }
+  else { SES.qs = buildSession({ vids, game, form: SES.form }); SES.i = 0; initQuestionState(); }
 }
 function initQuestionState() {
   SES.resolved = false; SES.picked = null; SES.timedOut = false; SES.justHurt = false;
@@ -1172,12 +1496,21 @@ function initQuestionState() {
     SES.slots = new Array(v.past.length).fill(null);
     SES.usedTile = new Array(SES.tiles.length).fill(false);
     SES.spellBad = -1; SES.mistakes = 0;
+  } else if (SES.game === "build") {
+    const q = SES.qs[SES.i], v = V[q.vid];
+    /* fichas de más: siempre el verbo en pasado (la trampa didn't + pasado); en la segunda mitad, también un auxiliar equivocado */
+    const extra = [v.past];
+    if (SES.i >= Math.ceil(SES.qs.length / 2)) extra.push(q.form === "n" ? "don't" : "Do");
+    SES.tiles = shuffle(q.words.concat(extra));
+    SES.placed = []; SES.usedTile = new Array(SES.tiles.length).fill(false);
+    SES.wrongTile = -1; SES.mistakes = 0; SES.revealed = false;
   }
 }
+const dexBump = (vid, ok) => { if (!SES || !SES.noDex) bumpDex(vid, ok); };
 function applyAnswer(vid, ok, opts) {
   opts = opts || {};
   SES.totalCount++;
-  bumpDex(vid, ok);
+  dexBump(vid, ok);
   if (ok) {
     SES.correctCount++; SES.combo++; SES.maxCombo = Math.max(SES.maxCombo, SES.combo);
     P.bestCombo = Math.max(P.bestCombo, SES.combo);
@@ -1191,9 +1524,16 @@ function applyAnswer(vid, ok, opts) {
   }
   return ok;
 }
+/* cuánto se queda la pantalla antes de pasar a la siguiente: más tiempo donde hay una explicación que leer */
+function answerDelay(ok) {
+  if (SES.game === "judge") return ok ? 1000 : 2400;
+  if (SES.game === "gap") return ok ? 700 : 1800;
+  return ok ? 650 : 1050;
+}
 function afterAnswerDelay(ok) {
-  const delay = ok ? 650 : 1050, mySid = SES.sid;
-  setTimeout(() => { if (!SES || SES.sid !== mySid) return; if (SES.hearts <= 0) endLevel(true); else advance(); }, delay);
+  const delay = answerDelay(ok), mySid = SES.sid, myI = SES.i;
+  /* también se comprueba la pregunta: si el jugador ya avanzó con «Continuar», este aviso no debe saltarse otra */
+  setTimeout(() => { if (!SES || SES.sid !== mySid || SES.i !== myI) return; if (SES.hearts <= 0) endLevel(true); else advance(); }, delay);
 }
 function advance() {
   SES.i++;
@@ -1217,7 +1557,12 @@ function startTimer(ms, onDone) {
   SES.timerFallback = setTimeout(() => { bar.removeEventListener("transitionend", handler); fire(); }, ms + 300);
 }
 function stopTimer() { if (!SES) return; SES.timerDone = true; if (SES.timerFallback) clearTimeout(SES.timerFallback); const bar = $("#gbar-fill"); if (bar) bar.style.transition = "none"; }
-function timerDuration(game, i) { return game === "truefalse" ? Math.max(2200, 3600 - i * 130) : Math.max(3200, 6200 - i * 260); }
+function timerDuration(game, i) {
+  if (game === "truefalse") return Math.max(2200, 3600 - i * 130);
+  if (game === "judge") return Math.max(6000, 9500 - i * 350);   /* hay que leer una frase entera */
+  if (game === "gap") return Math.max(5000, 8500 - i * 300);
+  return Math.max(3200, 6200 - i * 260);
+}
 function onTimeout() {
   if (!SES || SES.resolved) return;
   SES.resolved = true; SES.timedOut = true;
@@ -1231,11 +1576,15 @@ function armMeteorFall(ms) {
   void el.offsetWidth;
   requestAnimationFrame(() => requestAnimationFrame(() => { if (!el.isConnected) return; el.style.transition = "top " + ms + "ms linear"; el.style.top = "94%"; }));
 }
+/* Los globos impares van BALLOON_LIFT px adelantados. Con 4 en fila (82 px entre centros, 100 px de ancho) se pisaban
+   y tapaban la última letra de la palabra; así, aunque se junten en horizontal, cada uno queda a otra altura. */
+const BALLOON_LIFT = 64;
+const balloonBottom = (i, pct) => "calc(" + pct + "% + " + (i % 2 ? BALLOON_LIFT : 0) + "px)";
 function armBalloonsRise(ms) {
   $$(".balloon").forEach((el, i) => {
-    el.style.transition = "none"; el.style.bottom = "-30%";
+    el.style.transition = "none"; el.style.bottom = balloonBottom(i, -30);
     void el.offsetWidth;
-    requestAnimationFrame(() => requestAnimationFrame(() => { if (!el.isConnected) return; el.style.transition = "bottom " + (ms + i * 140) + "ms linear"; el.style.bottom = "106%"; }));
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (!el.isConnected) return; el.style.transition = "bottom " + (ms + i * 140) + "ms linear"; el.style.bottom = balloonBottom(i, 106); }));
   });
 }
 
@@ -1274,12 +1623,12 @@ function meteorAnswer(val) {
 /* ============ REVIENTA GLOBOS ============ */
 function balloonsHTML() {
   const q = SES.qs[SES.i], v = V[q.vid], opts = q.options;
-  const xs = opts.length === 4 ? [16, 40, 64, 88] : opts.length === 3 ? [22, 50, 78] : [50];
+  const xs = opts.length === 4 ? [15, 38, 62, 85] : opts.length === 3 ? [22, 50, 78] : [50];
   const colors = ["var(--b)", "var(--p)", "var(--o)", "var(--g)"];
   return hud(true) +
     '<div class="qcard"><p class="q-label">Completa la frase</p><p class="q-sentence" lang="en">' + sentBlank(q.sent[0], SES.resolved ? v.past : null, null, v) + '</p><p class="q-es">' + esc(q.sent[1]) + "</p></div>" +
     '<div class="field" id="field"><div class="ground"></div>' +
-      opts.map((o, i) => '<button type="button" class="balloon' + (SES.resolved && o === SES.picked ? " popped" : "") + '" data-action="balloon-ans" data-val="' + esc(o) + '" style="left:' + xs[i] + '%;top:auto;bottom:-30%" aria-label="' + esc(o) + '"' + (SES.resolved ? " disabled" : "") + '><span class="balloon-body" style="--c:' + colors[i % colors.length] + '" lang="en">' + esc(o) + "</span><span class=\"balloon-string\"></span></button>").join("") +
+      opts.map((o, i) => '<button type="button" class="balloon' + (SES.resolved && o === SES.picked ? " popped" : "") + '" data-action="balloon-ans" data-val="' + esc(o) + '" style="left:' + xs[i] + '%;top:auto;bottom:' + balloonBottom(i, -30) + '" aria-label="' + esc(o) + '"' + (SES.resolved ? " disabled" : "") + '><span class="balloon-body" style="--c:' + colors[i % colors.length] + '" lang="en">' + esc(o) + "</span><span class=\"balloon-string\"></span></button>").join("") +
     "</div>";
 }
 function balloonAnswer(val) {
@@ -1297,7 +1646,7 @@ function balloonAnswer(val) {
 function memoryHTML() {
   const cols = SES.board.length <= 4 ? SES.board.length : 4;
   return hud(false) +
-    '<p class="q-label" style="text-align:center">Empareja cada verbo con su pasado · ' + SES.matched.size + "/" + SES.vids.length + "</p>" +
+    '<p class="q-label" style="text-align:center">' + (SES.variant === "neg" ? "Une cada pasado con su negativa" : "Empareja cada verbo con su pasado") + " · " + SES.matched.size + "/" + SES.vids.length + "</p>" +
     '<div class="mem-grid" style="--cols:' + cols + '">' + SES.board.map(t => {
       const matched = SES.matched.has(t.vid), up = matched || SES.flipped.indexOf(t.key) > -1, bad = SES.badPair && SES.badPair.indexOf(t.key) > -1;
       return '<div class="mem-card' + (up ? " flip" : "") + (matched ? " matched" : "") + (bad ? " bad" : "") + '"><button type="button" data-action="mem-flip" data-key="' + t.key + '"' + (up ? " disabled" : "") + ' aria-label="' + (up ? esc(t.label) : "Carta boca abajo") + '"><div class="mem-inner"><div class="mem-face mem-back">' + ic("cards") + '</div><div class="mem-face mem-front" lang="en">' + esc(t.label) + "</div></div></button></div>";
@@ -1322,7 +1671,7 @@ function memFlip(key) {
     } else {
       SES.badPair = [k1, k2];
       SES.totalCount++; SES.combo = 0; SES.justHurt = true; SES.hearts = Math.max(0, SES.hearts - 1);
-      bumpDex(t1.vid, false); bumpDex(t2.vid, false);
+      dexBump(t1.vid, false); dexBump(t2.vid, false);
       SES.missed.add(t1.vid); SES.missed.add(t2.vid);
       sfx("wrong");
       render();
@@ -1396,16 +1745,16 @@ function tfAnswer(valStr) {
 const BOSS_TAUNTS = ["¡Ja! Ese no es.", "Revisa la ortografía…", "¡Casi, pero no!", "El pasado es otro.", "¿Seguro? Intenta de nuevo."];
 const BOSS_HITLINES = ["¡Auch!", "¡Buen disparo!", "¡Me diste!", "¡Eso duele!", "¡No otra vez!"];
 function nextBossVid() { if (!SES.bossPool.length) SES.bossPool = shuffle(SES.vids.slice()); return SES.bossPool.pop(); }
+/* la cara del profesor y su barra de vida (una por verbo) las comparten el jefe I y el jefe II */
+const bossSvg = (hit, dead) => '<svg class="boss' + (hit ? " hit" : "") + (dead ? " dead" : "") + '" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color:var(--bad)">' +
+  '<path d="M20 55c0-22 13-38 30-38s30 16 30 38c0 8-4 13-8 16l3 12H25l3-12c-4-3-8-8-8-16Z" fill="rgba(255,92,112,.18)"/>' +
+  '<circle cx="38" cy="52" r="5" fill="currentColor" stroke="none"/><circle cx="62" cy="52" r="5" fill="currentColor" stroke="none"/>' +
+  '<path d="M38 72h24"/><path d="M30 24c4-8 10-12 20-12s16 4 20 12"/></svg>';
+const hpBar = () => '<div class="hp" style="--n:' + SES.bossMax + '">' + Array.from({ length: SES.bossMax }).map((_, i) => '<i class="' + (i < SES.bossHP ? "" : "gone") + '"></i>').join("") + "</div>";
 function bossHTML() {
   const v = V[SES.curVid], dead = SES.bossHP <= 0;
   return hud(false) +
-    '<div class="arena"><span class="boss-name">El Profesor del Vacío</span>' +
-    '<svg class="boss' + (SES.hitFx ? " hit" : "") + (dead ? " dead" : "") + '" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color:var(--bad)">' +
-      '<path d="M20 55c0-22 13-38 30-38s30 16 30 38c0 8-4 13-8 16l3 12H25l3-12c-4-3-8-8-8-16Z" fill="rgba(255,92,112,.18)"/>' +
-      '<circle cx="38" cy="52" r="5" fill="currentColor" stroke="none"/><circle cx="62" cy="52" r="5" fill="currentColor" stroke="none"/>' +
-      '<path d="M38 72h24"/><path d="M30 24c4-8 10-12 20-12s16 4 20 12"/>' +
-    "</svg>" +
-    '<div class="hp" style="--n:' + SES.bossMax + '">' + Array.from({ length: SES.bossMax }).map((_, i) => '<i class="' + (i < SES.bossHP ? "" : "gone") + '"></i>').join("") + "</div>" +
+    '<div class="arena"><span class="boss-name">El Profesor del Vacío</span>' + bossSvg(SES.hitFx, dead) + hpBar() +
     '<p class="boss-say">' + esc(SES.bossSay || "«A ver si te sabes este…»") + "</p></div>" +
     '<div class="qcard"><p class="q-label">Escribe el pasado de</p><div class="q-word-row"><span class="q-word" lang="en">' + v.base + "</span>" + sayBtn(v.base, "Escuchar " + v.base) + '</div><p class="q-sub">' + esc(v.es) + "</p></div>" +
     '<input id="boss-input" class="answer' + (SES.resolved && !SES.lastOk ? " bad" : "") + '" type="text" lang="en" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Escribe aquí" value="' + esc(SES.typed || "") + '"' + (SES.resolved ? " disabled" : "") + ">" +
@@ -1436,6 +1785,150 @@ function bossHint() {
 }
 function bossNext() { SES.curVid = nextBossVid(); SES.resolved = false; SES.typed = ""; SES.lastNote = null; SES.bossSay = null; render(); }
 
+/* ============ MISIÓN 2 · COMPLETA (globos con el verbo en forma normal) ============ */
+function gapHTML() {
+  const q = SES.qs[SES.i], v = V[q.vid], opts = q.options;
+  const xs = [15, 38, 62, 85], colors = ["var(--b)", "var(--p)", "var(--o)", "var(--g)"];
+  const slip = SES.resolved && SES.picked !== q.answer
+    ? '<p class="jwhy">' + esc(SES.picked === v.past ? "Después de " + AUX_NAME[q.form] + " el verbo vuelve a su forma normal." : "Aquí va el verbo en forma normal: " + q.answer + ".") + "</p>" : "";
+  return hud(true) +
+    '<div class="qcard"><p class="q-label">' + (q.form === "n" ? "Completa la frase NEGATIVA" : "Completa la PREGUNTA") + '</p><p class="q-sentence" lang="en">' + sentBlank(q.sent[0], SES.resolved ? q.answer : null, null, v) + '</p><p class="q-es">' + esc(q.sent[1]) + "</p>" + slip + "</div>" +
+    '<div class="field" id="field"><div class="ground"></div>' +
+      opts.map((o, i) => '<button type="button" class="balloon' + (SES.resolved && o === SES.picked ? " popped" : "") + '" data-action="gap-ans" data-val="' + esc(o) + '" style="left:' + xs[i] + '%;top:auto;bottom:' + balloonBottom(i, -30) + '" aria-label="' + esc(o) + '"' + (SES.resolved ? " disabled" : "") + '><span class="balloon-body" style="--c:' + colors[i % colors.length] + '" lang="en">' + esc(o) + '</span><span class="balloon-string"></span></button>').join("") +
+    "</div>";
+}
+function gapAnswer(val) {
+  if (!SES || SES.resolved) return;
+  const q = SES.qs[SES.i];
+  stopTimer(); SES.resolved = true; SES.picked = val;
+  const ok = val === q.answer;
+  applyAnswer(q.vid, ok, ok ? { sfx: "pop" } : {});
+  if (ok) { sparkBurst(50, 55, "var(--g)", 16); floatText("+" + SES.lastPts, 50, 50); } else shakeEl($("#field"));
+  render();
+  afterAnswerDelay(ok);
+}
+
+/* ============ MISIÓN 2 · ¿BIEN O MAL? ============ */
+function judgeHTML() {
+  const q = SES.qs[SES.i], cls = SES.resolved ? (q.isTrue ? " ok" : " bad") : "";
+  return hud(true) +
+    '<p class="q-label" style="text-align:center">¿Está bien escrita?</p>' +
+    '<div class="vf-card' + cls + '"><span class="jform">' + (q.form === "n" ? "Negativa" : "Pregunta") + '</span><p class="jen" lang="en">' + esc(q.shown) + '</p><p class="vf-q">' + esc(q.es) + "</p>" +
+      (SES.resolved ? (q.isTrue ? "" : '<p class="vf-fix">Correcto: <span lang="en">' + esc(q.fix) + "</span></p>") + '<p class="jwhy">' + esc(q.why) + "</p>" : "") +
+    "</div>" +
+    '<div class="vf-btns"><button type="button" class="btn btn-r" data-action="judge-ans" data-val="false"' + (SES.resolved ? " disabled" : "") + ">" + ic("x") + ' Mal</button><button type="button" class="btn btn-g" data-action="judge-ans" data-val="true"' + (SES.resolved ? " disabled" : "") + ">" + ic("check") + " Bien</button></div>";
+}
+function judgeAnswer(valStr) {
+  if (!SES || SES.resolved) return;
+  const q = SES.qs[SES.i];
+  stopTimer(); SES.resolved = true; SES.picked = valStr;
+  const ok = (valStr === "true") === q.isTrue;
+  applyAnswer(q.vid, ok);
+  if (!ok) shakeEl($(".vf-card"));
+  render();
+  afterAnswerDelay(ok);
+}
+
+/* ============ MISIÓN 2 · ARMA LA FRASE ============ */
+const ruleNote = q => (q.form === "n" ? "Negativa: sujeto + didn't + verbo en forma normal" : "Pregunta: Did + sujeto + verbo en forma normal") + " (" + V[q.vid].base + ", no " + V[q.vid].past + ").";
+function buildFeedback(q) {
+  const ok = !SES.revealed;
+  return '<div class="fbx ' + (ok ? "ok" : "bad") + '"><p class="fbx-t">' + ic(ok ? "check" : "x") + " " + (ok ? "¡Bien armada!" : "Así se escribe") + "</p>" +
+    '<p class="fbx-en" lang="en"><span>' + esc(q.en) + "</span>" + sayBtn(q.en, "Escuchar la frase") + '</p><p class="fbx-note">' + esc(ruleNote(q)) + "</p></div>" +
+    '<div class="stack"><button type="button" class="btn btn-block' + (ok ? " btn-g" : "") + '" id="btn-next" data-action="next">Continuar ' + ic("arrowR") + "</button></div>";
+}
+function buildHTML() {
+  const q = SES.qs[SES.i], done = SES.resolved;
+  const placed = SES.placed.map((w, i) => '<span class="w' + (done && q.roles[i] === "aux" ? " aux" : done && q.roles[i] === "base" ? " base" : "") + '">' + esc(w) + "</span>").join("");
+  return hud(false) +
+    '<div class="qcard"><p class="q-label">' + (q.form === "n" ? "Arma la frase NEGATIVA en inglés" : "Arma la PREGUNTA en inglés") + '</p><p class="q-sentence">' + esc(q.es) + "</p></div>" +
+    '<div class="aline' + (done ? " done" : "") + '" lang="en">' + placed + '<span class="wp">' + q.punct + "</span></div>" +
+    (done ? buildFeedback(q)
+      : '<div class="wtray">' + SES.tiles.map((w, i) => '<button type="button" class="wtile' + (SES.usedTile[i] ? " used" : "") + (SES.wrongTile === i ? " bad" : "") + '" data-action="build-tile" data-i="' + i + '"' + (SES.usedTile[i] ? " disabled" : "") + ' lang="en">' + esc(w) + "</button>").join("") + "</div>" +
+        '<button type="button" class="link" data-action="build-hint" style="align-self:center">' + ic("bulb") + " Pista: mostrar la siguiente palabra</button>");
+}
+function buildDone(ok) {
+  const q = SES.qs[SES.i];
+  SES.resolved = true; SES.revealed = !ok;
+  if (!ok) SES.placed = q.words.slice();
+  applyAnswer(q.vid, ok);
+  if (ok) sparkBurst(50, 30, "var(--g)", 18);
+}
+function buildTile(i) {
+  if (!SES || SES.resolved || SES.usedTile[i]) return;
+  const q = SES.qs[SES.i], ch = SES.tiles[i];
+  if (ch === q.words[SES.placed.length]) {
+    SES.placed.push(ch); SES.usedTile[i] = true; SES.wrongTile = -1; sfx("tap");
+    if (SES.placed.length === q.words.length) buildDone(true);
+    render();
+  } else {
+    SES.wrongTile = i; SES.mistakes = (SES.mistakes || 0) + 1;
+    if (SES.mistakes >= 3) { sfx("wrong"); buildDone(false); render(); }
+    else {
+      sfx("wrong");
+      const mySid = SES.sid, myI = SES.i;
+      render(); shakeEl($(".aline"));
+      setTimeout(() => { if (SES && SES.sid === mySid && SES.i === myI && !SES.resolved) { SES.wrongTile = -1; render(); } }, 420);
+    }
+  }
+}
+function buildHint() {
+  if (!SES || SES.resolved) return;
+  const q = SES.qs[SES.i], need = q.words[SES.placed.length];
+  const ti = SES.tiles.findIndex((c, idx) => c === need && !SES.usedTile[idx]);
+  if (ti < 0) return;
+  SES.hintUsed = true; SES.usedTile[ti] = true; SES.placed.push(need); sfx("tap");
+  if (SES.placed.length === q.words.length) buildDone(true);
+  render();
+}
+
+/* ============ MISIÓN 2 · TRANSFORMA (jefe II: escribir la versión negativa o la pregunta) ============ */
+const XFORM_TAUNTS = ["¡Ja! Así no.", "Revisa el did y el verbo…", "¡Casi, pero no!", "¿Seguro? Intenta otra vez.", "Cuidado con el orden."];
+function nextXform() {
+  if (!SES.xPool.length) SES.xPool = shuffle(SES.vids.slice());
+  const vid = SES.xPool.pop(), pool = FORMS.filter(t => t.v === vid), fresh = pool.filter(t => !SES.xUsed.has(t));
+  const t = pickOne(fresh.length ? fresh : pool); SES.xUsed.add(t);
+  SES.cur = { vid, t, form: SES.xn++ % 2 === 0 ? "n" : "q" };
+  SES.typed = ""; SES.lastNote = null; SES.bossSay = null; SES.hintText = null; SES.resolved = false; SES.lastOk = false;
+}
+function xformHTML() {
+  const c = SES.cur, t = c.t, v = V[c.vid], dead = SES.bossHP <= 0, target = formPlain(t, c.form), affirm = plain(formEn(t, "a"));
+  return hud(false) +
+    '<div class="arena"><span class="boss-name">El Profesor del Vacío II</span>' + bossSvg(SES.hitFx, dead) + hpBar() +
+    '<p class="boss-say">' + esc(SES.bossSay || "«Cámbiala, si puedes…»") + "</p></div>" +
+    '<div class="qcard"><span class="jform" style="align-self:flex-start">' + (c.form === "n" ? "Hazla NEGATIVA" : "Hazla PREGUNTA") + "</span>" +
+      '<div class="q-word-row"><p class="q-sentence" lang="en" style="flex:1;min-width:0;margin:0">' + sentMarked(formEn(t, "a"), v) + "</p>" + sayBtn(affirm, "Escuchar la frase") + "</div>" +
+      '<p class="q-es">' + esc(t.es.a) + "</p>" + (SES.hintText ? '<p class="xhint">' + ic("bulb") + "<span>" + esc(SES.hintText) + "</span></p>" : "") + "</div>" +
+    '<textarea id="xf-input" class="answer" rows="2" lang="en" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Escribe la frase completa"' + (SES.resolved && !SES.lastOk ? ' data-bad="1"' : "") + (SES.resolved ? " disabled" : "") + ">" + esc(SES.typed || "") + "</textarea>" +
+    (SES.resolved ? '<div class="fbx ' + (SES.lastOk ? "ok" : "bad") + '"><p class="fbx-t">' + ic(SES.lastOk ? "check" : "x") + " " + (SES.lastOk ? "¡Correcto!" : "Así se escribe") + '</p><p class="fbx-en" lang="en"><span>' + esc(target) + "</span>" + sayBtn(target, "Escuchar la frase") + "</p>" + (SES.lastNote ? '<p class="fbx-note">' + esc(SES.lastNote) + "</p>" : "") + "</div>" : "") +
+    '<div class="stack">' + (SES.resolved ? '<button type="button" class="btn btn-block" id="btn-next" data-action="next">Continuar ' + ic("arrowR") + "</button>" : '<button type="button" class="btn btn-block" data-action="xform-check">Disparar ' + ic("bolt") + '</button><button type="button" class="link" data-action="xform-hint" style="align-self:center">' + ic("bulb") + " Pista</button>") + "</div>";
+}
+function xformCheck() {
+  if (!SES || SES.resolved) return;
+  const c = SES.cur, inp = $("#xf-input"), raw = inp ? inp.value : SES.typed || "";
+  SES.typed = raw;
+  const a = normForm(raw);
+  if (!a) { shakeEl(inp); if (inp) inp.focus(); return; }
+  const ok = a === normForm(formPlain(c.t, c.form));
+  SES.resolved = true; SES.lastOk = ok;
+  applyAnswer(c.vid, ok);
+  if (ok) { SES.bossHP = Math.max(0, SES.bossHP - 1); SES.bossSay = pickOne(BOSS_HITLINES); SES.hitFx = true; sparkBurst(50, 32, "var(--y)", 16); }
+  else { SES.lastNote = diagnoseForm(c.t, c.form, a); SES.bossSay = pickOne(XFORM_TAUNTS); }
+  render();
+  if (!ok) shakeEl($(".arena"));
+  const mySid = SES.sid;
+  setTimeout(() => { if (SES && SES.sid === mySid) SES.hitFx = false; }, 420);
+}
+function xformHint() {
+  if (!SES || SES.resolved) return;
+  const c = SES.cur, v = V[c.vid];
+  SES.hintUsed = true;
+  SES.hintText = c.form === "n" ? "Usa didn't + " + v.base + " (el verbo en forma normal)." : "Empieza con Did y usa " + v.base + " (el verbo en forma normal).";
+  render();
+  const inp = $("#xf-input"); if (inp) inp.focus();
+}
+function xformNext() { nextXform(); render(); }
+
 /* ============ DESPACHO Y CICLO DE VIDA ============ */
 function viewSession() {
   if (!SES) return "";
@@ -1445,23 +1938,29 @@ function viewSession() {
   if (SES.game === "spell") return spellHTML();
   if (SES.game === "truefalse") return tfHTML();
   if (SES.game === "boss") return bossHTML();
+  if (SES.game === "gap") return gapHTML();
+  if (SES.game === "judge") return judgeHTML();
+  if (SES.game === "build") return buildHTML();
+  if (SES.game === "transform") return xformHTML();
   return "";
 }
 function afterRender() {
   if (S.view !== "play" || !SES) return;
-  if (["meteors", "balloons", "truefalse"].indexOf(SES.game) > -1 && !SES.resolved && SES.armedFor !== SES.i) {
+  if (["meteors", "balloons", "truefalse", "gap", "judge"].indexOf(SES.game) > -1 && !SES.resolved && SES.armedFor !== SES.i) {
     SES.armedFor = SES.i;
     const dur = timerDuration(SES.game, SES.i);
     startTimer(dur, onTimeout);
     if (SES.game === "meteors") armMeteorFall(dur);
-    if (SES.game === "balloons") armBalloonsRise(dur);
+    if (SES.game === "balloons" || SES.game === "gap") armBalloonsRise(dur);
   }
-  if (SES.game === "boss" && !SES.resolved) { const inp = $("#boss-input"); if (inp) { try { inp.focus({ preventScroll: true }); } catch (e) {} } }
+  const typing = SES.game === "boss" ? "#boss-input" : SES.game === "transform" ? "#xf-input" : null;
+  if (typing && !SES.resolved) { const inp = $(typing); if (inp) { try { inp.focus({ preventScroll: true }); } catch (e) {} } }
+  if (SES.resolved && (SES.game === "build" || SES.game === "transform")) { const b = $("#btn-next"); if (b) { try { b.focus({ preventScroll: true }); } catch (e) {} if (b.scrollIntoView) b.scrollIntoView({ block: "nearest" }); } }
 }
 function startLevel(id) {
   const lv = LV[id]; if (!lv) return;
   closeSheet(); stopList(true);
-  commonInitSES(lv.game, lv.vids, id, false);
+  commonInitSES(lv.game, lv.vids, id, false, lv);
   S.stack.push({ view: S.view, params: S.params, y: window.scrollY });
   S.view = "play"; S.params = {};
   render(true);
@@ -1491,10 +1990,11 @@ function endLevel(failed) {
     const stars = starsFor(acc, failed);
     const xp = correct * 10 + [0, 20, 45, 90][stars];
     const rec = recordLevelResult(SES.levelId, correct, total, failed, xp);
-    const lvIdx = LEVELS.findIndex(l => l.id === SES.levelId);
+    const list = levelListOf(SES.levelId), lvIdx = list.findIndex(l => l.id === SES.levelId);
     let nextId = null;
-    if (!failed && rec.stars > 0 && lvIdx > -1 && lvIdx < LEVELS.length - 1) nextId = LEVELS[lvIdx + 1].id;
-    if (LV[SES.levelId].boss && !failed && !SES.hintUsed) P.bossNoHint = true;
+    if (!failed && rec.stars > 0 && lvIdx > -1 && lvIdx < list.length - 1) nextId = list[lvIdx + 1].id;
+    /* «Sin ayuda» es del jefe I; el jefe II no lo cuenta */
+    if (LV[SES.levelId].boss && LV[SES.levelId].world !== "q" && !failed && !SES.hintUsed) P.bossNoHint = true;
     result = { levelId: SES.levelId, stars: rec.stars, correct, total, failed, xp, missed: Array.from(SES.missed), nextId, game: gameType, vids: vidsUsed };
   }
   const newAch = checkAchievements();
@@ -1517,12 +2017,15 @@ const ACT = {
   locked: () => { live.textContent = "Completa el nivel anterior para desbloquear este."; },
   "play-level": el => startLevel(Number(el.dataset.id)),
   arcade: el => startArcade(el.dataset.game),
-  "map-home": () => { S.view = null; S.params = {}; S.stack = []; S.tab = "mapa"; render(true); },
+  "map-home": () => { const R = S.params; S.tab = R && R.levelId && levelListOf(R.levelId) === LEVELS_Q ? "did" : "mapa"; S.view = null; S.params = {}; S.stack = []; render(true); },
   "result-retry": () => { const R = S.params; if (R.levelId) startLevel(R.levelId); else startArcade(R.game, R.vids); },
   verb: el => openView("verb", { vid: el.dataset.vid }),
   "practice-verb": el => startArcade("spell", [el.dataset.vid]),
   say: el => say(el.dataset.text),
-  play: el => { const k = el.dataset.kind; if (PL.on && PL.kind === k) { stopList(); return; } if (k === "story") playList(k, STORY.map(l => plain(l.en))); else playList(k, VERBS.map(v => v.base + ". " + v.past + ".")); },
+  play: el => { const k = el.dataset.kind; if (PL.on && PL.kind === k) { stopList(); return; } if (k === "story") playList(k, STORY.map(l => plain(l.en))); else if (k === "forms") playList(k, VERBS.map(sheSay)); else playList(k, VERBS.map(v => v.base + ". " + v.past + ".")); },
+  forms: () => openView("forms"),
+  "did-seg": el => { S.didSeg = el.dataset.seg; render(); },
+  "did-verb": el => { S.didVerb = el.dataset.vid; render(); },
   seg: el => { stopList(true); S.dexSeg = el.dataset.seg; render(); },
   cover: () => { S.cover = !S.cover; S.revealed.clear(); render(); },
   reveal: el => { S.revealed.add(el.dataset.vid); say(V[el.dataset.vid].past); render(); },
@@ -1539,7 +2042,18 @@ const ACT = {
   "mem-flip": el => memFlip(el.dataset.key),
   "boss-check": () => bossCheck(),
   "boss-hint": () => bossHint(),
-  next: () => { if (!SES) return; if (SES.game === "boss") { if (SES.bossHP <= 0) endLevel(false); else if (SES.hearts <= 0) endLevel(true); else bossNext(); } else advance(); },
+  "gap-ans": el => gapAnswer(el.dataset.val),
+  "judge-ans": el => judgeAnswer(el.dataset.val),
+  "build-tile": el => buildTile(Number(el.dataset.i)),
+  "build-hint": () => buildHint(),
+  "xform-check": () => xformCheck(),
+  "xform-hint": () => xformHint(),
+  next: () => {
+    if (!SES) return;
+    if (SES.game === "boss" || SES.game === "transform") { if (SES.bossHP <= 0) endLevel(false); else if (SES.hearts <= 0) endLevel(true); else if (SES.game === "boss") bossNext(); else xformNext(); }
+    else if (SES.hearts <= 0) endLevel(true);
+    else advance();
+  },
   reset: () => {
     if (S.resetArm && Date.now() - S.resetArm < 6000) { P = freshState(); saveState(); S.resetArm = 0; render(); live.textContent = "Progreso borrado."; }
     else { S.resetArm = Date.now(); render(); setTimeout(() => { if (S.resetArm && Date.now() - S.resetArm >= 6000) { S.resetArm = 0; if (!S.view) render(); } }, 6100); }
@@ -1553,23 +2067,26 @@ document.addEventListener("click", e => {
   const fn = ACT[el.dataset.action];
   if (fn) { e.preventDefault(); fn(el, e); }
 });
-document.addEventListener("input", e => { if (e.target && e.target.id === "boss-input" && SES) SES.typed = e.target.value; });
+document.addEventListener("input", e => { if (e.target && (e.target.id === "boss-input" || e.target.id === "xf-input") && SES) SES.typed = e.target.value; });
 document.addEventListener("keydown", e => {
   if (S.view !== "play" || !SES) return;
   const tag = e.target.tagName;
   if (e.key === "Enter") {
     if (e.repeat) return;
     if (SES.game === "boss") { e.preventDefault(); if (!SES.resolved) bossCheck(); else ACT.next(); }
+    else if (SES.game === "transform") { e.preventDefault(); if (!SES.resolved) xformCheck(); else ACT.next(); }
+    else if (SES.game === "build" && SES.resolved) { e.preventDefault(); ACT.next(); }
     return;
   }
   if (tag === "INPUT") return;
   if (/^[1-4]$/.test(e.key) && !SES.resolved) {
     if (SES.game === "meteors") { const b = $$(".ans")[Number(e.key) - 1]; if (b) b.click(); }
-    else if (SES.game === "balloons") { const b = $$(".balloon")[Number(e.key) - 1]; if (b) b.click(); }
+    else if (SES.game === "balloons" || SES.game === "gap") { const b = $$(".balloon")[Number(e.key) - 1]; if (b) b.click(); }
   }
-  if (SES.game === "truefalse" && !SES.resolved) {
-    if (e.key === "ArrowLeft" || e.key.toLowerCase() === "f") { const b = $('[data-action="tf-ans"][data-val="false"]'); if (b) b.click(); }
-    if (e.key === "ArrowRight" || e.key.toLowerCase() === "v") { const b = $('[data-action="tf-ans"][data-val="true"]'); if (b) b.click(); }
+  if ((SES.game === "truefalse" || SES.game === "judge") && !SES.resolved) {
+    const act = SES.game === "judge" ? "judge-ans" : "tf-ans";
+    if (e.key === "ArrowLeft" || e.key.toLowerCase() === "f" || e.key.toLowerCase() === "m") { const b = $('[data-action="' + act + '"][data-val="false"]'); if (b) b.click(); }
+    if (e.key === "ArrowRight" || e.key.toLowerCase() === "v" || e.key.toLowerCase() === "b") { const b = $('[data-action="' + act + '"][data-val="true"]'); if (b) b.click(); }
   }
 });
 
