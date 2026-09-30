@@ -1150,7 +1150,7 @@ function recordLevelResult(levelId, correct, total, failed, xpEarned) {
 }
 
 /* ============ ESTADO DE NAVEGACIÓN (efímero, no se guarda) ============ */
-const S = { tab: "mapa", view: null, params: {}, stack: [], sheet: null, dexSeg: "tipos", cover: false, revealed: new Set(), storyCover: false, storyEs: true, storyRevealed: new Set(), showEs: true, resetArm: 0, didSeg: "n", didVerb: "find" };
+const S = { tab: "mapa", view: null, params: {}, stack: [], sheet: null, dexSeg: "tipos", cover: false, revealed: new Set(), storyCover: false, storyEs: true, storyRevealed: new Set(), showEs: true, resetArm: 0, didSeg: "n", didVerb: VERBS[0].id };
 let SES = null;
 
 function openView(view, params) {
