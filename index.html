@@ -1,4 +1,4 @@
-<title>De Feel a Freeze</title>
+<title>De Get a Hit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lexend:wght@400;500;600;700&family=Lilita+One&display=swap">
@@ -485,190 +485,206 @@ textarea.answer::placeholder{font-size:16px}
    en el Verbodex — no se pregunta en ningún minijuego. Todo el juego se adapta solo a la
    cantidad de verbos que haya en VERBS (no está fijado a 10). */
 const VERBS = [
-{ id:"feel", base:"feel", past:"felt", part:"felt", type:"ee", es:"sentir", short:"sentir", esPast:"yo me sentí mal", sayB:"fíil", sayP:"felt",
-  tip:"Se pierde una E y se agrega T: feel → felt.", ojo:"Nunca «feeled». El participio es igual: felt.",
-  wrong:["feeled","fealt","feels"],
+{ id:"get", base:"get", past:"got", part:"got", altPart:"gotten", type:"vowel", es:"obtener, conseguir", short:"obtener", esPast:"conseguí boletas", sayB:"guét", sayP:"gat",
+  tip:"Cambia la vocal: get → got (e → o).", ojo:"Nunca «getted». El participio tiene dos formas válidas: got (más británico) o gotten (más usado en Estados Unidos).",
+  wrong:["getted","gots","gotten"],
   s:[
-  ["I {felt} sick after the long trip yesterday.","Ayer me sentí mal después del viaje largo."],
-  ["She {felt} very happy when she saw her friends.","Ella se sintió muy feliz cuando vio a sus amigos."],
-  ["We {felt} the ground shake during the earthquake.","Sentimos temblar el suelo durante el terremoto."],
-  ["He {felt} nervous before the exam.","Él se sintió nervioso antes del examen."],
-  ["I {felt} a cold wind on my face this morning.","Sentí un viento frío en la cara esta mañana."],
-  ["The kids {felt} tired after the soccer game.","Los niños se sintieron cansados después del partido de fútbol."],
-  ["My mom {felt} proud of my grades last week.","Mi mamá se sintió orgullosa de mis notas la semana pasada."],
-  ["I {felt} something touch my leg in the water!","¡Sentí que algo me tocó la pierna en el agua!"],
-  ["She {felt} lonely when she moved to a new city.","Ella se sintió sola cuando se mudó a una ciudad nueva."],
-  ["We {felt} safe in our grandparents' house.","Nos sentimos seguros en la casa de nuestros abuelos."]
+  ["I {got} a new bike for my birthday.","Me regalaron una bici nueva para mi cumpleaños."],
+  ["She {got} the highest grade in the class.","Ella obtuvo la nota más alta de la clase."],
+  ["We {got} home very late last night.","Anoche llegamos muy tarde a casa."],
+  ["He {got} a text message during class.","Él recibió un mensaje de texto durante la clase."],
+  ["I {got} tickets for the concert yesterday.","Conseguí boletas para el concierto ayer."],
+  ["They {got} lost on the way to the beach.","Se perdieron camino a la playa."],
+  ["My mom {got} a promotion last month.","Mi mamá consiguió un ascenso el mes pasado."],
+  ["I {got} a bad grade on the math test.","Saqué una mala nota en el examen de matemáticas."],
+  ["We {got} hungry after the game.","Nos dio hambre después del partido."],
+  ["She {got} a puppy from the shelter.","Ella consiguió un cachorro del refugio."]
   ]},
-{ id:"fight", base:"fight", past:"fought", part:"fought", type:"ou", es:"luchar, pelear", short:"luchar", esPast:"ellos pelearon", sayB:"fáit", sayP:"fot",
-  tip:"La I se vuelve OU: fight → fought. La gh no suena: se dice «fot» (rima con bought y caught).", ojo:"Nunca «fighted» ni «faught». El participio es igual: fought.",
-  wrong:["fighted","faught","fights"],
+{ id:"give", base:"give", past:"gave", part:"given", type:"vowel", es:"dar", short:"dar", esPast:"él le dio un regalo", sayB:"guiv", sayP:"guéiv",
+  tip:"Cambia la vocal: give → gave (i → a).", ojo:"Nunca «gived». El participio es given (I have given), no gave.",
+  wrong:["gived","gaved","given"],
   s:[
-  ["My brother and I {fought} over the TV remote last night.","Mi hermano y yo peleamos por el control de la tele anoche."],
-  ["The soldiers {fought} bravely for their country.","Los soldados lucharon con valentía por su país."],
-  ["She {fought} for her dream and became a doctor.","Ella luchó por su sueño y se hizo médica."],
-  ["Two boys {fought} in the schoolyard yesterday.","Dos niños se pelearon en el patio del colegio ayer."],
-  ["We {fought} the fire with buckets of water.","Combatimos el incendio con baldes de agua."],
-  ["My parents never {fought} in front of us.","Mis papás nunca pelearon frente a nosotros."],
-  ["He {fought} hard to win the boxing match.","Él peleó duro para ganar la pelea de boxeo."],
-  ["I {fought} the urge to eat the whole cake.","Luché contra las ganas de comerme toda la torta."],
-  ["The team {fought} until the last minute of the game.","El equipo luchó hasta el último minuto del partido."],
-  ["The two friends {fought}, but they were friends again the next day.","Los dos amigos pelearon, pero al día siguiente volvieron a ser amigos."]
+  ["My dad {gave} me some good advice.","Mi papá me dio un buen consejo."],
+  ["She {gave} a great presentation yesterday.","Ella dio una presentación buenísima ayer."],
+  ["We {gave} our old clothes to charity.","Dimos nuestra ropa vieja a la caridad."],
+  ["He {gave} me his phone number.","Él me dio su número de celular."],
+  ["The teacher {gave} us a lot of homework.","El profe nos dejó mucha tarea."],
+  ["I {gave} my sister a hug this morning.","Le di un abrazo a mi hermana esta mañana."],
+  ["They {gave} the dog a bath yesterday.","Le dieron un baño al perro ayer."],
+  ["She {gave} me her opinion honestly.","Ella me dio su opinión con sinceridad."],
+  ["We {gave} a gift to our grandma.","Le dimos un regalo a nuestra abuela."],
+  ["He {gave} a great speech at the party.","Él dio un discurso genial en la fiesta."]
   ]},
-{ id:"find", base:"find", past:"found", part:"found", type:"ou", es:"encontrar", short:"encontrar", esPast:"encontré mis llaves", sayB:"fáind", sayP:"faund",
-  tip:"La I se vuelve OU: find → found (suena «faund»).", ojo:"Nunca «finded». No lo escribas «fond» (esa es otra palabra). El participio es igual: found.",
-  wrong:["finded","fond","finds"],
+{ id:"go", base:"go", past:"went", part:"gone", type:"full", es:"ir", short:"ir", esPast:"ella se fue temprano", sayB:"góu", sayP:"uént",
+  tip:"Es completamente irregular: go → went no se parece en nada. Toca memorizarlo tal cual.", ojo:"En presente, con he/she/it, es GOES (se pronuncia «góus»). El participio es gone (I have gone), muy distinto de went.",
+  wrong:["goed","goes","gone"],
   s:[
-  ["I {found} my keys under the sofa this morning.","Esta mañana encontré mis llaves debajo del sofá."],
-  ["She {found} a wallet on the street yesterday.","Ella encontró una billetera en la calle ayer."],
-  ["We {found} a great restaurant near the beach.","Encontramos un restaurante buenísimo cerca de la playa."],
-  ["The police {found} the missing dog last night.","La policía encontró al perro perdido anoche."],
-  ["He {found} the answer to the difficult question.","Él encontró la respuesta a la pregunta difícil."],
-  ["I {found} out the truth from my cousin.","Me enteré de la verdad por mi primo."],
-  ["My little sister {found} a lizard in the garden.","Mi hermanita encontró una lagartija en el jardín."],
-  ["They {found} a cheap hotel in the city center.","Encontraron un hotel barato en el centro de la ciudad."],
-  ["I {found} the movie boring, so I turned it off.","Me pareció aburrida la película, así que la apagué."],
-  ["Scientists {found} water on Mars last year.","Los científicos encontraron agua en Marte el año pasado."]
+  ["We {went} to the beach last weekend.","Fuimos a la playa el fin de semana pasado."],
+  ["She {went} to bed early last night.","Ella se acostó temprano anoche."],
+  ["I {went} to the doctor yesterday.","Fui al médico ayer."],
+  ["They {went} home after the movie.","Se fueron a casa después de la película."],
+  ["He {went} to Bogotá for work.","Él fue a Bogotá por trabajo."],
+  ["We {went} shopping on Saturday.","Fuimos de compras el sábado."],
+  ["My parents {went} to a wedding last month.","Mis papás fueron a una boda el mes pasado."],
+  ["I {went} for a run this morning.","Salí a correr esta mañana."],
+  ["She {went} crazy when she saw the surprise.","Ella se puso loca de la emoción cuando vio la sorpresa."],
+  ["We {went} to the same school.","Fuimos al mismo colegio."]
   ]},
-{ id:"flee", base:"flee", past:"fled", part:"fled", type:"ee", es:"huir", short:"huir", esPast:"el ladrón huyó", sayB:"flíi", sayP:"fled",
-  tip:"Se pierde una E y se agrega D: flee → fled.", ojo:"Nunca «fleed». No lo confundas con fly: flee = huir, fly = volar. El participio es igual: fled.",
-  wrong:["fleed","flead","flees"],
+{ id:"grow", base:"grow", past:"grew", part:"grown", type:"vowel", es:"crecer", short:"crecer", esPast:"la planta creció rápido", sayB:"gróu", sayP:"grú",
+  tip:"Cambia la vocal: grow → grew (ow → ew), como blow→blew, know→knew.", ojo:"Nunca «growed». El participio es grown (I have grown), no grew.",
+  wrong:["growed","grow","grown"],
   s:[
-  ["The thief {fled} when he heard the alarm.","El ladrón huyó cuando oyó la alarma."],
-  ["Many families {fled} the city during the war.","Muchas familias huyeron de la ciudad durante la guerra."],
-  ["The cat {fled} up the tree when the dog barked.","El gato huyó al árbol cuando el perro ladró."],
-  ["She {fled} the room in tears.","Ella salió huyendo del cuarto llorando."],
-  ["The birds {fled} from the storm.","Los pájaros huyeron de la tormenta."],
-  ["The robbers {fled} in a black car last night.","Los ladrones huyeron en un carro negro anoche."],
-  ["We {fled} from the rain and hid in a shop.","Huimos de la lluvia y nos escondimos en una tienda."],
-  ["The people {fled} the building when the fire started.","La gente huyó del edificio cuando empezó el incendio."],
-  ["He {fled} to another country to be safe.","Él huyó a otro país para estar a salvo."],
-  ["The little boy {fled} from the big dog.","El niño huyó del perro grande."]
+  ["The plant {grew} very fast this month.","La planta creció muy rápido este mes."],
+  ["I {grew} three centimeters last year.","Crecí tres centímetros el año pasado."],
+  ["She {grew} up in a small town.","Ella creció en un pueblo pequeño."],
+  ["Our friendship {grew} stronger over time.","Nuestra amistad se hizo más fuerte con el tiempo."],
+  ["The city {grew} a lot in ten years.","La ciudad creció mucho en diez años."],
+  ["He {grew} a beard during vacation.","Él se dejó crecer la barba durante las vacaciones."],
+  ["My little brother {grew} two shoe sizes this year.","Mi hermanito creció dos tallas de zapato este año."],
+  ["The tomatoes {grew} well in the garden.","Los tomates crecieron bien en el jardín."],
+  ["Their business {grew} quickly last year.","Su negocio creció rápido el año pasado."],
+  ["I {grew} tired of waiting for the bus.","Me cansé de esperar el bus."]
   ]},
-{ id:"fly", base:"fly", past:"flew", part:"flown", type:"full", es:"volar", short:"volar", esPast:"el avión voló", sayB:"flái", sayP:"flú",
-  tip:"Cambia por completo: fly → flew (suena «flú», rima con blue).", ojo:"Nunca «flied». El participio es flown (I have flown), no flew.",
-  wrong:["flied","flown","flies"],
+{ id:"grind", base:"grind", past:"ground", part:"ground", type:"full", es:"moler", short:"moler", esPast:"molió el café", sayB:"gráind", sayP:"gráund",
+  tip:"La I se convierte en OU: grind → ground. Se pronuncia «graund».", ojo:"Nunca «grinded». Ojo: se escribe igual que «ground» (el suelo), pero aquí es el pasado de moler.",
+  wrong:["grinded","grind","grounded"],
   s:[
-  ["We {flew} to Cartagena last summer.","Volamos a Cartagena el verano pasado."],
-  ["The bird {flew} over the house this morning.","El pájaro voló sobre la casa esta mañana."],
-  ["My dad {flew} to Miami for work last week.","Mi papá voló a Miami por trabajo la semana pasada."],
-  ["The kite {flew} high in the sky yesterday.","La cometa voló alto en el cielo ayer."],
-  ["She {flew} alone for the first time in 2023.","Ella voló sola por primera vez en 2023."],
-  ["The plane {flew} through the storm.","El avión voló a través de la tormenta."],
-  ["Time {flew} during the party.","El tiempo voló durante la fiesta."],
-  ["A butterfly {flew} into the classroom.","Una mariposa entró volando al salón."],
-  ["They {flew} a drone over the beach.","Volaron un dron sobre la playa."],
-  ["The pilot {flew} for ten hours without a break.","El piloto voló diez horas sin descanso."]
+  ["My dad {ground} the coffee beans this morning.","Mi papá molió los granos de café esta mañana."],
+  ["She {ground} the spices for the recipe.","Ella molió las especias para la receta."],
+  ["The cook {ground} fresh corn for the arepas.","El cocinero molió maíz fresco para las arepas."],
+  ["The machine {ground} the meat quickly.","La máquina molió la carne rápidamente."],
+  ["He {ground} the pepper over the soup.","Él molió la pimienta sobre la sopa."],
+  ["My grandma {ground} the corn by hand.","Mi abuela molía el maíz a mano."],
+  ["They {ground} the wheat into flour.","Molieron el trigo hasta hacer harina."],
+  ["I {ground} my teeth during the exam, I was so nervous.","Rechiné los dientes durante el examen, estaba muy nervioso."],
+  ["The chef {ground} the garlic for the sauce.","El chef molió el ajo para la salsa."],
+  ["We {ground} the ice for the drinks.","Molimos el hielo para las bebidas."]
   ]},
-{ id:"forbid", base:"forbid", past:"forbade", part:"forbidden", type:"for", es:"prohibir", short:"prohibir", esPast:"mi mamá me lo prohibió", sayB:"forbíd", sayP:"forbéid",
-  tip:"Empieza con FOR y cambia la vocal del final: forbid → forbade (i → a).", ojo:"Nunca «forbided». El participio es forbidden (I have forbidden), no forbade. También existe «forbad», pero en el quiz usa forbade.",
-  wrong:["forbid","forbided","forbidden"],
+{ id:"hang", base:"hang", past:"hung", part:"hung", type:"vowel", es:"colgar", short:"colgar", esPast:"colgamos las luces", sayB:"jáng", sayP:"jang",
+  tip:"Cambia la vocal: hang → hung (a → u).", ojo:"Nunca «hanged» ni «hangs» como pasado. El participio es igual: hung.",
+  wrong:["hanged","hangs","hunged"],
   s:[
-  ["My mom {forbade} me to go out on school nights.","Mi mamá me prohibió salir en las noches entre semana."],
-  ["The teacher {forbade} phones in the classroom.","El profe prohibió los celulares en el salón."],
-  ["The doctor {forbade} him to eat sugar.","El doctor le prohibió comer azúcar."],
-  ["The rules {forbade} running in the hallways.","El reglamento prohibía correr por los pasillos."],
-  ["My dad {forbade} us from swimming in the river.","Mi papá nos prohibió nadar en el río."],
-  ["The school {forbade} the use of skateboards last year.","El colegio prohibió el uso de patinetas el año pasado."],
-  ["She {forbade} her brother to touch her things.","Ella le prohibió a su hermano tocar sus cosas."],
-  ["The law {forbade} smoking in restaurants.","La ley prohibió fumar en los restaurantes."],
-  ["The captain {forbade} anyone to leave the ship.","El capitán prohibió que alguien saliera del barco."],
-  ["They {forbade} the children to open the door.","Les prohibieron a los niños abrir la puerta."]
+  ["The kids {hung} the Christmas lights yesterday.","Los niños colgaron las luces de Navidad ayer."],
+  ["She {hung} her jacket on the chair.","Ella colgó su chaqueta en la silla."],
+  ["I {hung} the picture on the wall.","Colgué el cuadro en la pared."],
+  ["They {hung} the piñata from a tree.","Colgaron la piñata de un árbol."],
+  ["He {hung} up the phone quickly.","Él colgó el teléfono rápido."],
+  ["We {hung} our wet clothes outside.","Colgamos la ropa mojada afuera."],
+  ["My mom {hung} the towels in the bathroom.","Mi mamá colgó las toallas en el baño."],
+  ["She {hung} a poster of her favorite band.","Ella colgó un póster de su banda favorita."],
+  ["The kids {hung} their backpacks by the door.","Los niños colgaron sus mochilas junto a la puerta."],
+  ["I {hung} the calendar in the kitchen.","Colgué el calendario en la cocina."]
   ]},
-{ id:"forget", base:"forget", past:"forgot", part:"forgotten", type:"for", es:"olvidar", short:"olvidar", esPast:"olvidé mi tarea", sayB:"forguét", sayP:"forgát",
-  tip:"Empieza con FOR y cambia la vocal del final: forget → forgot (e → o).", ojo:"Nunca «forgeted». El participio es forgotten (I have forgotten), no forgot.",
-  wrong:["forgeted","forgotten","forgets"],
+{ id:"have", base:"have", past:"had", part:"had", type:"drop", es:"tener, haber", short:"tener", esPast:"tuve un buen día", sayB:"jav", sayP:"jad",
+  tip:"Se acorta: have → had (pierde la V).", ojo:"Nunca «haved». Con he/she/it en presente es HAS, no have. El pasado (had) sirve para los dos usos: tener y el auxiliar haber.",
+  wrong:["haved","haves","has"],
   s:[
-  ["I {forgot} my homework at home yesterday.","Ayer olvidé la tarea en la casa."],
-  ["She {forgot} her umbrella on the bus.","Ella olvidó su paraguas en el bus."],
-  ["We {forgot} to buy bread this morning.","Se nos olvidó comprar pan esta mañana."],
-  ["He {forgot} my birthday last week.","Él olvidó mi cumpleaños la semana pasada."],
-  ["I {forgot} the password of my phone.","Olvidé la contraseña de mi celular."],
-  ["The teacher {forgot} her glasses in the classroom.","La profe olvidó sus gafas en el salón."],
-  ["I completely {forgot} about the meeting.","Me olvidé por completo de la reunión."],
-  ["They {forgot} to lock the door before leaving.","Olvidaron cerrar la puerta con llave antes de salir."],
-  ["My brother {forgot} his lunch box again.","Mi hermano olvidó su lonchera otra vez."],
-  ["I {forgot} her name five minutes later.","Olvidé su nombre cinco minutos después."]
+  ["I {had} a great time at the party.","La pasé muy bien en la fiesta."],
+  ["She {had} a headache yesterday.","Ella tuvo dolor de cabeza ayer."],
+  ["We {had} pizza for dinner last night.","Anoche cenamos pizza."],
+  ["He {had} a lot of homework this week.","Él tuvo mucha tarea esta semana."],
+  ["They {had} a big argument yesterday.","Tuvieron una pelea grande ayer."],
+  ["I {had} a strange dream last night.","Tuve un sueño raro anoche."],
+  ["We {had} a great vacation last year.","Tuvimos unas vacaciones geniales el año pasado."],
+  ["She {had} three cats when she was a kid.","Ella tenía tres gatos cuando era niña."],
+  ["My family {had} a small farm years ago.","Mi familia tenía una finca pequeña hace años."],
+  ["He {had} a fever last weekend.","Él tuvo fiebre el fin de semana pasado."]
   ]},
-{ id:"forgive", base:"forgive", past:"forgave", part:"forgiven", type:"for", es:"perdonar", short:"perdonar", esPast:"ella me perdonó", sayB:"forguív", sayP:"forguéiv",
-  tip:"Empieza con FOR y cambia la vocal del final: forgive → forgave (i → a).", ojo:"Nunca «forgived». El participio es forgiven (I have forgiven), no forgave.",
-  wrong:["forgived","forgiven","forgives"],
+{ id:"hear", base:"hear", past:"heard", part:"heard", type:"same", es:"oír, escuchar", short:"oír", esPast:"oí un ruido", sayB:"jíir", sayP:"jerd",
+  tip:"Se le agrega una D: hear + d = heard. Suena «jerd».", ojo:"Nunca «heared». Se escribe HEARD, no HERD (que es una manada de animales).",
+  wrong:["heared","hears","herd"],
   s:[
-  ["My mom {forgave} me after I said sorry.","Mi mamá me perdonó después de que pedí perdón."],
-  ["She {forgave} her friend for the lie.","Ella perdonó a su amiga por la mentira."],
-  ["He {forgave} his brother and they played together again.","Él perdonó a su hermano y volvieron a jugar juntos."],
-  ["The teacher {forgave} my mistake this time.","La profe me perdonó el error esta vez."],
-  ["We {forgave} him because he was honest.","Lo perdonamos porque fue honesto."],
-  ["I {forgave} her a long time ago.","La perdoné hace mucho tiempo."],
-  ["My dad {forgave} the boy who broke our window.","Mi papá perdonó al niño que rompió nuestra ventana."],
-  ["She {forgave} him, but she didn't forget.","Ella lo perdonó, pero no lo olvidó."],
-  ["The people {forgave} the mayor after his apology.","La gente perdonó al alcalde después de su disculpa."],
-  ["I {forgave} my cousin for breaking my phone.","Perdoné a mi primo por dañar mi celular."]
+  ["I {heard} a strange noise last night.","Anoche oí un ruido raro."],
+  ["She {heard} the good news this morning.","Ella se enteró de la buena noticia esta mañana."],
+  ["We {heard} the thunder from far away.","Oímos el trueno desde lejos."],
+  ["He {heard} his name and turned around.","Él oyó su nombre y volteó."],
+  ["I {heard} that song on the radio yesterday.","Ayer oí esa canción en la radio."],
+  ["They {heard} footsteps behind them.","Oyeron pasos detrás de ellos."],
+  ["She {heard} the teacher call her name.","Ella oyó al profe llamar su nombre."],
+  ["We {heard} the dog barking all night.","Oímos al perro ladrando toda la noche."],
+  ["I {heard} a rumor about the new student.","Oí un rumor sobre el estudiante nuevo."],
+  ["He {heard} the alarm and woke up fast.","Él oyó la alarma y se despertó rápido."]
   ]},
-{ id:"freeze", base:"freeze", past:"froze", part:"frozen", type:"full", es:"helar, congelar", short:"helar", esPast:"el lago se heló", sayB:"fríis", sayP:"fróus",
-  tip:"Cambia por completo: freeze → froze (suena «fróus», rima con nose).", ojo:"Nunca «freezed». El participio es frozen (I have frozen), no froze.",
-  wrong:["freezed","frozen","freezes"],
+{ id:"hide", base:"hide", past:"hid", part:"hidden", type:"drop", es:"esconder, ocultar", short:"esconder", esPast:"escondí el regalo", sayB:"jáid", sayP:"jid",
+  tip:"Pierde la E final: hide → hid.", ojo:"Nunca «hided». El participio es hidden (I have hidden), con doble D, no hid.",
+  wrong:["hided","hids","hidden"],
   s:[
-  ["The lake {froze} during the cold winter.","El lago se heló durante el invierno frío."],
-  ["The water in the bottle {froze} overnight.","El agua de la botella se congeló durante la noche."],
-  ["My computer {froze} while I was studying.","Mi computador se congeló mientras yo estudiaba."],
-  ["I {froze} when I saw the big snake.","Me quedé helado cuando vi la serpiente grande."],
-  ["The pipes {froze} last night in the mountains.","Las tuberías se congelaron anoche en las montañas."],
-  ["She {froze} the leftover soup for later.","Ella congeló la sopa que sobró para después."],
-  ["It was so cold that my fingers {froze}.","Hacía tanto frío que se me congelaron los dedos."],
-  ["The rain {froze} on the road this morning.","La lluvia se congeló en la carretera esta mañana."],
-  ["We {froze} in the dark when we heard a noise.","Nos quedamos petrificados en la oscuridad cuando oímos un ruido."],
-  ["Mom {froze} the meat to keep it fresh.","Mamá congeló la carne para que se mantuviera fresca."]
+  ["The cat {hid} under the bed.","El gato se escondió debajo de la cama."],
+  ["I {hid} the gift in the closet.","Escondí el regalo en el armario."],
+  ["She {hid} her feelings very well.","Ella ocultó muy bien sus sentimientos."],
+  ["We {hid} behind the couch during the game.","Nos escondimos detrás del sofá durante el juego."],
+  ["He {hid} the candy from his little sister.","Él escondió los dulces de su hermanita."],
+  ["The kids {hid} in the garden.","Los niños se escondieron en el jardín."],
+  ["I {hid} my phone before the exam.","Escondí mi celular antes del examen."],
+  ["She {hid} the key under the mat.","Ella escondió la llave debajo del tapete."],
+  ["They {hid} from the rain under a tree.","Se escondieron de la lluvia bajo un árbol."],
+  ["My dog {hid} my shoe again!","¡Mi perro escondió mi zapato otra vez!"]
+  ]},
+{ id:"hit", base:"hit", past:"hit", part:"hit", type:"same", es:"golpear, pegarle a", short:"golpear", esPast:"golpeó la pelota", sayB:"jit", sayP:"jit",
+  tip:"No cambia: hit → hit, como cut y cost.", ojo:"Nunca «hitted». Se pronuncia igual en presente y pasado.",
+  wrong:["hitted","hits","hitten"],
+  s:[
+  ["The ball {hit} the window and broke it.","La pelota golpeó la ventana y la rompió."],
+  ["He {hit} the ball really hard.","Él golpeó la pelota con mucha fuerza."],
+  ["I {hit} my knee on the table.","Me golpeé la rodilla con la mesa."],
+  ["The storm {hit} the coast last night.","La tormenta golpeó la costa anoche."],
+  ["She {hit} the target three times.","Ella le dio al blanco tres veces."],
+  ["We {hit} traffic on the way to school.","Nos topamos con tráfico camino al colegio."],
+  ["He {hit} his head on the door.","Él se golpeó la cabeza con la puerta."],
+  ["The news {hit} everyone hard.","La noticia golpeó a todos fuerte."],
+  ["I {hit} send before I finished the message.","Le di enviar antes de terminar el mensaje."],
+  ["The car {hit} a pothole on the road.","El carro golpeó un hueco en la carretera."]
   ]}
 ];
 
 const TYPES = [
-{ id:"ee", name:"Se acorta la EE", color:"var(--p)", verbs:["feel","flee"],
-  rule:"La doble E se vuelve una E y se agrega una T o una D al final.",
-  trick:"fEEl → felt (+t) · flEE → fled (+d). Es el mismo truco de keep → kept y sleep → slept." },
-{ id:"ou", name:"La I se vuelve OU", color:"var(--b)", verbs:["fight","find"],
-  rule:"La I del medio cambia por OU; el resto queda casi igual.",
-  trick:"fIght → fOught · fInd → fOund. Suenan «fot» y «faund»." },
-{ id:"for", name:"Los de FOR-", color:"var(--o)", verbs:["forbid","forget","forgive"],
-  rule:"Los tres empiezan con FOR y cambian su última vocal.",
-  trick:"forbId → forbAde · forgEt → forgOt · forgIve → forgAve." },
-{ id:"full", name:"Cambian por completo", color:"var(--g)", verbs:["fly","freeze"],
+{ id:"same", name:"Casi no cambian", color:"var(--p)", verbs:["hit","hear"],
+  rule:"Uno no cambia nada; el otro solo le agrega una D al final.",
+  trick:"hit → hit (igual que cut, cast) · hear + d = heard." },
+{ id:"vowel", name:"Cambia la vocal, las consonantes quedan", color:"var(--b)", verbs:["get","give","grow","hang"],
+  rule:"Las consonantes se quedan igual; solo cambia la vocal de adentro.",
+  trick:"get→got (e→o) · give→gave (i→a) · grow→grew (o→e) · hang→hung (a→u)." },
+{ id:"drop", name:"Pierden el final", color:"var(--g)", verbs:["hide","have"],
+  rule:"Se acortan: pierden la última letra o sílaba.",
+  trick:"hide→hid (pierde la e) · have→had (pierde la v)." },
+{ id:"full", name:"Cambian por completo", color:"var(--o)", verbs:["go","grind"],
   rule:"El pasado casi no se parece al verbo: hay que aprenderlos tal cual.",
-  trick:"fly → flew (rima con blue) · freeze → froze (rima con nose)." }
+  trick:"go→went (es otra palabra) · grind→ground (crece: i→ou)." }
 ];
 const T = Object.fromEntries(TYPES.map(t => [t.id, t]));
 
 const STORY = [
-  { en:"Last winter I {felt} a strange cold in my house.", es:"El invierno pasado sentí un frío extraño en mi casa.", vid:"feel" },
-  { en:"I {found} a tiny ice dragon in the snow.", es:"Encontré un dragoncito de hielo en la nieve.", vid:"find" },
-  { en:"It {froze} my hands when I touched it!", es:"¡Me congeló las manos cuando lo toqué!", vid:"freeze" },
-  { en:"A knight arrived and {forbade} me to keep it.", es:"Llegó un caballero y me prohibió quedármelo.", vid:"forbid" },
-  { en:"I {fought} him with a snowball.", es:"Peleé con él usando una bola de nieve.", vid:"fight" },
-  { en:"The knight {fled} crying.", es:"El caballero huyó llorando.", vid:"flee" },
-  { en:"I {forgave} him because he was scared.", es:"Lo perdoné porque estaba asustado.", vid:"forgive" },
-  { en:"Then my dragon {flew} over the mountains.", es:"Entonces mi dragón voló sobre las montañas.", vid:"fly" },
-  { en:"I never {forgot} my little ice dragon.", es:"Nunca olvidé a mi dragoncito de hielo.", vid:"forget" }
+  { en:"Last Saturday I {got} an idea for a surprise party.", es:"El sábado pasado se me ocurrió una idea para una fiesta sorpresa.", vid:"get" },
+  { en:"I {gave} each friend a secret job.", es:"Le di a cada amigo una tarea secreta.", vid:"give" },
+  { en:"We {went} to the store to buy balloons.", es:"Fuimos a la tienda a comprar globos.", vid:"go" },
+  { en:"The line for balloons {grew} very long.", es:"La fila para los globos creció muchísimo.", vid:"grow" },
+  { en:"My friend {ground} ice for the drinks.", es:"Mi amigo molió hielo para las bebidas.", vid:"grind" },
+  { en:"We {hung} streamers all over the room.", es:"Colgamos serpentinas por todo el cuarto.", vid:"hang" },
+  { en:"Everyone {had} a great time decorating.", es:"Todos la pasaron genial decorando.", vid:"have" },
+  { en:"Suddenly, we {heard} the car in the driveway.", es:"De repente, oímos el carro en la entrada.", vid:"hear" },
+  { en:"We all {hid} behind the door.", es:"Todos nos escondimos detrás de la puerta.", vid:"hide" },
+  { en:"When she walked in, the lights {hit} her face and everyone shouted \"Surprise!\"", es:"Cuando ella entró, las luces le dieron en la cara y todos gritaron «¡Sorpresa!»", vid:"hit" }
 ];
 
 const LEVELS = [
-  { id:1, vids:["feel","flee"], game:"meteors", name:"Se acorta la EE", planet:"Mercurio", icon:"meteor", c:"var(--p)" },
-  { id:2, vids:["fight","find"], game:"balloons", name:"La I se vuelve OU", planet:"Venus", icon:"balloon", c:"var(--b)" },
-  { id:3, vids:["feel","flee","fight","find"], game:"memory", name:"Memoria cósmica", planet:"Tierra", icon:"cards", c:"var(--v)" },
-  { id:4, vids:["fly","freeze"], game:"spell", name:"Taller de ortografía", planet:"Luna", icon:"pencil", c:"var(--g)" },
-  { id:5, vids:["feel","flee","fight","find","fly","freeze"], game:"truefalse", name:"Portal veloz", planet:"Marte", icon:"bolt", c:"var(--y)" },
-  { id:6, vids:["forbid","forget"], game:"meteors", name:"Los de FOR- (I)", planet:"Júpiter", icon:"meteor", c:"var(--o)" },
-  { id:7, vids:["forget","forgive"], game:"balloons", name:"Los de FOR- (II)", planet:"Saturno", icon:"balloon", c:"var(--o)" },
-  { id:8, vids:["forbid","forget","forgive","freeze"], game:"memory", name:"Memoria estelar", planet:"Urano", icon:"cards", c:"var(--v)" },
-  { id:9, vids:["forbid","forgive","forget","fight","fly"], game:"spell", name:"Academia final", planet:"Neptuno", icon:"pencil", c:"var(--b)" },
+  { id:1, vids:["hit","hear"], game:"meteors", name:"Casi no cambian", planet:"Mercurio", icon:"meteor", c:"var(--p)" },
+  { id:2, vids:["get","give"], game:"balloons", name:"Cambia la vocal (I)", planet:"Venus", icon:"balloon", c:"var(--b)" },
+  { id:3, vids:["hit","hear","get","give"], game:"memory", name:"Memoria cósmica", planet:"Tierra", icon:"cards", c:"var(--v)" },
+  { id:4, vids:["grow","hang"], game:"spell", name:"Cambia la vocal (II)", planet:"Luna", icon:"pencil", c:"var(--b)" },
+  { id:5, vids:["hit","hear","get","give","grow","hang"], game:"truefalse", name:"Portal veloz", planet:"Marte", icon:"bolt", c:"var(--y)" },
+  { id:6, vids:["hide","have"], game:"meteors", name:"Pierden el final", planet:"Júpiter", icon:"meteor", c:"var(--g)" },
+  { id:7, vids:["go","grind"], game:"balloons", name:"Cambian por completo", planet:"Saturno", icon:"balloon", c:"var(--o)" },
+  { id:8, vids:["hide","have","go","grind"], game:"memory", name:"Memoria estelar", planet:"Urano", icon:"cards", c:"var(--v)" },
+  { id:9, vids:["grow","hang","hide","have","go","grind"], game:"spell", name:"Academia final", planet:"Neptuno", icon:"pencil", c:"var(--b)" },
   { id:10, vids:VERBS.map(v => v.id), game:"truefalse", name:"Portal veloz II", planet:"Plutón", icon:"bolt", c:"var(--y)" },
   { id:11, vids:VERBS.map(v => v.id), game:"boss", name:"El Profesor del Vacío", planet:"Jefe final", icon:"skull", c:"var(--bad)", boss:true }
 ];
 /* ---------- Misión 2 («Did?»): negativo e interrogativo del pasado ---------- */
 const LEVELS_Q = [
-  { id:21, world:"q", vids:["feel","find","fly","forget"], game:"memory", variant:"neg", name:"El truco del didn't", planet:"Nova", icon:"cards", c:"var(--v)", sub:"Une cada pasado con su forma negativa. Fíjate: con didn't el verbo vuelve a su forma normal." },
-  { id:22, world:"q", vids:["feel","fight","find","flee"], game:"gap", form:"n", name:"Completa: negativas", planet:"Lyra", icon:"balloon", c:"var(--p)", sub:"Completa la frase negativa con el verbo en forma normal, no en pasado." },
-  { id:23, world:"q", vids:["feel","fight","find","flee","fly","freeze"], game:"judge", form:"n", name:"¿Bien o mal? Negativas", planet:"Orión", icon:"help", c:"var(--y)", sub:"Decide rápido si la frase negativa está bien escrita." },
-  { id:24, world:"q", vids:["fly","forbid","forget","forgive","freeze"], game:"build", form:"n", name:"Arma la frase negativa", planet:"Vega", icon:"blocks", c:"var(--b)", sub:"Toca las palabras en orden para armar la frase negativa en inglés." },
+  { id:21, world:"q", vids:["get","give","hide","have"], game:"memory", variant:"neg", name:"El truco del didn't", planet:"Nova", icon:"cards", c:"var(--v)", sub:"Une cada pasado con su forma negativa. Fíjate: con didn't el verbo vuelve a su forma normal." },
+  { id:22, world:"q", vids:["hit","hear","get","give"], game:"gap", form:"n", name:"Completa: negativas", planet:"Lyra", icon:"balloon", c:"var(--p)", sub:"Completa la frase negativa con el verbo en forma normal, no en pasado." },
+  { id:23, world:"q", vids:["hit","hear","get","give","grow","hang"], game:"judge", form:"n", name:"¿Bien o mal? Negativas", planet:"Orión", icon:"help", c:"var(--y)", sub:"Decide rápido si la frase negativa está bien escrita." },
+  { id:24, world:"q", vids:["hide","have","go","grind","hang"], game:"build", form:"n", name:"Arma la frase negativa", planet:"Vega", icon:"blocks", c:"var(--b)", sub:"Toca las palabras en orden para armar la frase negativa en inglés." },
   { id:25, world:"q", vids:VERBS.map(v => v.id), game:"gap", form:"q", name:"Completa: preguntas", planet:"Sirio", icon:"balloon", c:"var(--p)", sub:"Completa la pregunta con el verbo en forma normal, no en pasado." },
   { id:26, world:"q", vids:VERBS.map(v => v.id), game:"judge", form:"q", name:"¿Bien o mal? Preguntas", planet:"Altair", icon:"help", c:"var(--y)", sub:"Decide rápido si la pregunta está bien escrita." },
   { id:27, world:"q", vids:VERBS.map(v => v.id), game:"build", form:"q", name:"Arma la pregunta", planet:"Rigel", icon:"blocks", c:"var(--b)", sub:"Toca las palabras en orden para armar la pregunta en inglés." },
@@ -689,61 +705,68 @@ const GAME_META = {
   transform:{ label:"Transforma", sub:"Escribe la frase en negativo o en pregunta.", icon:"swap", c:"var(--bad)", q:true }
 };
 
-/* verbos que también encajarían en ciertas frases: nunca se ofrecen como distractores de "¿cuál va aquí?" */
-const CONFUSE = { flee:["fly"], fly:["flee"], feel:["find"], find:["feel"] };
+/* verbos que también encajarían en ciertas frases: nunca se ofrecen como distractores de "¿cuál va aquí?".
+   get/have chocan porque las dos sirven para expresar "tener/agarrar" un dolor, una fiebre, etc. */
+const CONFUSE = { get:["have"], have:["get"] };
 
 /* ---------- NEGATIVO E INTERROGATIVO (sección «Did?») ----------
    Cada fila: [verbo, sujeto, sujeto en la pregunta, resto de la frase, ES afirmativa, ES negativa, ES pregunta].
    El inglés se arma solo (formEn en c-core.js):
      afirmativa  →  S {past} rest.          negativa  →  S didn't {base} rest.          pregunta  →  Did sq {base} rest?
    Al agregar filas: el «resto» NO debe llevar verbos en pasado (se confunde con el didn't) y debe ser corto
-   (la frase completa no pasa de ~9 palabras, para que quepan las fichas de «Arma la frase» en el celular). */
+   (la frase completa no pasa de ~9 palabras, para que quepan las fichas de «Arma la frase» en el celular).
+   Sujetos variados (evitar «I»/«we» sueltos, para que «Did...?» suene natural). */
 const FORM_ROWS = [
-  ["feel","He","he","tired after the game","Él se sintió cansado después del partido.","Él no se sintió cansado después del partido.","¿Él se sintió cansado después del partido?"],
-  ["feel","She","she","nervous before the exam","Ella se sintió nerviosa antes del examen.","Ella no se sintió nerviosa antes del examen.","¿Ella se sintió nerviosa antes del examen?"],
-  ["feel","You","you","the ground shake last night","Sentiste temblar el suelo anoche.","No sentiste temblar el suelo anoche.","¿Sentiste temblar el suelo anoche?"],
-  ["feel","The kids","the kids","safe in the house","Los niños se sintieron seguros en la casa.","Los niños no se sintieron seguros en la casa.","¿Los niños se sintieron seguros en la casa?"],
-  ["feel","My mom","my mom","proud of my grades","Mi mamá se sintió orgullosa de mis notas.","Mi mamá no se sintió orgullosa de mis notas.","¿Mi mamá se sintió orgullosa de mis notas?"],
-  ["fight","The boys","the boys","in the schoolyard","Los niños pelearon en el patio del colegio.","Los niños no pelearon en el patio del colegio.","¿Los niños pelearon en el patio del colegio?"],
-  ["fight","Your brother","your brother","with his friend","Tu hermano peleó con su amigo.","Tu hermano no peleó con su amigo.","¿Tu hermano peleó con su amigo?"],
-  ["fight","They","they","for their country","Ellos lucharon por su país.","Ellos no lucharon por su país.","¿Ellos lucharon por su país?"],
-  ["fight","She","she","for her dream","Ella luchó por su sueño.","Ella no luchó por su sueño.","¿Ella luchó por su sueño?"],
-  ["fight","The team","the team","until the last minute","El equipo luchó hasta el último minuto.","El equipo no luchó hasta el último minuto.","¿El equipo luchó hasta el último minuto?"],
-  ["find","She","she","a wallet on the street","Ella encontró una billetera en la calle.","Ella no encontró una billetera en la calle.","¿Ella encontró una billetera en la calle?"],
-  ["find","You","you","your keys this morning","Encontraste tus llaves esta mañana.","No encontraste tus llaves esta mañana.","¿Encontraste tus llaves esta mañana?"],
-  ["find","The police","the police","the missing dog","La policía encontró al perro perdido.","La policía no encontró al perro perdido.","¿La policía encontró al perro perdido?"],
-  ["find","They","they","a good hotel near the beach","Ellos encontraron un buen hotel cerca de la playa.","Ellos no encontraron un buen hotel cerca de la playa.","¿Ellos encontraron un buen hotel cerca de la playa?"],
-  ["find","He","he","the answer to the question","Él encontró la respuesta a la pregunta.","Él no encontró la respuesta a la pregunta.","¿Él encontró la respuesta a la pregunta?"],
-  ["flee","The thief","the thief","from the police","El ladrón huyó de la policía.","El ladrón no huyó de la policía.","¿El ladrón huyó de la policía?"],
-  ["flee","The people","the people","from the building","La gente huyó del edificio.","La gente no huyó del edificio.","¿La gente huyó del edificio?"],
-  ["flee","The cat","the cat","up the tree","El gato huyó hacia el árbol.","El gato no huyó hacia el árbol.","¿El gato huyó hacia el árbol?"],
-  ["flee","They","they","to another country","Ellos huyeron a otro país.","Ellos no huyeron a otro país.","¿Ellos huyeron a otro país?"],
-  ["flee","The robbers","the robbers","in a black car","Los ladrones huyeron en un carro negro.","Los ladrones no huyeron en un carro negro.","¿Los ladrones huyeron en un carro negro?"],
-  ["fly","The bird","the bird","over the house","El pájaro voló sobre la casa.","El pájaro no voló sobre la casa.","¿El pájaro voló sobre la casa?"],
-  ["fly","They","they","to Cartagena last summer","Ellos volaron a Cartagena el verano pasado.","Ellos no volaron a Cartagena el verano pasado.","¿Ellos volaron a Cartagena el verano pasado?"],
-  ["fly","Your dad","your dad","to Miami for work","Tu papá voló a Miami por trabajo.","Tu papá no voló a Miami por trabajo.","¿Tu papá voló a Miami por trabajo?"],
-  ["fly","The plane","the plane","through the storm","El avión voló a través de la tormenta.","El avión no voló a través de la tormenta.","¿El avión voló a través de la tormenta?"],
-  ["fly","You","you","a kite yesterday","Volaste una cometa ayer.","No volaste una cometa ayer.","¿Volaste una cometa ayer?"],
-  ["forbid","The teacher","the teacher","phones in the classroom","El profe prohibió los celulares en el salón.","El profe no prohibió los celulares en el salón.","¿El profe prohibió los celulares en el salón?"],
-  ["forbid","Your mom","your mom","you to go out","Tu mamá te prohibió salir.","Tu mamá no te prohibió salir.","¿Tu mamá te prohibió salir?"],
-  ["forbid","The doctor","the doctor","him to eat sugar","El doctor le prohibió comer azúcar.","El doctor no le prohibió comer azúcar.","¿El doctor le prohibió comer azúcar?"],
-  ["forbid","The school","the school","skateboards","El colegio prohibió las patinetas.","El colegio no prohibió las patinetas.","¿El colegio prohibió las patinetas?"],
-  ["forbid","They","they","the kids to swim","Ellos les prohibieron nadar a los niños.","Ellos no les prohibieron nadar a los niños.","¿Ellos les prohibieron nadar a los niños?"],
-  ["forget","He","he","his homework at home","Él olvidó su tarea en la casa.","Él no olvidó su tarea en la casa.","¿Él olvidó su tarea en la casa?"],
-  ["forget","You","you","your umbrella on the bus","Olvidaste tu paraguas en el bus.","No olvidaste tu paraguas en el bus.","¿Olvidaste tu paraguas en el bus?"],
-  ["forget","The teacher","the teacher","her glasses","La profe olvidó sus gafas.","La profe no olvidó sus gafas.","¿La profe olvidó sus gafas?"],
-  ["forget","They","they","the password","Ellos olvidaron la contraseña.","Ellos no olvidaron la contraseña.","¿Ellos olvidaron la contraseña?"],
-  ["forget","Laura","Laura","her lunch box","Laura olvidó su lonchera.","Laura no olvidó su lonchera.","¿Laura olvidó su lonchera?"],
-  ["forgive","Your mom","your mom","you","Tu mamá te perdonó.","Tu mamá no te perdonó.","¿Tu mamá te perdonó?"],
-  ["forgive","She","she","her friend","Ella perdonó a su amiga.","Ella no perdonó a su amiga.","¿Ella perdonó a su amiga?"],
-  ["forgive","The teacher","the teacher","my mistake","La profe perdonó mi error.","La profe no perdonó mi error.","¿La profe perdonó mi error?"],
-  ["forgive","They","they","the boy","Ellos perdonaron al niño.","Ellos no perdonaron al niño.","¿Ellos perdonaron al niño?"],
-  ["forgive","You","you","your cousin","Perdonaste a tu primo.","No perdonaste a tu primo.","¿Perdonaste a tu primo?"],
-  ["freeze","The lake","the lake","in winter","El lago se heló en invierno.","El lago no se heló en invierno.","¿El lago se heló en invierno?"],
-  ["freeze","The water","the water","overnight","El agua se congeló durante la noche.","El agua no se congeló durante la noche.","¿El agua se congeló durante la noche?"],
-  ["freeze","Your computer","your computer","during the class","Tu computador se congeló durante la clase.","Tu computador no se congeló durante la clase.","¿Tu computador se congeló durante la clase?"],
-  ["freeze","She","she","the soup for later","Ella congeló la sopa para después.","Ella no congeló la sopa para después.","¿Ella congeló la sopa para después?"],
-  ["freeze","The rain","the rain","on the road","La lluvia se congeló en la carretera.","La lluvia no se congeló en la carretera.","¿La lluvia se congeló en la carretera?"]
+  ["get","He","he","a new bike for his birthday","Él consiguió una bici nueva para su cumpleaños.","Él no consiguió una bici nueva para su cumpleaños.","¿Él consiguió una bici nueva para su cumpleaños?"],
+  ["get","She","she","the highest grade in the class","Ella sacó la nota más alta de la clase.","Ella no sacó la nota más alta de la clase.","¿Ella sacó la nota más alta de la clase?"],
+  ["get","They","they","lost on the way home","Se perdieron camino a casa.","No se perdieron camino a casa.","¿Se perdieron camino a casa?"],
+  ["get","You","you","a text message during class","Recibiste un mensaje durante la clase.","No recibiste un mensaje durante la clase.","¿Recibiste un mensaje durante la clase?"],
+  ["get","My mom","my mom","a promotion last month","Mi mamá consiguió un ascenso el mes pasado.","Mi mamá no consiguió un ascenso el mes pasado.","¿Mi mamá consiguió un ascenso el mes pasado?"],
+  ["give","He","he","his phone number to Ana","Él le dio su número a Ana.","Él no le dio su número a Ana.","¿Él le dio su número a Ana?"],
+  ["give","She","she","a great presentation yesterday","Ella dio una presentación buenísima ayer.","Ella no dio una presentación buenísima ayer.","¿Ella dio una presentación buenísima ayer?"],
+  ["give","They","they","their old clothes to charity","Ellos dieron su ropa vieja a la caridad.","Ellos no dieron su ropa vieja a la caridad.","¿Ellos dieron su ropa vieja a la caridad?"],
+  ["give","Your dad","your dad","good advice yesterday","Tu papá te dio un buen consejo ayer.","Tu papá no te dio un buen consejo ayer.","¿Tu papá te dio un buen consejo ayer?"],
+  ["give","The teacher","the teacher","a lot of homework","La profe dejó mucha tarea.","La profe no dejó mucha tarea.","¿La profe dejó mucha tarea?"],
+  ["go","My parents","my parents","to the beach last weekend","Mis papás fueron a la playa el fin de semana pasado.","Mis papás no fueron a la playa el fin de semana pasado.","¿Mis papás fueron a la playa el fin de semana pasado?"],
+  ["go","She","she","to bed very early","Ella se acostó muy temprano.","Ella no se acostó muy temprano.","¿Ella se acostó muy temprano?"],
+  ["go","You","you","to the doctor yesterday","Fuiste al médico ayer.","No fuiste al médico ayer.","¿Fuiste al médico ayer?"],
+  ["go","They","they","home after the movie","Se fueron a casa después de la película.","No se fueron a casa después de la película.","¿Se fueron a casa después de la película?"],
+  ["go","He","he","to Bogotá for work","Él fue a Bogotá por trabajo.","Él no fue a Bogotá por trabajo.","¿Él fue a Bogotá por trabajo?"],
+  ["grow","The plant","the plant","very fast this month","La planta creció muy rápido este mes.","La planta no creció muy rápido este mes.","¿La planta creció muy rápido este mes?"],
+  ["grow","She","she","up in a small town","Ella creció en un pueblo pequeño.","Ella no creció en un pueblo pequeño.","¿Ella creció en un pueblo pequeño?"],
+  ["grow","Our friendship","our friendship","stronger over the years","Nuestra amistad se hizo más fuerte con los años.","Nuestra amistad no se hizo más fuerte con los años.","¿Nuestra amistad se hizo más fuerte con los años?"],
+  ["grow","He","he","a beard during vacation","Él se dejó crecer la barba en vacaciones.","Él no se dejó crecer la barba en vacaciones.","¿Él se dejó crecer la barba en vacaciones?"],
+  ["grow","My little brother","my little brother","two centimeters this year","Mi hermanito creció dos centímetros este año.","Mi hermanito no creció dos centímetros este año.","¿Mi hermanito creció dos centímetros este año?"],
+  ["grind","My dad","my dad","the coffee beans this morning","Mi papá molió los granos de café esta mañana.","Mi papá no molió los granos de café esta mañana.","¿Mi papá molió los granos de café esta mañana?"],
+  ["grind","She","she","the spices for the recipe","Ella molió las especias para la receta.","Ella no molió las especias para la receta.","¿Ella molió las especias para la receta?"],
+  ["grind","The cook","the cook","fresh corn for the arepas","El cocinero molió maíz fresco para las arepas.","El cocinero no molió maíz fresco para las arepas.","¿El cocinero molió maíz fresco para las arepas?"],
+  ["grind","The machine","the machine","the meat very quickly","La máquina molió la carne muy rápido.","La máquina no molió la carne muy rápido.","¿La máquina molió la carne muy rápido?"],
+  ["grind","He","he","the pepper for the soup","Él molió la pimienta para la sopa.","Él no molió la pimienta para la sopa.","¿Él molió la pimienta para la sopa?"],
+  ["hang","The kids","the kids","the Christmas lights yesterday","Los niños colgaron las luces de Navidad ayer.","Los niños no colgaron las luces de Navidad ayer.","¿Los niños colgaron las luces de Navidad ayer?"],
+  ["hang","She","she","her jacket on the chair","Ella colgó su chaqueta en la silla.","Ella no colgó su chaqueta en la silla.","¿Ella colgó su chaqueta en la silla?"],
+  ["hang","The kids","the kids","their backpacks by the door","Los niños colgaron sus mochilas junto a la puerta.","Los niños no colgaron sus mochilas junto a la puerta.","¿Los niños colgaron sus mochilas junto a la puerta?"],
+  ["hang","My mom","my mom","the towels in the bathroom","Mi mamá colgó las toallas en el baño.","Mi mamá no colgó las toallas en el baño.","¿Mi mamá colgó las toallas en el baño?"],
+  ["hang","He","he","up the phone very quickly","Él colgó el teléfono muy rápido.","Él no colgó el teléfono muy rápido.","¿Él colgó el teléfono muy rápido?"],
+  ["have","She","she","a headache all day","Ella tuvo dolor de cabeza todo el día.","Ella no tuvo dolor de cabeza todo el día.","¿Ella tuvo dolor de cabeza todo el día?"],
+  ["have","He","he","a lot of homework","Él tuvo mucha tarea.","Él no tuvo mucha tarea.","¿Él tuvo mucha tarea?"],
+  ["have","They","they","a big argument yesterday","Ellos tuvieron una pelea grande ayer.","Ellos no tuvieron una pelea grande ayer.","¿Ellos tuvieron una pelea grande ayer?"],
+  ["have","My family","my family","a small farm years ago","Mi familia tuvo una finca pequeña hace años.","Mi familia no tuvo una finca pequeña hace años.","¿Mi familia tuvo una finca pequeña hace años?"],
+  ["have","Your brother","your brother","a fever last weekend","Tu hermano tuvo fiebre el fin de semana pasado.","Tu hermano no tuvo fiebre el fin de semana pasado.","¿Tu hermano tuvo fiebre el fin de semana pasado?"],
+  ["hear","She","she","the good news this morning","Ella oyó la buena noticia esta mañana.","Ella no oyó la buena noticia esta mañana.","¿Ella oyó la buena noticia esta mañana?"],
+  ["hear","He","he","his name and turned around","Él oyó su nombre y volteó.","Él no oyó su nombre y volteó.","¿Él oyó su nombre y volteó?"],
+  ["hear","They","they","footsteps behind them last night","Anoche oyeron pasos detrás de ellos.","Anoche no oyeron pasos detrás de ellos.","¿Anoche oyeron pasos detrás de ellos?"],
+  ["hear","Your mom","your mom","the dog barking all night","Tu mamá oyó al perro ladrando toda la noche.","Tu mamá no oyó al perro ladrando toda la noche.","¿Tu mamá oyó al perro ladrando toda la noche?"],
+  ["hear","The teacher","the teacher","the alarm this morning","La profe oyó la alarma esta mañana.","La profe no oyó la alarma esta mañana.","¿La profe oyó la alarma esta mañana?"],
+  ["hide","The cat","the cat","under the bed all day","El gato se escondió debajo de la cama todo el día.","El gato no se escondió debajo de la cama todo el día.","¿El gato se escondió debajo de la cama todo el día?"],
+  ["hide","She","she","her feelings very well","Ella ocultó muy bien sus sentimientos.","Ella no ocultó muy bien sus sentimientos.","¿Ella ocultó muy bien sus sentimientos?"],
+  ["hide","He","he","the candy from his sister","Él escondió los dulces de su hermana.","Él no escondió los dulces de su hermana.","¿Él escondió los dulces de su hermana?"],
+  ["hide","The kids","the kids","in the garden yesterday","Los niños se escondieron en el jardín ayer.","Los niños no se escondieron en el jardín ayer.","¿Los niños se escondieron en el jardín ayer?"],
+  ["hide","Your dog","your dog","your shoe again this week","Tu perro escondió tu zapato otra vez esta semana.","Tu perro no escondió tu zapato otra vez esta semana.","¿Tu perro escondió tu zapato otra vez esta semana?"],
+  ["hit","The ball","the ball","the window and broke it","La pelota golpeó la ventana y la rompió.","La pelota no golpeó la ventana y la rompió.","¿La pelota golpeó la ventana y la rompió?"],
+  ["hit","He","he","his head on the door","Él se golpeó la cabeza con la puerta.","Él no se golpeó la cabeza con la puerta.","¿Él se golpeó la cabeza con la puerta?"],
+  ["hit","She","she","the target three times","Ella le dio al blanco tres veces.","Ella no le dio al blanco tres veces.","¿Ella le dio al blanco tres veces?"],
+  ["hit","The storm","the storm","the coast very hard","La tormenta golpeó la costa muy fuerte.","La tormenta no golpeó la costa muy fuerte.","¿La tormenta golpeó la costa muy fuerte?"],
+  ["hit","You","you","your knee on the table","Te golpeaste la rodilla con la mesa.","No te golpeaste la rodilla con la mesa.","¿Te golpeaste la rodilla con la mesa?"]
 ];
 const FORMS = FORM_ROWS.map(r => ({ v: r[0], s: r[1], sq: r[2], rest: r[3], es: { a: r[4], n: r[5], q: r[6] } }));
 
@@ -813,7 +836,12 @@ function diagnose(v, a) {
   if (isCorrectPast(v, a)) return null;
   if (v.id === "buy" && a === "brought") return "«brought» es el pasado de bring (traer). Comprar es bought, sin r.";
   if (a === "chosen") return "«chosen» es el participio. El pasado simple es chose, con una sola o.";
-  if (v.part && (a === v.part || a === v.altPart) && v.part !== v.past) return "«" + a + "» es el participio. El pasado simple es " + v.past + ".";
+  /* altPart es siempre una forma que SOLO existe como participio (aunque el participio principal
+     sea igual al pasado, como en get→got/gotten); part solo delata al jugador cuando de verdad
+     difiere del pasado. */
+  if (v.part && a === v.part && v.part !== v.past) return "«" + a + "» es el participio. El pasado simple es " + v.past + ".";
+  if (v.altPart && a === v.altPart) return "«" + a + "» es el participio. El pasado simple es " + v.past + ".";
+  if (v.id === "have" && a === "has") return "«has» es el presente (he/she/it has). El pasado es had, para los dos.";
   if (a === v.base + "s" || a === v.base + "es") return "Con -s es presente. El pasado no lleva -s: " + v.past + ".";
   if (a === v.base && v.base !== v.past) return "Esa es la forma del presente. En pasado cambia: " + v.past + ".";
   if (/ed$/.test(a) && a !== v.altPast) return "Este verbo es irregular: no lleva -ed. Su pasado es " + v.past + ".";
@@ -849,7 +877,9 @@ const AUX_NAME = { n: "didn't", q: "Did" };
 function wrongVariant(t, f) {
   const v = V[t.v], toks = formTokens(t, f);
   const bi = toks.findIndex(x => x.role === "base"), ai = toks.findIndex(x => x.role === "aux");
-  const kind = Math.random() < 0.7 ? "past" : (f === "n" ? "not" : "order");
+  /* si el pasado es igual a la base (hit→hit), la trampa "past" produciría la misma frase que la
+     correcta: no es una trampa. En ese caso, cae siempre en la otra opción disponible. */
+  const kind = v.past === v.base ? (f === "n" ? "not" : "order") : (Math.random() < 0.7 ? "past" : (f === "n" ? "not" : "order"));
   let out, why;
   if (kind === "past") { out = toks.map((x, i) => (i === bi ? { w: v.past, role: "past" } : x)); why = "Después de " + AUX_NAME[f] + " el verbo vuelve a su forma normal: " + v.base + ", no " + v.past + "."; }
   else if (kind === "not") { out = toks.map((x, i) => (i === ai ? { w: "not", role: "aux" } : x)); why = "Para negar en pasado se usa didn't (did + not) antes del verbo, no solo «not»."; }
@@ -1446,7 +1476,8 @@ function pickForms(vids, count) {
 const formAt = (form, i) => (form === "mix" ? (i % 2 === 0 ? "n" : "q") : form);
 /* opciones de «Completa»: el verbo normal (correcto), el pasado (la trampa de siempre) y 2 errores típicos */
 function gapOptions(v) {
-  const set = [v.base, v.past];
+  /* si el pasado es igual a la base (hit→hit) no hay que duplicar la ficha: arranca con un solo valor */
+  const set = v.base === v.past ? [v.base] : [v.base, v.past];
   shuffle(v.wrong).forEach(w => { if (set.length < 4 && set.indexOf(w) < 0) set.push(w); });
   return shuffle(set);
 }
